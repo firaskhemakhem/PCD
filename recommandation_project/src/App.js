@@ -1,15 +1,25 @@
 import React from 'react';
-import Footer from './Components/Footer/Footer';
-import { BrowserRouter, Router , Route } from 'react-router-dom';
-import Authentification from './Components/Pages/Authentification';
-import Switch from 'react-dom';
+import Footer from './components/Footer/Footer';
+import {Routes ,Route, BrowserRouter} from'react-router-dom';
 
-const App= () =>{
+import Container from './components/Pages/Container';
+
+
+
+class App extends React.Component {
+  render(){
   return ( 
-    <div>
-    <Footer/>
-     </div>
+    <div className='App cfb'> 
+      <BrowserRouter>
+      <Routes>
+        <Route exact path ="/Auth" element ={<Container/>}/>
+        <Route exact path ="/Insc" element ={<Container/>}/>
+        <Route exact path ="/footer" element ={<Footer/>}/>
+      </Routes>
+    </BrowserRouter>
+    
+    </div>
   );
-}
+}}
   
 export default App;

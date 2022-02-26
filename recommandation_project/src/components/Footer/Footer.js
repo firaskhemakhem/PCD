@@ -4,6 +4,7 @@ import logo1 from "../../assets/icons/icons_linkedin.png";
 import logo2 from "../../assets/icons/icons_twitter.png";
 import logo3 from "../../assets/icons/icons_fb.png";
 import logo4 from "../../assets/icons/incons_insta.png";
+import { NavLink } from 'react-router-dom';
 
 const Footer= () =>  {
   return (
@@ -14,42 +15,27 @@ const Footer= () =>  {
           <div className="col">
             <p className="h">A Propos</p>
             <p className="list-unstyled">
-              PIAPE est une application qui facilite la recherche d'un PFE aux Etudiants 
+            PIAPE est une application web a comme objectifs principaux
+               d'aider l’étudiant à trouver le PFE le plus adéquat,
+               ainsi que le recruteur à trouver le candidat adéquat à chaque proposition de PFE.
+               <p><NavLink exact to ="/Détaille">Voir Plus de détaille</NavLink></p>
             </p>
           </div>
           {/* Column2 */}
           <div className="col">
             <p className="h">Services</p>
-            <ui className="list-unstyled">
-             <p>S'inscrire</p>
-              <p> S'authentifier</p>
-              <p>Gérer votre Profil</p>
-              <p>Prener un rendez-vous</p>
-              <p>Deposer votre CV</p>
-            </ui>
+            <p>Achever votre Parcours Educatif</p>
+            <p>Trouver un candidat adéquat aux sujets proposées </p>
+            <p>Consulter les catalogues proposées</p>
+            <p>Obtenir un rendez-vous</p>
           </div>
-          {/* Column3 */}
+          {/*column3*/}
           <div className="col">
-            <br/><br/>
-            <p > ** Pour plus d'informations ** </p>
-            <ui className="list-unstyled">
-            <button  style={{
-              backgroundColor: '#023C59',
-               bordercolor: 'white',
-               color:'white',
-               borderRadius: 25,
-               padding: '10px 10px',
-               whiteSpace: 'nowrap',
-               width: 120 }}> Contatez-nous</button>
-            </ui>
-          </div>
-          {/*column4*/}
-          <div className="col">
-            <p className="h">Social Media</p>
+            <p className="h" align ="center">Les réseaux sociaux</p>
             <ui className="list-unstyled">
             <img src={logo1} width='28' height='28'/>
             <i className="fa-LinkedeIn">
-                <span style={{ marginLeft: "15px" }}>
+                <span style={{ marginLeft: "25px" }}>
                   <a href="https://fr.linkedin.com/" >
                   LinkedIn
                   </a>
@@ -58,7 +44,7 @@ const Footer= () =>  {
              <br/>
              <img src={logo2} width='28' height='28'/>
             <i className="fa-twitter">
-                <span style={{ marginLeft: "15px" }}>
+                <span style={{ marginLeft: "25px" }}>
                   <a href="https://twitter.com/">
                   Twitter
                   </a>
@@ -67,7 +53,7 @@ const Footer= () =>  {
               <br/>
               <img src={logo3} width='28' height='28'/>
             <i className="fa-facebook">
-                <span style={{ marginLeft: "15px" }}>
+                <span style={{ marginLeft: "25px" }}>
                   <a href="https://www.facebook.com/">
                   Facebook
                   </a>
@@ -76,7 +62,7 @@ const Footer= () =>  {
               <br/>
               <img src={logo4} width='28' height='28'/>
               <i className="fa-instagram">
-                <span style={{ marginLeft: "15px" }}>
+                <span style={{ marginLeft: "25px" }}>
                   <a href="https://www.instagram.com/">
                   Instagram
                   </a>
@@ -84,13 +70,7 @@ const Footer= () =>  {
               </i>
             </ui>
           </div>
-        </div>
-       <hr style={{
-             color: 'grey',
-            backgroundColor: 'grey',
-            width:1000,
-            height: 0.5,
-           borderColor : 'grey'}}/>
+        </div>  
         <div >
           <p >
           </p>
