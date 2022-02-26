@@ -1,13 +1,15 @@
 import React from 'react';
-import Footer from './Components/Footer/Footer';
-import { BrowserRouter, Router , Route } from 'react-router-dom';
-import Authentification from './Components/Pages/Authentification';
-import Switch from 'react-dom';
+import Footer2 from './Components/Footer/Footer';
+import Header from './Components/Header/Header';
+//import { BrowserRouter, Router , Route } from 'react-router-dom';
+//import Authentification from './Components/Pages/Authentification';
+//import Switch from 'react-dom';
 
 const App= () =>{
   return ( 
     <div>
-    <Footer/>
+      <Header/>
+      <Footer2/>
      </div>
   );
 }
