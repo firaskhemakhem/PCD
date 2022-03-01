@@ -10,8 +10,7 @@
     justify-content: center;
     align-items: center;
 }
-
-.colAuth{
+.colInsc{
     position: absolute;
     z-index: 2;
     right: 65%;
@@ -23,7 +22,7 @@
     height: 102%;
     flex-direction: column;
    background-color: #023C59;
-   background-image: url('../../assets/images/log.png'); 
+   background-image: url('../../assets/images/insc22.jpg'); 
    background-size: 100% 100%;
     opacity: 1;
     color: #EEFCF8;
@@ -32,11 +31,11 @@
     transition: 2s;
     
 }
-.colAuth1{
+.colInsc1{
     position: absolute;
     z-index: 1;
     right: 0;
-    padding-top: 13%;
+
     border: 0.1em solid #592941;
     border-radius: 0.5em;
 
@@ -97,17 +96,4 @@ button:hover{
 input {
     padding: 0.35em;
     border: 1px solid #023C59;
-}
-.mdpoublie{
-    text-align: left;
-    color: black;
-    margin-left: 250px;
-
-}
-select {
-    width: 100%;
-    padding: 6.5px 18px;
-    border: 1px solid #023C59;
-    border-radius: 0px;
-    
 }

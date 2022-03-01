@@ -1,11 +1,13 @@
 import React from "react";
-import "../../styles/Pages/Authentification.css"
-import Authentification from "./Authentification";
+import "../../styles/Pages/Inscription.css"
 import {Link} from "react-router-dom";
 class Inscription extends React.Component{ 
   
     render() {
       return ( 
+        <div className="row1">
+          <div className="colInsc"></div>
+          <div className="colInsc1">
       <div className="form-comp cfb">
       <h1>Inscrivez-vous!</h1>
       <form className="sign-up-form cfb">
@@ -54,7 +56,8 @@ class Inscription extends React.Component{
         </button>
         </Link>
       </form>
-    
+      </div>
+      </div>
     </div>
       );
     }
