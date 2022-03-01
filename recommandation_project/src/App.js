@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from './components/Footer/Footer';
+import Footer from './Components/Footer/Footer';
 import { BrowserRouter, Routes , Route} from 'react-router-dom';
-import Acceuil from './components/Acceuil/Acceuil';
-import Authentification from './components/Pages/Authentification';
-import Inscription from './components/Pages/Inscription';
+import Acceuil from './Components/Acceuil/Acceuil';
+import Authentification from './Components/Pages/Authentification';
+import Inscription from './Components/Pages/Inscription';
 
 
 
