@@ -1,6 +1,6 @@
 import React from "react";
 import "../../styles/Pages/Authentification.css"
-
+import {Link} from 'react-router-dom';
 
 class Authentification extends React.Component{ 
     render() {
@@ -20,9 +20,11 @@ class Authentification extends React.Component{
               </label>
               <br/>
               <p className="mdpoublie">mot de passe oublié</p>
-              <button>
+        
+              <button className="butt">
               Authentifier!
               </button>
+      
             </form>
         </div>
             );

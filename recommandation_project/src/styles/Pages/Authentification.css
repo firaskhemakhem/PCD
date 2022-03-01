@@ -1,13 +1,16 @@
 .App{
-    background-image: url('../../assets/images/back3.jpg'); ;
+   
     height: 100vh;
     background-size: 100%;
    
 }
-
+.colo{
+    width: 60%;
+    right : 0%;
+}
 /* Quikly Center Everything In Div */
 .cfb{
-    width: 100%;
+    width: 110%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +36,7 @@
     border-radius: 0.5em;
 
     width: 35%;
-    height: 100%;
+    height: 102%;
     flex-direction: column;
     background-color: #023C59;
     opacity: 1;
@@ -53,7 +56,7 @@
     border-radius: 0.5em;
 
     width: 65%;
-    height: 100%;
+    height: 102%;
 
     background-color: #EEFCF8;
     opacity: 1;
@@ -76,6 +79,7 @@
 /* Layout styling of forms, labels, inputs */
 .form-comp{
     flex-direction: column;
+    padding-top: 2%;
 }
 
 .sign-up-form{
@@ -91,10 +95,12 @@
 .sign-up-form > label > input{
     width: 100%
 }
-
+.labl{
+    margin-top: -3%;
+}
 
 /* All Buttons Styling */
-button {
+.butt {
     padding: 1em;
 
     border: 1px solid #EEFCF8;
@@ -117,18 +123,18 @@ button:hover{
 
 /* All Inputs Styling */
 input {
-    padding: 0.5em;
+    padding: 0.35em;
     border: 1px solid #023C59;
 }
 .mdpoublie{
     text-align: left;
     color: black;
-    margin-left: 300px;
+    margin-left: 250px;
 
 }
 select {
-    width: 104%;
-    padding: 8px 18px;
+    width: 100%;
+    padding: 6.5px 18px;
     border: 1px solid #023C59;
     border-radius: 0px;
     

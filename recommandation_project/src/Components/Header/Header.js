@@ -1,7 +1,8 @@
 import React from "react";
-
+import '../../styles/Header/Header.css';
 const Header=()=>{
     return(
+        <div className="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">PIAPE</a>
@@ -36,6 +37,7 @@ const Header=()=>{
                 </div>
             </div>
         </nav>
+        </div>
     );
 }
 export default Header;

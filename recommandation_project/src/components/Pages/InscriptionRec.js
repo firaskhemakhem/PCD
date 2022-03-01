@@ -1,12 +1,10 @@
 import React from "react";
 import "../../styles/Pages/Authentification.css"
-import Authentification from "./Authentification";
-import {Link} from "react-router-dom";
-class Inscription extends React.Component{ 
-  
+class InscriptionRec extends React.Component{ 
     render() {
-      return ( 
-      <div className="form-comp cfb">
+      return (
+        
+        <div className="form-comp cfb">
       <h1>Inscrivez-vous!</h1>
       <form className="sign-up-form cfb">
         <label className="labl">
@@ -26,19 +24,24 @@ class Inscription extends React.Component{
           </select>
         </label>
         <label>
-          Mot de Passe:
-          <input type={"password"}/>
+          Titre :
+          <input type={"text"}/>
         </label>
         <label>
-          Confirmer votre mot de passe :
-          <input type={"password"}/>
+          Fonction dans l'entreprise :
+          <select>
+            <option selected>...</option>
+            <option>Commercial</option>
+            <option>Comptabilité</option>
+            <option>Informatique</option>
+          </select>
         </label>
         <label>
-          Date de Naissance :
-          <input type={"date"} />
+          Code Postal :
+          <input type={"text"} />
         </label>
         <label>
-          Gouvernorat: 
+          ville: 
           <select >
             <option selected>Choose ...</option>
             <option>Sfax</option>
@@ -48,19 +51,14 @@ class Inscription extends React.Component{
             <option>Mannouba</option>
           </select>
         </label>
-        <Link to ="/Auth">
-        <button className="butt" >
+        
+        <button className="butt">
           Inscription!
         </button>
-        </Link>
       </form>
-    
     </div>
       );
     }
   }
 
-  
-      
-
-export default Inscription;
+  export default InscriptionRec;

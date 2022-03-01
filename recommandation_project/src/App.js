@@ -1,28 +1,26 @@
 import React from 'react';
-import Footer2 from './Components/Footer/Footer';
-import Header from './Components/Header/Header';
-//import { BrowserRouter, Router , Route } from 'react-router-dom';
-//import Authentification from './Components/Pages/Authentification';
-//import Switch from 'react-dom';
-
-import Container from './components/Pages/Container';
+import Footer from './components/Footer/Footer';
+import { BrowserRouter, Routes , Route} from 'react-router-dom';
+import Acceuil from './components/Acceuil/Acceuil';
+import Authentification from './components/Pages/Authentification';
+import Inscription from './components/Pages/Inscription';
 
 
 
 class App extends React.Component {
   render(){
   return ( 
-    <div className='App cfb'> 
+    <div className='App'> 
       <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route exact path ="/Auth" element ={<Container/>}/>
-        <Route exact path ="/Insc" element ={<Container/>}/>
+       <Routes>
+       <Route exact path ="/" element ={<Acceuil/>}/>
+        <Route exact path ="/Auth" element ={<Authentification/>}/>
+        <Route exact path ="/Insc" element ={<Inscription/>}/>
         <Route exact path ="/footer" element ={<Footer/>}/>
       </Routes>
-      <Footer2/>
     </BrowserRouter>   
     </div>
+    
     
   );
 }}

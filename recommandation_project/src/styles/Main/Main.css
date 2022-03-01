@@ -1,0 +1,158 @@
+.test{
+    align : center;
+    /*margin-left: 200px;*/
+    width :1350px;
+    max-height: 500px;
+    /*width: 100%;*/
+}
+.espaceEtudiant{
+    color: #778899;
+}
+.espaceRecruteur{
+    color: #3C4858;
+}
+.sign{
+    margin-top: 19px;
+}
+.imgRec{
+    width: 90px;
+    height: 90px;
+}
+.buton{
+    padding-bottom: 40px;
+}
+.introduction{
+    align : center;
+}
+.second{
+    margin-top: 150px;
+    align : center;
+}
+.jss802 {
+    margin-top: 20px;
+    margin: -60px 30px 0px;
+
+    box-shadow: 0 16px 24px 2px rgb(0 0 0/14%), 0 6px 30px 5px rgb(0 0 0/12%), 0 8px 10px -5px rgb(0 0 0/20%);
+    border-radius: 6px;
+}
+.jss801 {
+    z-index: 3;
+    position: relative;
+    background: #FFFFFF;
+}
+.jss798{
+    color: #FFFFFF;
+    width: 100%;
+    z-index: 12;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.jss804{
+    color: #023C59;
+    width: 100%;
+    z-index: 12;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+h2 {
+    font-size: 2.25rem;
+    line-height: 1.5em;
+    text-align: center;
+}
+.MuiGrid-item {
+    margin: 0;
+    box-sizing: border-box;
+}
+.jss805 {
+    color: #778899	;
+}
+.jss98 {
+    width: auto;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.MuiGrid-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.jss803 {
+    margin-top: -20px;
+    padding: 70px 0;
+    text-align: center;
+}
+.MuiGrid-grid-xs-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+.MuiGrid-grid-sm-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+.jss99 {
+    width: 100%;
+    position: relative;
+    flex-basis: auto;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.MuiGrid-grid-sm-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+.MuiGrid-item {
+    margin: 0;
+    box-sizing: border-box;
+}
+.jss803 {
+    padding: 70px 0;
+    text-align: center;
+}
+.jss816 {
+    overflow: hidden;
+}
+.jss817 {
+    color: #3C4858;
+    margin: 1.75rem 0 0.875rem;
+    font-family: "Roboto Slab", "Times New Roman", serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+.jss818 {
+    color: #999999;
+    overflow: hidden;
+    font-size: 14px;
+   margin-top: 0px;
+}
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+
+.title{
+    color: #023C59;
+}
+.title-image{
+    color: dimgrey;
+}
+.text-image{
+    color: cornflowerblue;
+    font-family: "Franklin Gothic Heavy";
+}
+.cont{
+    padding-top: 30px;
+}
+.test1{
+    text-align: center;
+}
