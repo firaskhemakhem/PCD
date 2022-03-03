@@ -20,6 +20,15 @@ class Inscription extends React.Component{
           <input />
         </label>
         <label>
+          Login:
+          <input />
+        </label>
+        
+        <label>
+        Numéro De Téléphone:
+          <input />
+        </label>
+        <label>
           Civilité :
           <select>
             <option selected>...</option>

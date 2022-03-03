@@ -16,6 +16,14 @@ class InscriptionRec extends React.Component{
           <input />
         </label>
         <label>
+          Mot de Passe:
+          <input type={"password"}/>
+        </label>
+        <label>
+          Confirmer votre mot de passe :
+          <input type={"password"}/>
+        </label>
+        <label>
           Civilité :
           <select>
             <option selected>...</option>

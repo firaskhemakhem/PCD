@@ -7,6 +7,7 @@ import etu_icon from "../../assets/icons/incons_etudiant.png";
 import Etudiant from "../../assets/images/stage.jpg";
 import Recruteur from "../../assets/images/Recruteur3.jpg";
 import NewBack from "../../assets/images/newbackground.jpg"
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const Main=()=>{
@@ -40,7 +41,7 @@ const Main=()=>{
                         </div>
                         <Carousel.Caption>
                             <h3 className="espaceEtudiant">Espace Etudiant</h3>
-                            <Button className="buton">Learn More</Button>
+                            <button className="btn btn-outline-secondary">Savoir Plus</button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -53,7 +54,7 @@ const Main=()=>{
                         </div>
                         <Carousel.Caption>
                             <h3 className="espaceRecruteur">Espace Recruteur</h3>
-                            <Button>Learn More</Button>
+                            <button class="btn btn-outline-light">Savoir Plus</button>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
@@ -78,7 +79,7 @@ const Main=()=>{
                                                 <img src={etu_icon} className="imgRec"/>
                                                 <h4 className="jss817 title">Candidatez à travers PIAPE</h4>
                                                 <p className="description"> Postulez à l'une de nos offres et déposez votre candidature <br/>pour être enregistré dans nos bases et être recommander <br/>pour achever votre parcours éducatif.</p>
-                                                <Button>Sign in</Button>
+                                                <Link to="/InscEtud"><button className="btn btn-outline-secondary">Inscrivez-vous!</button></Link>
                                             </div>
                                         </div>
                                     </Col>
@@ -88,7 +89,7 @@ const Main=()=>{
                                                 <img src={rec_icon} className="imgRec"/>
                                                 <h4 className="jss817 title">Recrutez à travers PIAPE</h4>
                                                 <p className="description"> Déposez votre catalogue et trouvez les meilleurs candidatures <br/>les plus adequats à vos sujets. </p>
-                                                <Button className="sign">Sign in</Button>
+                                                <Link to ="/InscRec"><button className="btn btn-outline-secondary">Inscrivez-vous!</button></Link>
                                             </div>
                                         </div>
                                     </Col>
