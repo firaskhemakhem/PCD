@@ -147,8 +147,9 @@ body, h1, h2, h3, h4, h5, h6 {
     color: dimgrey;
 }
 .text-image{
-    color: #9E9A99;
+    color: #023C59;
     font-family: "Georgia";
+    margin-bottom: 48%;
 }
 .cont{
     padding-top: 30px;
