@@ -59,7 +59,7 @@ class Inscription extends React.Component{
             <option>Mannouba</option>
           </select>
         </label>
-        <Link to ="/Auth">
+        <Link to ="/Authentification">
         <button className="butt" >
           Inscription!
         </button>
