@@ -22,7 +22,7 @@ import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import "../../styles/Pages/Inscription.css";
-
+import {NavLink} from "react-router-dom";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,11 +35,14 @@ import "../../styles/Pages/Inscription.css";
   
 const theme = createTheme();
 
+
 const InscEtu =()=>{
+ 
       const [value, setValue] = React.useState(new Date());
         return ( 
-            <ThemeProvider theme={theme}>
-              <Container component="main" maxWidth="xs">
+            <ThemeProvider theme={theme} >
+              <div className='backg'>
+              <Container component="main" maxWidth="xs" className='Border'>
                 <CssBaseline />
                 <Box
                   sx={{
@@ -172,6 +175,7 @@ const InscEtu =()=>{
                       </Grid>
                     </Grid>
                     <br/>
+                    <NavLink to ="/Auth">
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
@@ -181,6 +185,7 @@ const InscEtu =()=>{
                     >
                       Sign Up
                     </button>
+                    </NavLink>
                     <Grid container justifyContent="flex-end">
                       <Grid item>
                         <Link href="#" variant="body2">
@@ -191,6 +196,7 @@ const InscEtu =()=>{
                   </Box>
               </Box>
           </Container>
+          </div>
         </ThemeProvider>
       )
 }

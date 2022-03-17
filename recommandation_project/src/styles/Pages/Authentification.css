@@ -111,3 +111,16 @@ select {
     border-radius: 0px;
     
 }
+.BorderAuth{
+    border: 0.2em solid #023C59;
+    border-radius: 1em;
+    background-color: white;
+  
+    padding-top: 0%;
+
+}
+.backgAuth{
+    padding-top: 10%;
+    background-color: #A9F4F7;
+    height: 100%;
+}
