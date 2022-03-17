@@ -1,8 +1,34 @@
 import React from "react";
 import "../../styles/Pages/Inscription.css"
 import {Link} from "react-router-dom";
+
 class Inscription extends React.Component{ 
-  
+
+  state = {
+    credentials: {StudentId: '' , StudentName :''}
+  }
+  register = event => {
+    fetch('http://127.0.0.1:8000/PcdApp/student/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json',
+      Authorization: `Token ${this.props.token}`},
+      body: JSON.stringify(this.state.credentials)
+    })
+    .then( data => data.json())
+    .then(
+      data => {
+        console.log(data.token);
+      }
+    )
+    .catch( error => console.error(error))
+  }
+  inputChanged = event => {
+    const cred = this.state.credentials;
+    cred[event.target.name] = event.target.value;
+    this.setState({credentials: cred});
+  }
+
+
     render() {
       return ( 
         <div className="row1">
@@ -13,7 +39,8 @@ class Inscription extends React.Component{
       <form className="sign-up-form cfb">
         <label className="labl">
           Nom & Prénom:
-          <input />
+          <input type = "text" name ="StudentName" value = {this.state.credentials.StudentName}
+          onChange ={this.inputChanged}/>
         </label>
         <label>
           Email:
@@ -60,7 +87,7 @@ class Inscription extends React.Component{
           </select>
         </label>
         <Link to ="/Authentification">
-        <button className="butt" >
+        <button className="butt" onClick= {this.register}>
           Inscription!
         </button>
         </Link>

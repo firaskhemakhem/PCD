@@ -97,3 +97,15 @@ input {
     padding: 0.35em;
     border: 1px solid #023C59;
 }
+.Border{
+    border: 0.2em solid #023C59;
+    border-radius: 1em;
+    background-color: white;
+
+}
+.backg{
+    background-color: #A9F4F7;
+}
+.Detaille{
+    background-color: red;
+}

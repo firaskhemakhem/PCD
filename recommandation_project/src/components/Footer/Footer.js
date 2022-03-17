@@ -4,7 +4,8 @@ import logo1 from "../../assets/icons/icons_linkedin.png";
 import logo2 from "../../assets/icons/icons_twitter.png";
 import logo3 from "../../assets/icons/icons_fb.png";
 import logo4 from "../../assets/icons/incons_insta.png";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Detaille from "../../components/Detaille/Detaille"
 
 const Footer= () =>  {
   return (
@@ -18,7 +19,7 @@ const Footer= () =>  {
             PIAPE est une application web a comme objectifs principaux
                d'aider l’étudiant à trouver le PFE le plus adéquat,
                ainsi que le recruteur à trouver le candidat adéquat à chaque proposition de PFE.
-               <p><NavLink exact to ="/Détaille">Voir Plus de détaille</NavLink></p>
+               <p><Link to ="/Detaille" >Voir Plus de détaille</Link></p>
             </p>
           </div>
           {/* Column2 */}

@@ -21,7 +21,8 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import "../../styles/Pages/Inscription.css";
+import {NavLink} from 'react-router-dom';
+import "../../styles/Pages/Authentification.css";
 
 
   const handleSubmit = (event) => {
@@ -39,7 +40,8 @@ const Auth =()=>{
       const [value, setValue] = React.useState(new Date());
         return ( 
             <ThemeProvider theme={theme}>
-              <Container component="main" maxWidth="xs">
+              <div className='backgAuth'>
+              <Container component="main" maxWidth="xs" className='BorderAuth'>
                 <CssBaseline />
                 <Box
                   sx={{
@@ -79,6 +81,7 @@ const Auth =()=>{
                       </Grid>
                     </Grid>
                     <br/>
+                    <NavLink to ="/EspCand">
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
@@ -88,6 +91,7 @@ const Auth =()=>{
                     >
                       Sign In
                     </button>
+                    </NavLink>
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
@@ -103,6 +107,7 @@ const Auth =()=>{
                   </Box>
               </Box>
           </Container>
+          </div>
         </ThemeProvider>
       )
 }
