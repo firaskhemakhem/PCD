@@ -1,30 +1,32 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-//import FormControlLabel from '@mui/material/FormControlLabel';
-//import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-//import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-//import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import Stack from '@mui/material/Stack';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import {NavLink} from 'react-router-dom';
 import "../../styles/Pages/Authentification.css";
 
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
+const theme = createTheme();
+
+export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -33,82 +35,89 @@ import "../../styles/Pages/Authentification.css";
       password: data.get('password'),
     });
   };
-  
-const theme = createTheme();
 
-const Auth =()=>{
-      const [value, setValue] = React.useState(new Date());
-        return ( 
-            <ThemeProvider theme={theme}>
-              <div className='backgAuth'>
-              <Container component="main" maxWidth="xs" className='BorderAuth'>
-                <CssBaseline />
-                <Box
-                  sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://i.pinimg.com/564x/e4/e6/27/e4e62738aa6b4ea8c94d8952210bd25a.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <br/><br/>
+            <h1 classname='Titre'>Sign In</h1>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="login"
+                label="Login"
+                name="login"
+                autoComplete="login"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <br/><br/>
+              <button
+                type="submit"
+                class="btn btn-outline-secondary"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
               >
-          
-                  <Typography component="h1" variant="h5">
-                    Authentifier
-                  </Typography>
-                  <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          name="Login"
-                          label="Login"
-                          type="Login"
-                          id="Login"
-                          autoComplete="Login"
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          name="password"
-                          label="Mot de passe"
-                          type="password"
-                          id="password"
-                          autoComplete="new-password"
-                        />
-                      </Grid>
-                    </Grid>
-                    <br/>
-                    <NavLink to ="/EspCand">
-                    <button
-                      type="button" 
-                      class="btn btn-outline-secondary"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 4, mb:2 }}
-                    >
-                      Sign In
-                    </button>
-                    </NavLink>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                            mot de passe oublié?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                            {"Pas de compte? Inscrivez-vous!"}
-                            </Link>
-                        </Grid>
-                    </Grid>
-                  </Box>
-              </Box>
-          </Container>
-          </div>
-        </ThemeProvider>
-      )
+                Sign In
+              </button>
+              <br/><br/>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="/" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
 }
-export default Auth;
