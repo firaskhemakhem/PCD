@@ -1,13 +1,14 @@
 import React ,{useState} from 'react';
-import Footer from '../src/components/Footer/Footer'
+import Footer from '../src/Components/Footer/Footer'
 import { BrowserRouter, Routes , Route} from 'react-router-dom';
-import Acceuil from './components/Acceuil/Acceuil';
-import Auth from './components/Pages/Auth';
-import Inscription from './components/Pages/Inscription';
-import InscriptionRec from './components/Pages/InscriptionRec';
-import Detaille from './components/Detaille/Detaille';
-import InscEtu from './components/Pages/InscEtu';
-import EspaceCandidat from './components/Pages/EspaceCandidat';
+import Acceuil from './Components/Acceuil/Acceuil';
+import Auth from './Components/Pages/Auth';
+import Inscription from './Components/Pages/Inscription';
+import InscriptionRec from './Components/Pages/InscriptionRec';
+import InscRec from './Components/Pages/InscRec';
+import Detaille from './Components/Detaille/Detaille';
+import InscEtu from './Components/Pages/InscEtu';
+import EspaceCandidat from './Components/Pages/EspaceCandidat';
 function App() {
   const [token, setToken] = useState('');
 
@@ -22,7 +23,7 @@ function App() {
         <Route exact path ="/Auth" element ={<Auth/>}/>
       
         <Route exact path ="/InscEtud" element ={<InscEtu/>}/>
-        <Route exact path ="/InscRec" element ={<InscriptionRec/>}/>
+        <Route exact path ="/InscRec" element ={<InscRec/>}/>
         <Route exact path ="/footer" element ={<Footer/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand" element={<EspaceCandidat/>}/>

@@ -100,12 +100,15 @@ input {
 .Border{
     border: 0.2em solid #023C59;
     border-radius: 1em;
-    background-color: white;
+    background-color: #f0e6d6;
 
 }
 .backg{
-    background-color: #A9F4F7;
+    background-color: #00507994;
 }
 .Detaille{
     background-color: red;
+}
+.Titre{
+    color: #023C59;
 }

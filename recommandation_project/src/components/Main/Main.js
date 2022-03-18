@@ -60,7 +60,7 @@ const Main=()=>{
                 </Carousel>
             </div>
 
-            <div className="jss801 jss802 jss803">
+            <div className="jss801 jss802 jss803" id='Serv'>
                 <div className="jss789">
                     <div className="MuiGrid-item">
                         <h2 className="jss804"> Candidatez à travers PIAPE</h2>
@@ -71,7 +71,7 @@ const Main=()=>{
                     </div>
                     <div>
                         <div className="jss98 MuiGrid-root MuiGrid-container">
-                            <Container className="cont">
+                            <Container className="cont" >
                                 <Row >
                                     <Col>
                                         <div className=" test1 MuiGrid-root jss99  MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-4">

@@ -1,5 +1,7 @@
 import React from "react";
+import { Router } from "react-router-dom";
 import '../../styles/Header/Header.css';
+import {HashLink } from "react-router-hash-link";
 const Header=()=>{
     return(
         <div className="header">
@@ -22,18 +24,13 @@ const Header=()=>{
                             Nos Services
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Inscrivez-vous</a></li>
+                            <li><HashLink class="dropdown-item" to='#Serv' smooth>Inscrivez-vous</HashLink></li>
 
-                            <li><a class="dropdown-item" href="#"> s'identifier</a></li>
+                            <li><a class="dropdown-item" href="/auth"> s'identifier</a></li>
                         </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Recherche.." aria-label="Search"/>
-                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Connectez-Vous">
-                            <button class="btn btn-outline-dark" type="button" disabled> Recherche</button>
-                        </span>
-                    </form>
+                    
                 </div>
             </div>
         </nav>
