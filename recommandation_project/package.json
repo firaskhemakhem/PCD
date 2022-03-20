@@ -32,8 +32,13 @@
     "react-datepicker": "^4.7.0",
     "react-dater": "^1.6.0",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
     "react-native-calendar-timetable": "^0.4.5",
     "react-router-dom": "^6.2.1",
+=======
+    "react-router-dom": "^6.2.2",
+    "react-router-hash-link": "^2.4.3",
+>>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
     "react-scripts": "^5.0.0",
     "sassy-datepicker": "^0.8.0",
     "web-vitals": "^2.1.4",

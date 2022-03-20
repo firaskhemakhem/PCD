@@ -4,27 +4,42 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-//import FormControlLabel from '@mui/material/FormControlLabel';
-//import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-//import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-//import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import Select from '@mui/material/Select';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import "../../styles/Pages/Inscription.css";
 import {NavLink} from "react-router-dom";
 
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+const theme = createTheme();
+
+export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -33,9 +48,8 @@ import {NavLink} from "react-router-dom";
       password: data.get('password'),
     });
   };
-  
-const theme = createTheme();
 
+<<<<<<< HEAD
 
 class InscEtu extends React.Component{
   state = {
@@ -89,6 +103,47 @@ class InscEtu extends React.Component{
                           autoComplete="family-name"
                           value = {this.state.credentials.Nom}
                           onChange ={this.inputChanged}
+=======
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://i.pinimg.com/564x/9d/1a/fa/9d1afa1d746c6bb3877b7415edc0384e.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <h1 className='Titre'>Inscrivez-vous!</h1>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                          required
+                          fullWidth
+                          id="nom"
+                          label="Nom & Prénom"
+                          name="nom"
+                          autoComplete="nom"
+>>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -150,6 +205,7 @@ class InscEtu extends React.Component{
                         />
                       </Grid>
                       <Grid item xs={12}>
+<<<<<<< HEAD
                       <TextField
                           required
                           fullWidth
@@ -164,6 +220,23 @@ class InscEtu extends React.Component{
                         <Grid item xs={12} sm={5} >
                         
                         <FormControl required sx={{sm: 2, minWidth: 160 }}>
+=======
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <Stack spacing={3}>
+                            <DesktopDatePicker
+                              label="Date de Naissance"
+                              
+                              minDate={new Date('1990-01-01')}
+                              
+                              renderInput={(params) => <TextField {...params} />}
+                            />
+                          </Stack>
+                        </LocalizationProvider>
+                      </Grid>
+                      <Grid item xs={12} sm={4} >
+                        
+                        <FormControl required sx={{sm: 4, minWidth: 150 }}>
+>>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
                           <InputLabel id="demo-simple-select-required-label">Civilité</InputLabel>
                           <Select
                             labelId="demo-simple-select-required-label"
@@ -179,7 +252,7 @@ class InscEtu extends React.Component{
                         </FormControl>
                       </Grid>
                       <Grid item xs={12} sm={5} >
-                        <FormControl required sx={{sm:2, minWidth: 210 }}>
+                        <FormControl required sx={{sm:4, minWidth: 300 }}>
                           <InputLabel id="demo-simple-select-required-label">Gouvernorat</InputLabel>
                           <Select
                             labelId="demo-simple-select-required-label"
@@ -189,8 +262,34 @@ class InscEtu extends React.Component{
                             value = {this.state.credentials.Gouvernorat}
                             onChange ={this.inputChanged}
                           >
-                          <MenuItem value={"Sfax"} >Sfax</MenuItem>
-                          <MenuItem value={"Sousse"}>Sousse</MenuItem>
+                          <MenuItem value={"Sfax"}>Sfax</MenuItem>
+                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
+                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
+                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
+
+                                                <MenuItem value={"Ariana"}>Ariana</MenuItem>
+                                                <MenuItem value={"Béja"}>Béja</MenuItem>
+                                                <MenuItem value={"Ben Arous"}>Ben Arous</MenuItem>
+                                                <MenuItem value={"Bizerte"}>Bizerte</MenuItem>
+                                                <MenuItem value={"Gabès"}>Gabès</MenuItem>
+                                                <MenuItem value={"Gafsa"}>Gafsa</MenuItem>
+                                                <MenuItem value={"Jendouba"}>Jendouba</MenuItem>
+                                                <MenuItem value={"Kairouan"}>Kairouan</MenuItem>
+                                                <MenuItem value={"Kasserine"}>Kasserine</MenuItem>
+                                                <MenuItem value={"Kébili"}>Kébili</MenuItem>
+
+                                                <MenuItem value={"Le Kef"}>Le Kef</MenuItem>
+                                                <MenuItem value={"Mahdia"}>Mahdia</MenuItem>
+                                                <MenuItem value={"La Manouba"}>La Manouba</MenuItem>
+                                                <MenuItem value={"Médenine"}>Médenine</MenuItem>
+                                                <MenuItem value={"Monastir"}>Monastir</MenuItem>
+                                                <MenuItem value={"Nabeul"}>Nabeul</MenuItem>
+                                                <MenuItem value={"Sidi Bouzid"}>Sidi Bouzid</MenuItem>
+                                                <MenuItem value={"Siliana"}>Siliana</MenuItem>
+                                                <MenuItem value={"Tataouine"}>Tataouine</MenuItem>
+                                                <MenuItem value={"Tozeur"}>Tozeur</MenuItem>
+                                                <MenuItem value={"Tunis"}>Tunis</MenuItem>
+                                                <MenuItem value={"Zaghouan"}>Zaghouan</MenuItem>
                           </Select>
                         </FormControl>
                       </Grid>
@@ -202,19 +301,25 @@ class InscEtu extends React.Component{
                       class="btn btn-outline-secondary"
                       fullWidth
                       variant="contained"
+<<<<<<< HEAD
                       sx={{ mt: 4, mb:2 }}
                       onClick= {this.register} >
+=======
+                      sx={{ mt: 10, mb:2 }}
+                    >
+>>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
                       Sign Up
                     </button>
                     </NavLink>
                     <Grid container justifyContent="flex-end">
                       <Grid item>
-                        <Link href="#" variant="body2">
+                        <Link href="/Auth" variant="body2">
                           Vous avez déjà un compte ? Se connecter
                         </Link>
                       </Grid>
                     </Grid>
                   </Box>
+<<<<<<< HEAD
               </Box>
           </Container>
           </div>
@@ -222,3 +327,11 @@ class InscEtu extends React.Component{
       );
 }}
 export default InscEtu;
+=======
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
+}
+>>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf

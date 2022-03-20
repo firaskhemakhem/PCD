@@ -5,7 +5,7 @@ import logo2 from "../../assets/icons/icons_twitter.png";
 import logo3 from "../../assets/icons/icons_fb.png";
 import logo4 from "../../assets/icons/incons_insta.png";
 import { Link } from 'react-router-dom';
-import Detaille from "../../components/Detaille/Detaille"
+import Detaille from "../../Components/Detaille/Detaille"
 
 const Footer= () =>  {
   return (
