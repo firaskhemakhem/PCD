@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 class Inscription extends React.Component{ 
 
   state = {
-    credentials: {StudentId: '' , StudentName :''}
+    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Tel:'',Gouvernorat:'',Adresse:'',DDN:'',Civ:''}
   }
   register = event => {
     fetch('http://127.0.0.1:8000/PcdApp/student/', {
@@ -39,21 +39,24 @@ class Inscription extends React.Component{
       <form className="sign-up-form cfb">
         <label className="labl">
           Nom & Prénom:
-          <input type = "text" name ="StudentName" value = {this.state.credentials.StudentName}
+          <input type = "text" name ="Nom" value = {this.state.credentials.Nom}
           onChange ={this.inputChanged}/>
         </label>
         <label>
           Email:
-          <input />
+          <input name ="Email"value = {this.state.credentials.Email}
+          onChange ={this.inputChanged}/>
         </label>
         <label>
           Login:
-          <input />
+          <input name="Login" value = {this.state.credentials.Login}
+          onChange ={this.inputChanged}/>
         </label>
         
         <label>
         Numéro De Téléphone:
-          <input />
+          <input  name ="Tel" value = {this.state.credentials.Tel}
+          onChange ={this.inputChanged}/>
         </label>
         <label>
           Civilité :
@@ -65,7 +68,8 @@ class Inscription extends React.Component{
         </label>
         <label>
           Mot de Passe:
-          <input type={"password"}/>
+          <input type={"password"} name = "MDP" value = {this.state.credentials.MDP}
+          onChange ={this.inputChanged}/>
         </label>
         <label>
           Confirmer votre mot de passe :
@@ -73,7 +77,8 @@ class Inscription extends React.Component{
         </label>
         <label>
           Date de Naissance :
-          <input type={"date"} />
+          <input type={"date"} name="DDN"value = {this.state.credentials.DDN}
+          onChange ={this.inputChanged}/>
         </label>
         <label>
           Gouvernorat: 

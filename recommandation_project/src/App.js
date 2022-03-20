@@ -20,8 +20,7 @@ function App() {
        <Routes>
        <Route exact path ="/" element ={<Acceuil/>}/>
         <Route exact path ="/Auth" element ={<Auth/>}/>
-      
-        <Route exact path ="/InscEtud" element ={<InscEtu/>}/>
+        <Route exact path ="/InscEtud" element ={<InscEtu/>} userLogin={userLogin}/>
         <Route exact path ="/InscRec" element ={<InscriptionRec/>}/>
         <Route exact path ="/footer" element ={<Footer/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>

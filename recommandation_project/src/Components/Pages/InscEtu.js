@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -36,10 +37,29 @@ import {NavLink} from "react-router-dom";
 const theme = createTheme();
 
 
-const InscEtu =()=>{
- 
-      const [value, setValue] = React.useState(new Date());
+class InscEtu extends React.Component{
+  state = {
+    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
+  }
+  register = event => {
+    fetch('http://127.0.0.1:8000/PcdApp/student/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.state.credentials)
+    })
+    .then( data => data.json())
+    .catch( error => console.error(error))
+  }
+  inputChanged = (event) => {
+    const cred = this.state.credentials;
+    console.log(event.target.value);
+    cred[event.target.name] = event.target.value;
+    this.setState({credentials: cred});
+    
+  }
+     render(){
         return ( 
+          
             <ThemeProvider theme={theme} >
               <div className='backg'>
               <Container component="main" maxWidth="xs" className='Border'>
@@ -59,25 +79,16 @@ const InscEtu =()=>{
                 </Typography>
                   <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          autoComplete="given-name"
-                          name="firstName"
-                          required
-                          fullWidth
-                          id="firstName"
-                          label="Prénom"
-                          autoFocus
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
+                      <Grid item xs={12}>
                         <TextField
                           required
                           fullWidth
                           id="lastName"
-                          label="Nom"
-                          name="lastName"
+                          label="Nom & Prénom"
+                          name="Nom"
                           autoComplete="family-name"
+                          value = {this.state.credentials.Nom}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -86,8 +97,10 @@ const InscEtu =()=>{
                           fullWidth
                           id="email"
                           label="Addresse Email"
-                          name="email"
+                          name="Email"
                           autoComplete="email"
+                          value = {this.state.credentials.Email}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -98,6 +111,8 @@ const InscEtu =()=>{
                           id="login"
                           label="Login"
                           autoFocus
+                          value = {this.state.credentials.Login}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -106,54 +121,57 @@ const InscEtu =()=>{
                           fullWidth
                           id="Tel"
                           label="Numéro de Teléphone"
-                          name="Numéro de Teléphone"
+                          name="Tel"
+                          value = {this.state.credentials.Tel}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
                           required
                           fullWidth
-                          name="password"
-                          label="Mot de Passe"
+                          name="MDP"
+                          label="Mot de passe"
                           type="password"
                           id="password"
                           autoComplete="new-password"
+                          value = {this.state.credentials.MDP}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
                           required
                           fullWidth
-                          name="password"
-                          label="Confirmer votre Mot de passe"
-                          type="password"
-                          id="password"
-                          autoComplete="new-password"
+                          label="Adresse"
+                          name="Adresse"
+                          value = {this.state.credentials.Adresse}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <Stack spacing={3}>
-                            <DesktopDatePicker
-                              label="Date de Naissance"
-                              value={value}
-                              minDate={new Date('1990-01-01')}
-                              onChange={(newValue) => {
-                                setValue(newValue);
-                              }}
-                              renderInput={(params) => <TextField {...params} />}
-                            />
-                          </Stack>
-                        </LocalizationProvider>
-                      </Grid>
-                      <Grid item xs={12} sm={4} >
+                      <TextField
+                          required
+                          fullWidth
+                          name="DDN"
+                          label="DDN" 
+                          type="date"
+                          value = {this.state.credentials.DDN}
+                          onChange ={this.inputChanged}
+                     
+                        />
+                        </Grid>
+                        <Grid item xs={12} sm={5} >
                         
-                        <FormControl required sx={{sm: 2, minWidth: 120 }}>
+                        <FormControl required sx={{sm: 2, minWidth: 160 }}>
                           <InputLabel id="demo-simple-select-required-label">Civilité</InputLabel>
                           <Select
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
                             label="Civilité"
+                            name="Civ"
+                            value = {this.state.credentials.Civ}
+                            onChange ={this.inputChanged}
                           >
                           <MenuItem value={"Madame"} >Madame</MenuItem>
                           <MenuItem value={"Monsieur"}>Monsieur</MenuItem>
@@ -167,6 +185,9 @@ const InscEtu =()=>{
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
                             label="Civilité"
+                            name="Gouvernorat"
+                            value = {this.state.credentials.Gouvernorat}
+                            onChange ={this.inputChanged}
                           >
                           <MenuItem value={"Sfax"} >Sfax</MenuItem>
                           <MenuItem value={"Sousse"}>Sousse</MenuItem>
@@ -182,7 +203,7 @@ const InscEtu =()=>{
                       fullWidth
                       variant="contained"
                       sx={{ mt: 4, mb:2 }}
-                    >
+                      onClick= {this.register} >
                       Sign Up
                     </button>
                     </NavLink>
@@ -198,6 +219,6 @@ const InscEtu =()=>{
           </Container>
           </div>
         </ThemeProvider>
-      )
-}
+      );
+}}
 export default InscEtu;
