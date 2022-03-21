@@ -12,7 +12,9 @@ class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
     queryset = Students.objects.all()
 
-
+class RecruteursView (viewsets.ModelViewSet):
+    serializer_class = RecruteursSerializer
+    queryset = Recruteurs.objects.all()
 @csrf_exempt
 def studentsApi(request,id=0):
     if request.method=='GET':

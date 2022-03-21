@@ -21,5 +21,5 @@ class Students(Utilisateur):
 
 
 class Recruteurs(Utilisateur):
-    CodePostal = models.IntegerField()
+    CodePostal = models.CharField(max_length=6)
     

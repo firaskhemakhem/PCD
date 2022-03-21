@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -38,18 +37,14 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
-<<<<<<< HEAD
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  console.log({
+    email: data.get('email'),
+    password: data.get('password'),
+  });
+};
 
 class InscEtu extends React.Component{
   state = {
@@ -71,39 +66,7 @@ class InscEtu extends React.Component{
     this.setState({credentials: cred});
     
   }
-     render(){
-        return ( 
-          
-            <ThemeProvider theme={theme} >
-              <div className='backg'>
-              <Container component="main" maxWidth="xs" className='Border'>
-                <CssBaseline />
-                <Box
-                  sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-              >
-          
-                <Typography component="h1" variant="h5">
-                <i class="unlock alternate icon"></i>
-                  Inscrivez-vous!
-                </Typography>
-                  <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          required
-                          fullWidth
-                          id="lastName"
-                          label="Nom & Prénom"
-                          name="Nom"
-                          autoComplete="family-name"
-                          value = {this.state.credentials.Nom}
-                          onChange ={this.inputChanged}
-=======
+render(){
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -141,9 +104,10 @@ class InscEtu extends React.Component{
                           fullWidth
                           id="nom"
                           label="Nom & Prénom"
-                          name="nom"
+                          name="Nom"
                           autoComplete="nom"
->>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
+                          value = {this.state.credentials.Nom}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -186,7 +150,7 @@ class InscEtu extends React.Component{
                           required
                           fullWidth
                           name="MDP"
-                          label="Mot de passe"
+                          label="Mot de Passe"
                           type="password"
                           id="password"
                           autoComplete="new-password"
@@ -198,14 +162,24 @@ class InscEtu extends React.Component{
                         <TextField
                           required
                           fullWidth
-                          label="Adresse"
+                          name="MDP"
+                          label="Confirmer votre Mot de Passe"
+                          type="password"
+                          id="password"
+                          autoComplete="new-password"
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          required
+                          fullWidth
                           name="Adresse"
+                          label="Adresse"
                           value = {this.state.credentials.Adresse}
                           onChange ={this.inputChanged}
                         />
                       </Grid>
-                      <Grid item xs={12}>
-<<<<<<< HEAD
+                      <Grid item xs={12}>  
                       <TextField
                           required
                           fullWidth
@@ -214,29 +188,19 @@ class InscEtu extends React.Component{
                           type="date"
                           value = {this.state.credentials.DDN}
                           onChange ={this.inputChanged}
+                          InputLabelProps={{
+                            style: { color: "grey" },
+                          }}
+                          inputProps={{
+                            style: { color: "white" },
+                          }}
                      
                         />
-                        </Grid>
-                        <Grid item xs={12} sm={5} >
-                        
-                        <FormControl required sx={{sm: 2, minWidth: 160 }}>
-=======
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <Stack spacing={3}>
-                            <DesktopDatePicker
-                              label="Date de Naissance"
-                              
-                              minDate={new Date('1990-01-01')}
-                              
-                              renderInput={(params) => <TextField {...params} />}
-                            />
-                          </Stack>
-                        </LocalizationProvider>
                       </Grid>
+                      
                       <Grid item xs={12} sm={4} >
                         
                         <FormControl required sx={{sm: 4, minWidth: 150 }}>
->>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
                           <InputLabel id="demo-simple-select-required-label">Civilité</InputLabel>
                           <Select
                             labelId="demo-simple-select-required-label"
@@ -295,19 +259,15 @@ class InscEtu extends React.Component{
                       </Grid>
                     </Grid>
                     <br/>
-                    <NavLink to ="/Auth">
+                    <NavLink to ="/EspCand">
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
                       fullWidth
                       variant="contained"
-<<<<<<< HEAD
-                      sx={{ mt: 4, mb:2 }}
-                      onClick= {this.register} >
-=======
                       sx={{ mt: 10, mb:2 }}
+                      onClick= {this.register}
                     >
->>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
                       Sign Up
                     </button>
                     </NavLink>
@@ -319,19 +279,10 @@ class InscEtu extends React.Component{
                       </Grid>
                     </Grid>
                   </Box>
-<<<<<<< HEAD
-              </Box>
-          </Container>
-          </div>
-        </ThemeProvider>
-      );
-}}
-export default InscEtu;
-=======
           </Box>
         </Grid>
       </Grid>
     </ThemeProvider>
   );
-}
->>>>>>> f1c66b8e6437e0f60392c47d20f9bbae19832faf
+}}
+export default InscEtu;
