@@ -2,14 +2,9 @@ import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FeaturedPost from './FeaturedPost';
-import Header from '../Header/Header';
 import MainFeaturedPost from './MainFeaturePost';
-import Sidebar from './Sidebar';
 import Footer from '../Footer/Footer';
 import '../../styles/Pages/EspaceCandidat.css'
 import AgendaPartagee from './AgendaPartagee';
@@ -30,21 +25,35 @@ const mainFeaturedPost = {
 const featuredPosts = [
   {
     title: 'OBTENIR UN CV',
-    /*date: 'Nov 12',*/
     description:
       'Remplir notre formulaire pour obtenir un CV via notre application.',
     image: 'https://coda.newjobs.com/api/imagesproxy/ms/xmonsterfrx/marketing/Articles/actualiser-regulierement-son-cv.jpg',
     imageLabel: 'Remplir',
-    link :'Remplir'
+    link : <button
+        type="button" 
+        class="btn btn-outline-secondary"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 4, mb:2 }}
+      >
+        Remplir
+      </button>
   },
   {
     title: 'TELECHARGER VOTRE CV',
-    /*date: 'Nov 11',*/
     description:
       'Si vous avez déjà un CV pret vous pouvez le déposer.',
     image: 'https://www.mastersbooking.fr/sites/default/files/styles/img_blog/public/field/image/resume-2296951_1920_1_0.png?itok=ESjYBHbn',
     imageLabel: 'Déposer',
-    link :'Déposer'
+    link : <button
+        type="button" 
+        class="btn btn-outline-secondary"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 4, mb:2 }}
+      >
+        Déposer
+      </button>
   },
  
 ];
@@ -52,21 +61,28 @@ const featuredPosts = [
 const featuredPosts2 = [
     {
         title: 'OPTIMISER VOTRE CANDIDATURES',
-        /*date: 'Nov 11',*/
         description:
           'Ecrire votre lettre de motivation via notre application. Ecrire un test de personnalité.', 
         image: 'https://edito.regionsjob.com/xjob/wp-content/uploads/sites/3/2021/12/AdobeStock_348132153-1-1-722x489.jpeg',
         imageLabel: 'Déposer',
+        link : <button
+        type="button" 
+        class="btn btn-outline-secondary"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 4, mb:2 }}
+      >
+        Sélectionner
+      </button>
         
       },
       {
         title: 'AGENDA PARTAGEE',
-        /*date: 'Nov 11',*/
         description:
           'Sélectionner votre temps libre pour obtenir une entretien .', 
         image: 'https://i0.wp.com/maitriser-son-temps.com/wp-content/uploads/2020/12/agenda-electronique.jpg?resize=800%2C445&ssl=1&is-pending-load=1',
         imageLabel: 'Déposer',
-        link: <AgendaPartagee/>
+        link :<AgendaPartagee/>
       },
       
 ];
@@ -118,7 +134,7 @@ export default function EspaceCandidat() {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>  
+          <Grid container spacing={5} sx={{ mt: 3 }}>
           </Grid>
           </Grid>
         </main>

@@ -37,17 +37,36 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  console.log({
+    email: data.get('email'),
+    password: data.get('password'),
+  });
+};
 
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
+class InscEtu extends React.Component{
+  state = {
+    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
+  }
+  register = event => {
+    fetch('http://127.0.0.1:8000/PcdApp/student/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.state.credentials)
+    })
+    .then( data => data.json())
+    .catch( error => console.error(error))
+  }
+  inputChanged = (event) => {
+    const cred = this.state.credentials;
+    console.log(event.target.value);
+    cred[event.target.name] = event.target.value;
+    this.setState({credentials: cred});
+    
+  }
+render(){
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -85,8 +104,10 @@ export default function SignInSide() {
                           fullWidth
                           id="nom"
                           label="Nom & Prénom"
-                          name="nom"
+                          name="Nom"
                           autoComplete="nom"
+                          value = {this.state.credentials.Nom}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -95,8 +116,10 @@ export default function SignInSide() {
                           fullWidth
                           id="email"
                           label="Addresse Email"
-                          name="email"
+                          name="Email"
                           autoComplete="email"
+                          value = {this.state.credentials.Email}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -107,6 +130,8 @@ export default function SignInSide() {
                           id="login"
                           label="Login"
                           autoFocus
+                          value = {this.state.credentials.Login}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -115,44 +140,64 @@ export default function SignInSide() {
                           fullWidth
                           id="Tel"
                           label="Numéro de Teléphone"
-                          name="Numéro de Teléphone"
+                          name="Tel"
+                          value = {this.state.credentials.Tel}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
                           required
                           fullWidth
-                          name="password"
+                          name="MDP"
                           label="Mot de Passe"
                           type="password"
                           id="password"
                           autoComplete="new-password"
+                          value = {this.state.credentials.MDP}
+                          onChange ={this.inputChanged}
                         />
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
                           required
                           fullWidth
-                          name="password"
-                          label="Confirmer votre Mot de passe"
+                          name="MDP"
+                          label="Confirmer votre Mot de Passe"
                           type="password"
                           id="password"
                           autoComplete="new-password"
                         />
                       </Grid>
                       <Grid item xs={12}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <Stack spacing={3}>
-                            <DesktopDatePicker
-                              label="Date de Naissance"
-                              
-                              minDate={new Date('1990-01-01')}
-                              
-                              renderInput={(params) => <TextField {...params} />}
-                            />
-                          </Stack>
-                        </LocalizationProvider>
+                        <TextField
+                          required
+                          fullWidth
+                          name="Adresse"
+                          label="Adresse"
+                          value = {this.state.credentials.Adresse}
+                          onChange ={this.inputChanged}
+                        />
                       </Grid>
+                      <Grid item xs={12}>  
+                      <TextField
+                          required
+                          fullWidth
+                          name="DDN"
+                          label="DDN" 
+                          type="date"
+                          value = {this.state.credentials.DDN}
+                          onChange ={this.inputChanged}
+                          InputLabelProps={{
+                            style: { color: "grey" },
+                          }}
+                          inputProps={{
+                            style: { color: "white" },
+                          }}
+                     
+                        />
+                      </Grid>
+                      
                       <Grid item xs={12} sm={4} >
                         
                         <FormControl required sx={{sm: 4, minWidth: 150 }}>
@@ -161,6 +206,9 @@ export default function SignInSide() {
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
                             label="Civilité"
+                            name="Civ"
+                            value = {this.state.credentials.Civ}
+                            onChange ={this.inputChanged}
                           >
                           <MenuItem value={"Madame"} >Madame</MenuItem>
                           <MenuItem value={"Monsieur"}>Monsieur</MenuItem>
@@ -174,6 +222,9 @@ export default function SignInSide() {
                             labelId="demo-simple-select-required-label"
                             id="demo-simple-select-required"
                             label="Civilité"
+                            name="Gouvernorat"
+                            value = {this.state.credentials.Gouvernorat}
+                            onChange ={this.inputChanged}
                           >
                           <MenuItem value={"Sfax"}>Sfax</MenuItem>
                                                 <MenuItem value={"Sousse"}>Sousse</MenuItem>
@@ -208,13 +259,14 @@ export default function SignInSide() {
                       </Grid>
                     </Grid>
                     <br/>
-                    <NavLink to ="/Auth">
+                    <NavLink to ="/EspCand">
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
                       fullWidth
                       variant="contained"
                       sx={{ mt: 10, mb:2 }}
+                      onClick= {this.register}
                     >
                       Sign Up
                     </button>
@@ -232,4 +284,5 @@ export default function SignInSide() {
       </Grid>
     </ThemeProvider>
   );
-}
+}}
+export default InscEtu;

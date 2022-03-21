@@ -22,5 +22,6 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('PcdApp/',include('PcdApp.urls')),
-    path('student/', obtain_auth_token)
+    path('student/', obtain_auth_token),
+    path('recruteur/',obtain_auth_token)
 ]

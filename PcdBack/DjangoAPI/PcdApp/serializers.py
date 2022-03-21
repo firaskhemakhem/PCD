@@ -5,12 +5,13 @@ from rest_framework.authtoken.models import Token
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Students
-        fields = ['StudentId',
-                   'StudentName']
+        fields = ['Id_Utilisateur',
+                   'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','DDN','Civ']
 
 class RecruteursSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recruteurs
-        fields = ('RecruteurId',
-                   'RecruteurName')
+        fields = ['Id_Utilisateur',
+                   'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','CodePostal']
+
 
