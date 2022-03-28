@@ -1,0 +1,7 @@
+.page_Border{
+    background: 
+    linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+    linear-gradient(to right, #023C59, #3C4858) border-box;
+  border-radius: 50em;
+  border: 4px solid transparent;
+}

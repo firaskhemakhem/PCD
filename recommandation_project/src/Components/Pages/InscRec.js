@@ -152,7 +152,7 @@ render(){
                                             sx={
                                                 {
                                                     sm: 4,
-                                                    minWidth: 300
+                                                    minWidth: 460
                                                 }
                                         }>
                                             <InputLabel id="demo-simple-select-required-label">Gouvernorat</InputLabel>
@@ -164,9 +164,7 @@ render(){
                                              onChange ={this.inputChanged}>
                                                 <MenuItem value={"Sfax"}>Sfax</MenuItem>
                                                 <MenuItem value={"Sousse"}>Sousse</MenuItem>
-                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
-                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
-
+                                            
                                                 <MenuItem value={"Ariana"}>Ariana</MenuItem>
                                                 <MenuItem value={"Béja"}>Béja</MenuItem>
                                                 <MenuItem value={"Ben Arous"}>Ben Arous</MenuItem>
@@ -195,7 +193,7 @@ render(){
                                     </Grid>
                                 </Grid>
                                 <br/>
-                                <NavLink to="/EspRec">
+                               
                                 <button type="button" class="btn btn-outline-secondary"
                                  fullWidth variant="contained"
                                     sx={
@@ -207,7 +205,7 @@ render(){
                                  onClick= {this.register}>
                                     Sign Up
                                 </button>
-                                </NavLink>
+                               
                                 <Grid container justifyContent="flex-end">
                                     <Grid item>
                                         <Link href="/Auth" variant="body2">

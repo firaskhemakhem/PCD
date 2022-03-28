@@ -41,7 +41,7 @@ const Main=()=>{
                         </div>
                         <Carousel.Caption>
                             <h3 className="espaceEtudiant">Espace Etudiant</h3>
-                            <button className="btn btn-outline-secondary">Savoir Plus</button>
+                            <Link to="/Detaille"><button className="btn btn-outline-secondary">Savoir Plus</button></Link>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -54,7 +54,7 @@ const Main=()=>{
                         </div>
                         <Carousel.Caption>
                             <h3 className="espaceRecruteur">Espace Recruteur</h3>
-                            <button class="btn btn-outline-light">Savoir Plus</button>
+                            <Link to="/Detaille"><button class="btn btn-outline-light">Savoir Plus</button></Link>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
