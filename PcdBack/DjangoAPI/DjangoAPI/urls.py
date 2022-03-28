@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('PcdApp/',include('PcdApp.urls')),
     path('student/', obtain_auth_token),
-    path('recruteur/',obtain_auth_token)
+    path('recruteur/',obtain_auth_token),
+    path('auth/',obtain_auth_token),
 ]

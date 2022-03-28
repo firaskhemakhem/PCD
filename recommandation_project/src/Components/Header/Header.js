@@ -26,7 +26,7 @@ const Header=()=>{
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><HashLink class="dropdown-item" to='#Serv' smooth>Inscrivez-vous</HashLink></li>
 
-                            <li><a class="dropdown-item" href="/auth"> s'identifier</a></li>
+                            <li><HashLink class="dropdown-item" to="#Serv" smooth> s'identifier</HashLink></li>
                         </ul>
                         </li>
                     </ul>

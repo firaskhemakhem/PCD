@@ -3,25 +3,21 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Stack from '@mui/material/Stack';
 import Select from '@mui/material/Select';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import "../../styles/Pages/Inscription.css";
 import {NavLink} from "react-router-dom";
+import PopUpMessage from "../PopUpMessage/PopUpFile"
+
+
 
 function Copyright(props) {
   return (
@@ -56,9 +52,22 @@ class InscEtu extends React.Component{
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.credentials)
     })
-    .then( data => data.json())
-    .catch( error => console.error(error))
+    .then(data => data.json())
+    .then((result)=>{
+      this.setState({credentials:result});
+      this.state.credentials.Id_Utilisateur=result.Id_Utilisateur;
+      console.log(result);
+      console.log(this.state.credentials.Id_Utilisateur);
+      localStorage.setItem("Id_Utilisateur",this.state.credentials.Id_Utilisateur)
+    })
+    .catch( error => console.error(error));
+
   }
+
+  getId(){
+    
+  }
+
   inputChanged = (event) => {
     const cred = this.state.credentials;
     console.log(event.target.value);
@@ -192,7 +201,7 @@ render(){
                             style: { color: "grey" },
                           }}
                           inputProps={{
-                            style: { color: "white" },
+                            style: { color: "black" },
                           }}
                      
                         />
@@ -259,7 +268,7 @@ render(){
                       </Grid>
                     </Grid>
                     <br/>
-                    <NavLink to ="/EspCand">
+                  <NavLink to ={'/EspCand/'+localStorage.getItem('Id_Utilisateur')}>
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
@@ -270,7 +279,7 @@ render(){
                     >
                       Sign Up
                     </button>
-                    </NavLink>
+                  </NavLink>
                     <Grid container justifyContent="flex-end">
                       <Grid item>
                         <Link href="/Auth" variant="body2">
@@ -279,6 +288,7 @@ render(){
                       </Grid>
                     </Grid>
                   </Box>
+                  <PopUpMessage trigger={false}/>
           </Box>
         </Grid>
       </Grid>

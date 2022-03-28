@@ -1,13 +1,18 @@
 import React ,{useState} from 'react';
-import Footer from '../src/components/Footer/Footer'
+import Footer from '../src/Components/Footer/Footer'
 import { BrowserRouter, Routes , Route} from 'react-router-dom';
-import Acceuil from './components/Acceuil/Acceuil';
-import Auth from './components/Pages/Auth';
-import InscRec from './components/Pages/InscRec';
-import Detaille from './components/Detaille/Detaille';
-import InscEtu from './components/Pages/InscEtu';
-import EspaceCandidat from './components/Pages/EspaceCandidat';
-import EspaceRec from './components/Pages/EspaceRec';
+import Acceuil from './Components/Acceuil/Acceuil';
+import AuthEtudiant from './Components/Pages/AuthEtudiant';
+import AuthRecruteur from './Components/Pages/AuthRecruteur';
+import InscRec from './Components/Pages/InscRec';
+import Detaille from './Components/Detaille/Detaille';
+import InscEtu from './Components/Pages/InscEtu';
+import EspaceCandidat from './Components/Pages/EspaceCandidat';
+import EspaceRec from './Components/Pages/EspaceRec';
+import CandProfile from './Components/Pages/CandidatProfile';
+
+/*<Route exact path = "/CandProfile/:id" element={<CandProfile/>}/> ki nrigel 7keyet el id*/
+
 function App() {
   const [token, setToken] = useState('');
 
@@ -19,13 +24,16 @@ function App() {
       <BrowserRouter>
        <Routes>
        <Route exact path ="/" element ={<Acceuil/>}/>
-        <Route exact path ="/Auth" element ={<Auth/>}/>
+        <Route exact path ="/authEtud"element={<AuthEtudiant/>}/>
+        <Route exact path ="/AuthRec"element={<AuthRecruteur/>}/>
         <Route exact path ="/InscEtud" element ={<InscEtu/>} userLogin={userLogin}/>
         <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} />
         <Route exact path ="/footer" element ={<Footer/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
-        <Route exact path = "/EspCand" element={<EspaceCandidat/>}/>
+        <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>
         <Route exact path = "/EspRec" element={<EspaceRec/>}/>
+        <Route exact path = "/CandProfile/:id" element={<CandProfile/>}/>
+        
       </Routes>
     </BrowserRouter>   
     </div>

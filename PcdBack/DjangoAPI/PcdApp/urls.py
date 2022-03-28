@@ -1,20 +1,21 @@
 from django.urls import re_path as url
 from PcdApp import views
 from rest_framework import routers
-from .views import StudentsView ,RecruteursView
+from .views import StudentsView ,RecruteursView,Student_login
 from django.urls import path
 from django.conf.urls import include
 
 router = routers.DefaultRouter()
-router.register('PcdApp/student/', StudentsView)
-router.register('PcdApp/recruteur/',RecruteursView)
+router.register(r'student', StudentsView)
+router.register(r'recruteur',RecruteursView)
+router.register(r'auth',Student_login)
 
 
 urlpatterns = [
-    #path('', include(router.urls) ),
-    url(r'^student/$',views.studentsApi),
-    url(r'^student/([0-9]+)$',views.studentsApi),
-
-    url(r'^recruteur/$',views.recruteursApi),
-    url(r'^recruteur/([0-9]+)$',views.recruteursApi)
+    path('', include(router.urls) ),
+    #url(r'^student/$',views.studentsApi),
+    #url(r'^student/([0-9]+)$',views.studentsApi),
+    #url(r'^auth/',views.Student_login),
+    #url(r'^recruteur/$',views.recruteursApi),
+    #url(r'^recruteur/([0-9]+)$',views.recruteursApi)
 ]
