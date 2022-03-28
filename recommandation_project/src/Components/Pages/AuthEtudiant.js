@@ -99,6 +99,11 @@ class AuthEtudiant extends Component  {
     }
   };
 
+  handleErreur= event => {
+    this.setState({isOpenFailed:false});
+    
+  };
+
   inputChanged = (event) => {
     const cred = this.state.credentials;
     console.log(event.target.value);
@@ -217,7 +222,7 @@ class AuthEtudiant extends Component  {
               <h3><b>Oups!</b></h3><br/>
               <p>Un erreur c'est reproduit ! </p>
                
-              <Button variant="contained" >
+              <Button variant="contained"  onClick={this.handleErreur}>
                 Ok
                 </Button>
               

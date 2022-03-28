@@ -66,13 +66,13 @@ class CandProfile extends Component{
   constructor(){
     super();
     this.state = {
-      credentials: {Id_Utilisateur:localStorage.getItem('Id_Utilisateur'),Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
+      credentials: {Id_Utilisateur:localStorage.getItem('IdUser'),Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
     }
   }
   
 
     componentDidMount(){
-      var id=localStorage.getItem('Id_Utilisateur');
+      var id=localStorage.getItem('IdUser');
         fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
             method: 'GET',
             headers: {'Content-Type': 'application/json'}

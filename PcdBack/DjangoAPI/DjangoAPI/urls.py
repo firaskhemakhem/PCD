@@ -24,13 +24,13 @@ urlpatterns = [
     path('PcdApp/',include('PcdApp.urls')),
     path('student/', obtain_auth_token),
     path('recruteur/',obtain_auth_token),
-<<<<<<< HEAD
+
     path('auth/',obtain_auth_token),
-=======
+
 
     path('infoper/',obtain_auth_token),
     path('competence/',obtain_auth_token),
     path('infoadd/',obtain_auth_token),
     path('cv/',obtain_auth_token)
->>>>>>> dbe89ad9c556bf731337624b37f7407f2fee6498
+
 ]

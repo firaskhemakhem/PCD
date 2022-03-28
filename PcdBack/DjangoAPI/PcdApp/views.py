@@ -6,16 +6,14 @@ from django.http.response import JsonResponse
 from django.core.files.storage import default_storage
 from PcdApp import serializers
 import PcdApp
-<<<<<<< HEAD
+
 from PcdApp.models import Students,Recruteurs
 from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer,StudentsLoginSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
-=======
 from PcdApp.models import Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv
 from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer
->>>>>>> dbe89ad9c556bf731337624b37f7407f2fee6498
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -24,8 +22,8 @@ class StudentsView (viewsets.ModelViewSet):
 class RecruteursView (viewsets.ModelViewSet):
     serializer_class = RecruteursSerializer
     queryset = Recruteurs.objects.all()
-<<<<<<< HEAD
-=======
+
+
 
 class InfoPerView (viewsets.ModelViewSet):
     serializer_class = InfoPerSerializer
@@ -75,7 +73,7 @@ def studentsApi(request,id=0):
         students=Students.objects.get(Id_Utilisateur=id)
         students.delete()
         return JsonResponse("Deleted Successfully",safe=False)
->>>>>>> dbe89ad9c556bf731337624b37f7407f2fee6498
+8
 
 class Student_login(viewsets.ModelViewSet):
     serializer_class = StudentsLoginSerializer

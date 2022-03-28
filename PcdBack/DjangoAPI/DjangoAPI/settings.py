@@ -94,11 +94,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pcdappdb',
         'USER': 'root',
-<<<<<<< HEAD
+
         'PASSWORD' : '',
-=======
-        'PASSWORD' : 'sara',
->>>>>>> dbe89ad9c556bf731337624b37f7407f2fee6498
+
         'HOST':'127.0.0.1',
         'PORT': '3306',
     }
