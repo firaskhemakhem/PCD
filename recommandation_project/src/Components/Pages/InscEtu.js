@@ -1,13 +1,14 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+<<<<<<< HEAD
 import Typography from '@mui/material/Typography';
+=======
+>>>>>>> dbe89ad9c556bf731337624b37f7407f2fee6498
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,19 +19,6 @@ import {NavLink} from "react-router-dom";
 import PopUpMessage from "../PopUpMessage/PopUpFile"
 
 
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
 const handleSubmit = (event) => {
@@ -237,8 +225,7 @@ render(){
                           >
                           <MenuItem value={"Sfax"}>Sfax</MenuItem>
                                                 <MenuItem value={"Sousse"}>Sousse</MenuItem>
-                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
-                                                <MenuItem value={"Sousse"}>Sousse</MenuItem>
+                                                
 
                                                 <MenuItem value={"Ariana"}>Ariana</MenuItem>
                                                 <MenuItem value={"Béja"}>Béja</MenuItem>

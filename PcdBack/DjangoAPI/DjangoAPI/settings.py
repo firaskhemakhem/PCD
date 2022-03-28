@@ -13,7 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+MEDIA_URL='/photos/'
+MEDIA_ROOT=os.path.join(BASE_DIR,"photos")
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -91,7 +94,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pcdappdb',
         'USER': 'root',
+<<<<<<< HEAD
         'PASSWORD' : '',
+=======
+        'PASSWORD' : 'sara',
+>>>>>>> dbe89ad9c556bf731337624b37f7407f2fee6498
         'HOST':'127.0.0.1',
         'PORT': '3306',
     }
