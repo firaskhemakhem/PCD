@@ -4,10 +4,36 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { multiStepContext } from "./StepContext";
 
+const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+};
 
+/*const register = event => {
+    fetch('http://127.0.0.1:8000/PcdApp/infoper/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(finalData)
+    })
+    .then( data => data.json())
+    .catch( error => console.error(error))
+}*/
 
 function InfoAdd(){
-    const {setCurrentStep,userData, setUserData,submitData }=useContext(multiStepContext);
+    const {setCurrentStep,userData, setUserData,submitData, finalData }=useContext(multiStepContext);
+    const register = event => {
+        fetch('http://127.0.0.1:8000/PcdApp/infoper/', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(finalData)
+        })
+        .then( data => data.json())
+        .catch( error => console.error(error))
+    }
     return(
         <React.Fragment>
             <Typography variant="h6" gutterBottom>

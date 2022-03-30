@@ -35,6 +35,7 @@ class InscEtu extends React.Component{
     })
     .then( data => data.json())
     .catch( error => console.error(error))
+    console.log(this.state.credentials)
   }
   inputChanged = (event) => {
     const cred = this.state.credentials;

@@ -49,7 +49,7 @@ const Cv=()=>{
             Curriculum vitæ
           </Typography>
           <div className="center-stepper">
-            <Stepper style={{ width: "18%" }} activeStep={currentStep -1}  orientation="horizontal">
+            <Stepper style={{ width: "18%" }} activeStep={currentStep - 1}  orientation="horizontal">
               <Step>
                 <StepLabel>Information Personnel</StepLabel>
               </Step>

@@ -58,7 +58,7 @@ function Competence() {
                             variant="standard"
                             fullWidth
                             name="ExpProf"
-                            value={userData.ExpProf.value}
+                            value={userData.ExpProf}
                             onChange={(e)=>{setUserData({...userData,"ExpProf":e.target.value})}}
                         />
                     </Grid>
@@ -81,22 +81,17 @@ function Competence() {
                     <Grid item
                         xs={12}
                         md={14}>
-                        <Autocomplete
-                            multiple
-                            id="lang"
-                            options={Lang}
-                            getOptionLabel={(option) => option.title}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    variant="standard"
-                                    label="Langues"
-                                    name="Lang"
-                                    placeholder="les langues avec lesquelles vous pouvez communiquer"
-                                    value={userData.lang}
-                                    onChange={(e)=>{setUserData({...userData,"Lang":setLang(...lang,e.target.value)})}}
-                                />
-                            )}
+                        <TextField
+                            id="Lang"
+                            label="Langues"
+                            multiline
+                            rows={1}
+                            placeholder="les langues avec lesquelles vous pouvez communiquer"
+                            variant="standard"
+                            fullWidth
+                            name="Lang"
+                            value={userData.Lang}
+                            onChange={(e)=>{setUserData({...userData,"Lang":e.target.value})}}
                         />
                     </Grid>
                     <Grid item
@@ -125,7 +120,6 @@ function Competence() {
                     <Grid item
                         xs={12}
                         sm={6}>
-                            
                         <button class="btn btn-light" onClick={()=>{setCurrentStep(3)}}>
                             Next
                         </button>
