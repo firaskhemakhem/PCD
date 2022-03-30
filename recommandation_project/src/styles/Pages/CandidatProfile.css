@@ -1,0 +1,115 @@
+.App{
+   
+    height: 100vh;
+    background-size: 100%;
+   
+}
+.cfb{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.colInsc{
+    position: absolute;
+    z-index: 2;
+    right: 65%;
+
+    border: 0.1em solid #592941;
+    border-radius: 0.5em;
+
+    width: 35%;
+    height: 130%;
+    flex-direction: column;
+   background-color: #023C59;
+   background-image: url('../../assets/images/insc22.jpg'); 
+   background-size: 100% 100%;
+    opacity: 1;
+    color: #EEFCF8;
+    text-align: center;
+
+    transition: 2s;
+    
+}
+.colInsc1{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+
+    border: 0.1em solid #592941;
+    border-radius: 0.5em;
+
+    width: 65%;
+    height: 130%;
+
+    background-color: #EEFCF8;
+    opacity: 1;
+
+    font-weight: bold;
+    color: #023C59;
+
+    transition: 2s;
+}
+.form-comp{
+    flex-direction: column;
+    padding-top: 2%;
+}
+
+.sign-up-form{
+    width: 50%;
+    flex-direction: column;
+}
+
+.sign-up-form > label{
+    padding: 0.5em;
+    width: 100%
+}
+
+.sign-up-form > label > input{
+    width: 100%
+}
+.labl{
+    margin-top: -3%;
+}
+.butt {
+    padding: 1em;
+
+    border: 1px solid #EEFCF8;
+    border-radius: 5em;
+    
+    background-color: #023C59;
+
+    color: #EEFCF8;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button:hover{
+    opacity: 0.9;
+}
+
+/* All Inputs Styling */
+input {
+    padding: 0.35em;
+    border: 1px solid #023C59;
+}
+.Border{
+    border: 0.2em solid #023C59;
+    border-radius: 1em;
+    background-color: #f0e6d6;
+
+}
+.backg{
+    background-color: #00507994;
+}
+.Detaille{
+    background-color: red;
+}
+.Titre{
+    color: #023C59;
+    text-align: center;
+}

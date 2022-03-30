@@ -94,11 +94,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pcdappdb',
         'USER': 'root',
-        'PASSWORD' : 'sara',
+
+        'PASSWORD' : '',
+
         'HOST':'127.0.0.1',
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation

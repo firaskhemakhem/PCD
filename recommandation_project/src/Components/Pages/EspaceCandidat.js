@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Component} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -9,7 +10,18 @@ import Footer from '../Footer/Footer';
 import '../../styles/Pages/EspaceCandidat.css'
 import AgendaPartagee from './AgendaPartagee';
 import HeaderCan from './HeaderCan';
+import {useState} from 'react';
+//import Input from '@mui/material/Input';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
 
+
+const Input = styled('input')({
+  display: 'none',
+});
 
 
 const mainFeaturedPost = {
@@ -45,15 +57,20 @@ const featuredPosts = [
       'Si vous avez déjà un CV pret vous pouvez le déposer.',
     image: 'https://www.mastersbooking.fr/sites/default/files/styles/img_blog/public/field/image/resume-2296951_1920_1_0.png?itok=ESjYBHbn',
     imageLabel: 'Déposer',
-    link : <button
-        type="button" 
-        class="btn btn-outline-secondary"
-        fullWidth
-        variant="contained"
-        sx={{ mt: 4, mb:2 }}
-      >
-        Déposer
-      </button>
+    link :  <Stack direction="row" alignItems="center" spacing={2}>
+              <label htmlFor="contained-button-file">
+                <Input id="contained-button-file" multiple type="file" display="none"/>
+                <Button variant="contained" component="span" class="btn btn-outline-secondary">
+                  Upload
+                </Button>
+              </label>
+              <label htmlFor="icon-button-file">
+                <Input id="icon-button-file" type="file" display="none" />
+                <IconButton color="primary" aria-label="upload picture" component="span">
+                  <PhotoCamera />
+                </IconButton>
+              </label>
+            </Stack>
   },
  
 ];
@@ -114,34 +131,55 @@ const sidebar = {
 
 const theme = createTheme();
 
-export default function EspaceCandidat() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      <HeaderCan/>
-      <Container maxWidth="lg">
-        <main>
-          <MainFeaturedPost post={mainFeaturedPost}/>
-          <Grid container spacing={4}>
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
-             <p className='parag'>Nos Consultants a vos cote pour : </p> 
-          <Grid container spacing={4}>
-            {featuredPosts2.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
-            ))}
-          </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
-          </Grid>
-          </Grid>
-        </main>
-      </Container>
-      <Footer/>
-    </ThemeProvider>
-
-  );
+class EspaceCandidat extends Component {
+  
+  state = {
+    credentials: {}
+  }
+  componentDidMount(){
+    var id=localStorage.getItem('IdUser');
+     //fetch('http://127.0.0.1:8000/PcdApp/student/1/',{
+    fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
+   
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+        })  
+    .then(response => response.json())
+    .then((result)=>{
+        this.setState({credentials:result})
+        console.log(result);
+    })
+  }
+  render(){
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline/>
+        <HeaderCan dataFromParent = {this.state.credentials.Id_Utilisateur}/>
+        <Container maxWidth="lg">
+          <main>
+            <MainFeaturedPost post={mainFeaturedPost}/>
+            <Grid container spacing={4}>
+              {featuredPosts.map((post) => (
+                <FeaturedPost key={post.title} post={post} />
+              ))}
+            </Grid>
+            <Grid container spacing={5} sx={{ mt: 3 }}>
+               <p className='parag'>Nos Consultants a vos cote pour : </p> 
+            <Grid container spacing={4}>
+              {featuredPosts2.map((post) => (
+                <FeaturedPost key={post.title} post={post} />
+              ))}
+            </Grid>
+            <Grid container spacing={5} sx={{ mt: 3 }}>
+            </Grid>
+            </Grid>
+          </main>
+        </Container>
+        <Footer/>
+      </ThemeProvider>
+    );
+  }
+  
 }
 
+export default EspaceCandidat;

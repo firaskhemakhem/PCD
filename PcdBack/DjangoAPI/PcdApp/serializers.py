@@ -15,6 +15,12 @@ class RecruteursSerializer(serializers.ModelSerializer):
         fields = ['Id_Utilisateur',
                    'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','CodePostal']
 
+#Login
+class StudentsLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Students
+        fields = ['Login','MDP']
+
 
 class InfoPerSerializer(serializers.ModelSerializer):
     class Meta:

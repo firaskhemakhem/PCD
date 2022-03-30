@@ -7,6 +7,12 @@ from django.core.files.storage import default_storage
 #from DjangoAPI.PcdApp.models import Infopers
 from PcdApp import serializers
 import PcdApp
+
+from PcdApp.models import Students,Recruteurs
+from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer,StudentsLoginSerializer
+#from django.core.files.storages import default_storage  #file storage
+
+
 from PcdApp.models import Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv
 from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer
 
@@ -17,6 +23,8 @@ class StudentsView (viewsets.ModelViewSet):
 class RecruteursView (viewsets.ModelViewSet):
     serializer_class = RecruteursSerializer
     queryset = Recruteurs.objects.all()
+
+
 
 class InfoPerView (viewsets.ModelViewSet):
     serializer_class = InfoPerSerializer

@@ -5,7 +5,7 @@ import Piape from "../../assets/images/Piape.png";
 import rec_icon from "../../assets/icons/incons_recruteur.png";
 import etu_icon from "../../assets/icons/incons_etudiant.png";
 import Etudiant from "../../assets/images/stage.jpg";
-import Recruteur from "../../assets/images/Recruteur3.jpg";
+import Recruteur from "../../assets/images/espace_recruteur.jpg";
 import NewBack from "../../assets/images/newbackground.jpg"
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -80,6 +80,7 @@ const Main=()=>{
                                                 <h4 className="jss817 title">Candidatez à travers PIAPE</h4>
                                                 <p className="description"> Postulez à l'une de nos offres et déposez votre candidature <br/>pour être enregistré dans nos bases et être recommander <br/>pour achever votre parcours éducatif.</p>
                                                 <Link to="/InscEtud"><button className="btn btn-outline-secondary">Inscrivez-vous!</button></Link>
+                                                <Link to="/AuthEtud"><button className="btnRigth btn btn-outline-secondary">S'identifier</button></Link>
                                             </div>
                                         </div>
                                     </Col>
@@ -90,6 +91,7 @@ const Main=()=>{
                                                 <h4 className="jss817 title">Recrutez à travers PIAPE</h4>
                                                 <p className="description"> Déposez votre catalogue et trouvez les meilleurs candidatures <br/>les plus adequats à vos sujets. </p>
                                                 <Link to ="/InscRec"><button className="btn btn-outline-secondary">Inscrivez-vous!</button></Link>
+                                                <Link to ="/AuthRec"><button className="btnRigth btn btn-outline-secondary">S'identifier</button></Link>
                                             </div>
                                         </div>
                                     </Col>
