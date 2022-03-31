@@ -15,6 +15,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import "../../styles/Pages/Inscription.css";
 import {NavLink} from "react-router-dom";
+import PopUpMessage from '../PopUpMessage/PopUpFile'
+import Button from '@mui/material/Button';
 
 
 const theme = createTheme();
@@ -29,7 +31,17 @@ const handleSubmit = (event) => {
 
 class InscEtu extends React.Component{
   state = {
-    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
+    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''},
+    isOpenSucceed:false,
+    isOpenFailed:false
+  }
+  togglePopup =event=> {
+    this.setState({isOpenSucceed:true});
+    console.log(this.state.isOpenSucceed);
+  }
+  togglePopupFailed =event=> {
+    this.setState({isOpenFailed:true});
+    console.log(this.state.isOpenFailed);
   }
   register = event => {
     fetch('http://127.0.0.1:8000/PcdApp/student/', {
@@ -46,7 +58,9 @@ class InscEtu extends React.Component{
       this.state.credentials.Id_Utilisateur=result.Id_Utilisateur;
       console.log(result);
       console.log(this.state.credentials.Id_Utilisateur);
-      localStorage.setItem("Id_Utilisateur",this.state.credentials.Id_Utilisateur)
+      localStorage.setItem("LoginUser",this.state.credentials.Login);
+      localStorage.setItem("IdUser",this.state.credentials.Id_Utilisateur);
+      this.togglePopup();
     })
     .catch( error => console.error(error));
 
@@ -255,7 +269,6 @@ render(){
                       </Grid>
                     </Grid>
                     <br/>
-                  <NavLink to ={'/EspCand/'+localStorage.getItem('Id_Utilisateur')}>
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
@@ -266,7 +279,7 @@ render(){
                     >
                       Sign Up
                     </button>
-                  </NavLink>
+                 
                     <Grid container justifyContent="flex-end">
                       <Grid item>
                         <Link href="/Auth" variant="body2">
@@ -275,10 +288,23 @@ render(){
                       </Grid>
                     </Grid>
                   </Box>
-                  
           </Box>
         </Grid>
       </Grid>
+      <div align="center">
+          {this.state.isOpenSucceed && <PopUpMessage
+            dataFromParent ={<>
+              <h3><b>félicitations !</b></h3><br/>
+              <p>Maintenant c'est le moment de commancer votre aventure</p>
+              
+              <NavLink to ={'/EspCand/'+localStorage.getItem('IdUser')}> 
+              <Button variant="contained" >
+                Ok
+                </Button>
+              </NavLink>
+            </>}
+          />}
+        </div>
     </ThemeProvider>
   );
 }}

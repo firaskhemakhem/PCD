@@ -1,7 +1,7 @@
 from django.urls import re_path as url
 #from PcdApp import views
 from rest_framework import routers
-from .views import StudentsView ,RecruteursView,Student_login
+from .views import StudentsView ,RecruteursView
 
 from .views import StudentsView ,RecruteursView, InfoAddView, InfoPerView , CompetenceView, CvView
 
@@ -11,7 +11,7 @@ from django.conf.urls import include
 router = routers.DefaultRouter()
 router.register(r'student', StudentsView)
 router.register(r'recruteur',RecruteursView)
-router.register(r'auth',Student_login)
+
 
 
 

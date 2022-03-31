@@ -9,7 +9,7 @@ from PcdApp import serializers
 import PcdApp
 
 from PcdApp.models import Students,Recruteurs
-from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer,StudentsLoginSerializer
+from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
