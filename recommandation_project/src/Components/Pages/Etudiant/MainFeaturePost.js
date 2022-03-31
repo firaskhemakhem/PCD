@@ -12,28 +12,31 @@ function MainFeaturedPost(props) {
   return (
     <Paper
       sx={{
+        top:10,
         position: 'relative',
-        backgroundColor: 'grey.800',
-        color: '#fff',
+       // backgroundColor: 'grey.800',
+        color: '#1976D2',
         mb: 4,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${post.image})`,
+        height:300
       }}
     >
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
-          top: 0,
+          top: 10,
           bottom: 0,
           right: 0,
           left: 0,
           backgroundColor: 'rgba(0,0,0,.3)',
+        //  height:50
         }}
-      />
+      /> */}
       <Grid container>
         <Grid item md={6}>
           <Box

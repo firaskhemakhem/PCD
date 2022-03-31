@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    #'PcdApp.apps.PcdappConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'PcdApp',
@@ -95,7 +94,7 @@ DATABASES = {
         'NAME': 'pcdappdb',
         'USER': 'root',
 
-        'PASSWORD' : '',
+        'PASSWORD' : 'mysql',
 
         'HOST':'127.0.0.1',
         'PORT': '3306',

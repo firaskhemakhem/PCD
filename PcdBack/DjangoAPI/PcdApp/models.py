@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # Create your models here.
@@ -14,6 +15,9 @@ class Utilisateur (models.Model):
 
     class Meta :
         abstract = True
+  
+
+
 
 class Students(Utilisateur):
    DDN =models.CharField(max_length= 30)
@@ -24,16 +28,17 @@ class Recruteurs(Utilisateur):
     CodePostal = models.CharField(max_length=6)
 
 class InfoPer(models.Model):
-    Id_InfoPer=models.ForeignKey(Students, on_delete=models.CASCADE,unique=True)
+    Id_InfoPer=models.AutoField(primary_key=True)
     Nom = models.CharField(max_length= 30)
     Email = models.CharField(max_length= 30,unique=True)
     Tel = models.CharField(max_length=10,unique=True)
     Gouvernorat = models.CharField (max_length= 30)
     Adresse = models.CharField(max_length= 30)
     DDN =models.CharField(max_length= 30)
+    Dom = models.CharField(max_length= 45)
 
 class Competence(models.Model):
-    Id_Com=models.ForeignKey(Students, on_delete=models.CASCADE,unique=True)
+    Id_Com=models.AutoField(primary_key=True)
     Formation=models.CharField(max_length=250)
     ExpProf=models.CharField(max_length=250)
     Certif=models.CharField(max_length=250)
@@ -42,12 +47,12 @@ class Competence(models.Model):
     civ=models.CharField(max_length= 30)
 
 class InfoAdd(models.Model):
-    Id_InfoAdd=models.ForeignKey(Students, on_delete=models.CASCADE,unique=True)
+    Id_InfoAdd=models.AutoField(primary_key=True)
     CentreInt=models.CharField(max_length=250)
     VieAsso=models.CharField(max_length=250)
 
 class Cv(models.Model):
-    Id_Cv=models.ForeignKey(Students, on_delete=models.CASCADE,unique=True)
+    Id_Cv=models.AutoField(primary_key=True)
     InfoPer=models.TextField()
     Compe=models.TextField()
     InfoAdd=models.TextField()

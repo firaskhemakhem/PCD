@@ -1,5 +1,3 @@
-from django.urls import re_path as url
-from PcdApp import views
 from rest_framework import routers
 from .views import StudentsView ,RecruteursView,Student_login
 
@@ -23,13 +21,7 @@ router.register(r'cv',CvView)
 
 urlpatterns = [
     path('', include(router.urls) ),
-    #url(r'^student/$',views.studentsApi),
-    #url(r'^student/([0-9]+)$',views.studentsApi),
-    #url(r'^auth/',views.Student_login),
-    #url(r'^recruteur/$',views.recruteursApi),
-    #url(r'^recruteur/([0-9]+)$',views.recruteursApi)
 
-    #url(r'^student/$',views.studentsApi)
 ]
 
 #+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -25,7 +25,7 @@ class InfoPerSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoPer
         fields = ['Id_InfoPer',
-                   'Nom','Email','Tel','Gouvernorat','Adresse','DDN','Civ']
+                   'Nom','Email','Tel','Gouvernorat','Adresse','DDN','Dom']
 
 class CompetenceSerializer(serializers.ModelSerializer):
     class Meta:
