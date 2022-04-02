@@ -20,6 +20,7 @@ import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
 
 import Cv from './Components/Pages/formCv/Cv';
 import StepContext from './Components/Pages/formCv/StepContext';
+import Registration from './Components/Pages/Registration';
 
 function App() {
   const [token, setToken] = useState('');
@@ -35,7 +36,8 @@ function App() {
         <Route exact path ="/authEtud"element={<AuthEtudiant/>}/>
         <Route exact path ="/AuthRec"element={<AuthRecruteur/>}/>
         <Route exact path ="/InscEtud" element ={<InscEtu/>} userLogin={userLogin}/>
-        <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} />
+        <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} /> 
+        {/* <Route exact path ="/InscRec" element ={<Registration/>} userLogin={userLogin} /> */}
         <Route exact path ="/footer" element ={<Footer/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>

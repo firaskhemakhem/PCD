@@ -15,23 +15,128 @@ import { useNavigate } from 'react-router';
 
 
 const theme = createTheme();
-const handleSubmit = (event) => {
+
+/*const handleSubmit = (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
   console.log({
     email: data.get('email'),
     password: data.get('password'),
   });
-};
+};*/
+const regtel = RegExp( /^(\d{8})+$/)
+const regExp = RegExp(
+  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/
+)
+const regDDN = RegExp(
+  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})+$/
+
+)
+
+
+
+ 
+  
 
 function InscRec() {
+  const formValid = ( {isError, ...rest }) => {
+    let isValid = false;
+  
+   Object.values(isError).forEach=(val=> {
+        if (val.length > 0) {
+            isValid = false;}
+         else 
+            {isValid = true;}
+    });
+  
+    Object.values(rest).forEach(val =>{
+        if (val === null) {
+            isValid = false;}
+  
+  
+            
+         else {
+            isValid = true;}});
+    return isValid;
+    };
   const navigate = useNavigate();
-  const [state, setState] = React.useState([]);
+  const [state, setState] = React.useState({ Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',CodePostal:'',Tel:'',
+  isError: {Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',CodePostal:'',Tel:'' },});
+  const onSubmit = e => {
+    e.preventDefault();
+    if (formValid(state)) {
+        console.log(state)}
+     else 
+       { console.log("Form is invalid!");}}
+  const  formValChange = e=> {
+    e.preventDefault();
+    const {name,value} = e.target;
+     let isError ={ ...state.isError} ;
+     switch (name) {
+         case "Nom": 
+             isError.Nom =
+                 value.length < 4 ? " Attention doit comprendre au minimum 4 caractéres" : "";
+       
+             break;
+         case "Email":
+             isError.Email = regExp.test(value)
+                 ? ""
+                 : "l'adresse email est invalid";
+           
+             break;
+         case "Login":
+           isError.Login=
+                value.length <4 ? "Login doit comprendre au minimum 4 caractéres" :"";
+             break;
+         case "MDP":
+             isError.MDP =
+                 value.length < 6 ? "Le mot de passe doit comprendre au minimum 6 caractéres" : "";
+             break;
+         case "Adresse":
+           isError.Adresse=
+               value.length < 5 ? "L'adresse doit comprendre au minimum 5 caractéres" :"";
+             break;
+           case "Tel":
+               isError.Tel =regtel.test(value) ?"":"Votre numéro de téléphone doit contient exactement 8 chiffres";
+               break;
+            case "CodePostal":
+                isError.CodePostal =regtel.test(value) ?"":"Votre numéro de téléphone doit contient exactement 8 chiffres";
+                break;
+         case "Gouvernorat":
+           isError.Gouvernorat  = value == "" ? "Sélectionner votre Gouvernorat":"";
+           break;
+         default:
+             break;}
+                 const cred = state;
+                  console.log(e.target.value);
+                  cred[e.target.name] = e.target.value;
+             setState({
+               ...state, "Nom": e.target.value,
+               ...state, "Login": e.target.value ,
+               ...state, "Tel": e.target.value ,
+               ...state, "Adresse": e.target.value ,
+               ...state, "Email": e.target.value ,
+               ...state,"CodePostal":e.target.value,
+               ...state,"Gouvernorat":e.target.value,
+               ...state,"MDP":e.target.value,
+               ...state,
+               isError,
+              })
+            }
   const register = event => {
     fetch('http://127.0.0.1:8000/PcdApp/recruteur/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(state)
+      body: JSON.stringify(
+        {"Nom":state.Nom,
+      "Email":state.Email,
+      "Adresse":state.Adresse,
+      "Gouvernorat":state.Gouvernorat,
+      "Login":state.Login,
+      "MDP":state.MDP,
+      "Tel":state.Tel,
+     "CodePostal":state.CodePostal}
+      )
     })
       .then(data => data.json())
       .then((res) => {
@@ -57,7 +162,10 @@ function InscRec() {
       .catch((error) => console.error(error))
   }
 
+ 
+  const  {isError}  =state;
   return (
+    
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -86,11 +194,7 @@ function InscRec() {
             }}
           >
             <h1 className='Titre'>Inscrivez-vous!</h1>
-            <Box component="form" noValidate
-              onSubmit={handleSubmit}
-              sx={
-                { mt: 3 }
-              }>
+           <form onSubmit={onSubmit} noValidate>
               <Grid container
                 spacing={2}>
                 <Grid item
@@ -100,18 +204,29 @@ function InscRec() {
                     name="Nom"
                     autoComplete="Nom De L'Entreprise"
                     value={state.Nom}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "Nom": e.target.value }) }} />
+                   onChange={formValChange} 
+                    className= {(isError.Nom.length)>0 ? "is-invalid form-control" : "form-control"} />
+                     
+                     {isError.Nom.length > 0 && (
+                        <span className="invalid-feedback">{isError.Nom}</span>
+                       
+                    )}
+                 
                 </Grid>
                 <Grid item
                   xs={12}>
                   <TextField required fullWidth id="email"
-                    label="Addresse Email"
+                    label="Adresse Email"
                     name="Email"
                     autoComplete="email"
                     value={state.Email}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "Email": e.target.value }) }} />
+  
+                    onChange={formValChange}
+                    className= {(isError.Email.length)>0 ? "is-invalid form-control" : "form-control"} /> 
+                     {isError.Email.length > 0 && (
+                        <span className="invalid-feedback">{isError.Email}</span>
+                       
+                    )}
                 </Grid>
                 <Grid item
                   xs={12}
@@ -119,9 +234,14 @@ function InscRec() {
                   <TextField required name="Login"
                     fullWidth id="login"
                     label="Login" autoFocus
-                    value={state.Login}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "Login": e.target.value }) }} />
+                    value={state.Login} 
+                   onChange={formValChange}
+                  className= {(isError.Login.length)>0 ? "is-invalid form-control" : "form-control"} 
+                   />
+                      {isError.Login.length > 0 && (
+                        <span className="invalid-feedback">{isError.Login}</span>
+                       
+                    )}
                 </Grid>
                 <Grid item
                   xs={12}
@@ -130,8 +250,14 @@ function InscRec() {
                     label="Code Postal" name="CodePostal"
                     autoComplete="Code-Postal"
                     value={state.CodePostal}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "CodePostal": e.target.value }) }} />
+                    onChange={formValChange}
+                    className= {(isError.CodePostal.length)>0 ? "is-invalid form-control" : "form-control"} 
+                    />
+
+                  {isError.CodePostal.length > 0 && (
+                        <span className="invalid-feedback">{isError.CodePostal}</span>
+                       
+                    )}
                 </Grid>
 
                 <Grid item
@@ -141,8 +267,14 @@ function InscRec() {
                     id="password"
                     autoComplete="new-password"
                     value={state.MDP}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "MDP": e.target.value }) }} />
+                   onChange={formValChange}
+                   className= {(isError.MDP.length)>0 ? "is-invalid form-control" : "form-control"} 
+                   
+                   />
+                   {isError.MDP.length > 0 && (
+                        <span className="invalid-feedback">{isError.MDP}</span>
+                       
+                    )}
                 </Grid>
                 <Grid item
                   xs={12}>
@@ -158,8 +290,13 @@ function InscRec() {
                     label="Numéro de Teléphone"
                     name="Tel"
                     value={state.Tel}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "Tel": e.target.value }) }} />
+                   onChange={formValChange}
+                   className= {(isError.Tel.length)>0 ? "is-invalid form-control" : "form-control"} 
+                    />
+                    {isError.Tel.length > 0 && (
+                        <span className="invalid-feedback">{isError.Tel}</span>
+                       
+                    )}
                 </Grid>
                 <Grid item
                   xs={12}>
@@ -167,8 +304,13 @@ function InscRec() {
                     label="Adresse"
                     name="Adresse"
                     value={state.Adresse}
-                    //onChange ={this.inputChanged}
-                    onChange={(e) => { setState({ ...state, "Adresse": e.target.value }) }} />
+                    onChange={formValChange}
+                    className= {(isError.Adresse.length)>0 ? "is-invalid form-control" : "form-control"} 
+                    />
+                       {isError.Adresse.length > 0 && (
+                        <span className="invalid-feedback">{isError.Adresse}</span>
+                       
+                    )}
                 </Grid>
                 <Grid item
                   xs={12}>
@@ -185,8 +327,9 @@ function InscRec() {
                       label="Gouvernorat"
                       name="Gouvernorat"
                       value={state.Gouvernorat}
-                      //onChange ={this.inputChanged}
-                      onChange={(e) => { setState({ ...state, "Gouvernorat": e.target.value }) }}>
+                     onChange={formValChange}
+                     className= {(isError.Gouvernorat.length)>0 ? "is-invalid form-control" : "form-control"} 
+                      >
                       <MenuItem value={"Sfax"}>Sfax</MenuItem>
                       <MenuItem value={"Sousse"}>Sousse</MenuItem>
 
@@ -215,6 +358,10 @@ function InscRec() {
                       <MenuItem value={"Zaghouan"}>Zaghouan</MenuItem>
                     </Select>
                   </FormControl>
+                  {isError.Gouvernorat.length > 0 && (
+                        <span className="invalid-feedback">{isError.Gouvernorat}</span>
+                       
+                    )}
                 </Grid>
               </Grid>
               <br />
@@ -239,7 +386,7 @@ function InscRec() {
                 </Grid>
               </Grid>
 
-            </Box>
+              </form>
           </Box>
         </Grid>
       </Grid>
