@@ -1,4 +1,5 @@
 from rest_framework import serializers
+#from DjangoAPI.PcdApp.models import InfoAddi
 from PcdApp.models import Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv
 from rest_framework.authtoken.models import Token
 

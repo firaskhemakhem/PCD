@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('Certif', models.CharField(max_length=250)),
                 ('Lang', models.CharField(max_length=250)),
                 ('Liens', models.CharField(max_length=250)),
-                ('civ', models.CharField(max_length=30)),
+                ('Dom', models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(

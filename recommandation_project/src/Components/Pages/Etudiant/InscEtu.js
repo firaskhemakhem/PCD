@@ -5,8 +5,8 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import PopUpMessage from '../../PopUpMessage/PopUpFile';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import InputLabel from '@mui/material/InputLabel';
@@ -27,124 +27,51 @@ const handleSubmit = (event) => {
   });
 };
 
-const regtel = RegExp( /^(\d{8})+$/)
-const regExp = RegExp(
-  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/
-)
-const regDDN = RegExp(
-  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})+$/
-
-)
-const formValid = ( {isError, ...rest }) => {
-    let isValid = false;
-
-   Object.values(isError).forEach=(val=> {
-        if (val.length > 0) {
-            isValid = false;}
-         else 
-            {isValid = true;}
-    });
-
-    Object.values(rest).forEach(val =>{
-        if (val === null) {
-            isValid = false;}
-
-
-            
-         else {
-            isValid = true;}});
-    return isValid;
-    };
-
-
 class InscEtu extends React.Component{
-
-
-  constructor(props) {
-    super(props)
-  this.state = {
-    Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:'' , Image:'',
-    isError: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:'' },
-  
-  }}
-
-
-  onSubmit = e => {
-    e.preventDefault();
-    if (formValid(this.state)) {
-        console.log(this.state)}
-     else 
-       { console.log("Form is invalid!");}}
-  
-    formValChange = e=> {
-         e.preventDefault();
-          const {value,name}  = e.target;
-          let isError ={ ...this.state.isError} ;
-          switch (name) {
-              case "Nom": 
-                  isError.Nom =
-                      value.length < 4 ? " Attention doit comprendre au minimum 4 caractéres" : "";
-                  break;
-              case "Email":
-                  isError.Email = regExp.test(value)
-                      ? ""
-                      : "l'adresse email est invalid";
-                  break;
-              case "Login":
-                isError.Login=
-                     value.length <4 ? "Login doit comprendre au minimum 4 caractéres" :"";
-                  break;
-              case "MDP":
-                  isError.MDP =
-                      value.length < 6 ? "Le mot de passe doit comprendre au minimum 6 caractéres" : "";
-                  break;
-              case "Adresse":
-                isError.Adresse=
-                    value.length < 5 ? "L'adresse doit comprendre au minimum 5 caractéres" :"";
-                  break;
-                  case "Tel":
-                    isError.Tel =regtel.test(value) ?"":"Votre numéro de téléphone doit contient exactement 8 chiffres";
-                    break;
-              case "DDN":
-                isError.DDN = regDDN.test(value)?"": "Attension format incorrecte";
-                  break;
-              case "Civ":
-                isError.Civ = value.length== 0 ? "Sélectionner votre civilité" :"";
-                 
-              case "Gouvernorate":
-                isError.Gouvernorat  = value == "" ? "Sélectionner votre Gouvernorat":"";
-              default:
-                  break;}
-                  const cred = this.state;
-                  console.log(e.target.value);
-                  cred[e.target.name] = e.target.value;
-  
-                  this.setState(
-                    {
-                    isError,
-                    [name]: value
-                })}
-
+  state = {
+    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''},
+    isOpenSucceed:false,
+    isOpenFailed:false
+  }
   register = event => {
     fetch('http://127.0.0.1:8000/PcdApp/student/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({Nom:this.state.Nom,Email:this.state.Email,Adresse:this.state.Adresse,Civ:this.state.Civ,DDN:this.state.DDN,Gouvernorat:this.state.Gouvernorat,Id_Utilisateur:this.state.Id_Utilisateur,Login:this.state.Login,MDP:this.state.MDP,Tel:this.state.Tel})
+      body: JSON.stringify(this.state.credentials)
     })
-    .then(data =>{ data.json()})
+    /*.then( data => data.json())
+    .catch( error => console.error(error))
+    console.log(this.state.credentials)*/
+    .then(data => data.json())
     .then((result)=>{
-      this.setState({state:result});
-      this.state.Id_Utilisateur=result.Id_Utilisateur;
+      this.setState({credentials:result});
+      this.state.credentials.Id_Utilisateur=result.Id_Utilisateur;
       console.log(result);
-      console.log(this.state.Id_Utilisateur);
-      localStorage.setItem("Id_Utilisateur",this.state.Id_Utilisateur)
-    
+      console.log(this.state.credentials.Id_Utilisateur);
+      localStorage.setItem("IdUser",this.state.credentials.Id_Utilisateur);
+      this.togglePopup();
     })
     .catch( error => console.error(error));
 
-  } 
+  }
+
+  togglePopup =event=> {
+    this.setState({isOpenSucceed:true});
+    console.log(this.state.isOpenSucceed);
+  }
+  togglePopupFailed =event=> {
+    this.setState({isOpenFailed:true});
+    console.log(this.state.isOpenFailed);
+  }
+
+  inputChanged = (event) => {
+    const cred = this.state.credentials;
+    console.log(event.target.value);
+    cred[event.target.name] = event.target.value;
+    this.setState({credentials: cred});
+    
+  }
 render(){
-  const  {isError}  = this.state;
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -174,8 +101,7 @@ render(){
             }}
           >
             <h1 className='Titre'>Inscrivez-vous!</h1>
-            {/* <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}> */}
-            <form onSubmit={this.onSubmit} noValidate>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <TextField
@@ -185,13 +111,9 @@ render(){
                           label="Nom & Prénom"
                           name="Nom"
                           autoComplete="nom"
-                          value = {this.state.Nom}
-                          onChange ={this.formValChange}
-                          className= {isError.Nom.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.Nom}
+                          onChange ={this.inputChanged}
                         />
-                            { isError.Nom.length > 0 && (
-                        <span className="invalid-feedback">{isError.Nom}</span>
-                    )}
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
@@ -201,13 +123,9 @@ render(){
                           label="Addresse Email"
                           name="Email"
                           autoComplete="email"
-                          value = {this.state.Email}
-                          onChange ={this.formValChange}
-                          className= {isError.Email.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.Email}
+                          onChange ={this.inputChanged}
                         />
-                          { isError.Email.length > 0 && (
-                        <span className="invalid-feedback">{isError.Email}</span>
-                    )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <TextField
@@ -217,13 +135,9 @@ render(){
                           id="login"
                           label="Login"
                           autoFocus
-                          value = {this.state.Login}
-                          onChange ={this.formValChange}
-                          className= {isError.Login.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.Login}
+                          onChange ={this.inputChanged}
                         />
-                        { isError.Login.length > 0 && (
-                        <span className="invalid-feedback">{isError.Login}</span>
-                    )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <TextField
@@ -232,13 +146,9 @@ render(){
                           id="Tel"
                           label="Numéro de Teléphone"
                           name="Tel"
-                          value = {this.state.Tel}
-                          onChange ={this.formValChange}
-                          className= {isError.Tel.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.Tel}
+                          onChange ={this.inputChanged}
                         />
-                         { isError.Tel.length > 0 && (
-                        <span className="invalid-feedback">{isError.Tel}</span>
-                    )}
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
@@ -249,13 +159,9 @@ render(){
                           type="password"
                           id="password"
                           autoComplete="new-password"
-                          value = {this.state.MDP}
-                          onChange ={this.formValChange}
-                          className= {isError.MDP.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.MDP}
+                          onChange ={this.inputChanged}
                         />
-                        { isError.MDP.length > 0 && (
-                        <span className="invalid-feedback">{isError.MDP}</span>
-                    )}
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
@@ -274,13 +180,9 @@ render(){
                           fullWidth
                           name="Adresse"
                           label="Adresse"
-                          value = {this.state.Adresse}
-                          onChange ={this.formValChange}
-                          className= {isError.Adresse.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.Adresse}
+                          onChange ={this.inputChanged}
                         />
-                            {isError.Adresse.length > 0 && (
-                        <span className="invalid-feedback">{isError.Adresse}</span>
-                    )}
                       </Grid>
                       <Grid item xs={12}>  
                       <TextField
@@ -288,13 +190,10 @@ render(){
                           fullWidth
                           name="DDN"
                           label="DDN" 
-                          value = {this.state.DDN}
-                          onChange ={this.formValChange}
-                          className= {isError.DDN.length > 0 ? "is-invalid form-control" : "form-control"}
+                          value = {this.state.credentials.DDN}
+                          onChange ={this.inputChanged}
+                     
                         />
-                           {isError.DDN.length > 0 && (
-                        <span className="invalid-feedback">{isError.DDN}</span>
-                    )}
                       </Grid>
                       
                       <Grid item xs={12} sm={4} >
@@ -306,8 +205,8 @@ render(){
                             id="demo-simple-select-required"
                             label="Civilité"
                             name="Civ"
-                            value = {this.state.Civ}
-                            onChange ={this.formValChange}
+                            value = {this.state.credentials.Civ}
+                            onChange ={this.inputChanged}
                           >
                           <MenuItem value={"Madame"} >Madame</MenuItem>
                           <MenuItem value={"Monsieur"}>Monsieur</MenuItem>
@@ -322,8 +221,8 @@ render(){
                             id="demo-simple-select-required"
                             label="Civilité"
                             name="Gouvernorat"
-                            value = {this.state.Gouvernorat}
-                            onChange ={this.formValChange}
+                            value = {this.state.credentials.Gouvernorat}
+                            onChange ={this.inputChanged}
                           >
                           <MenuItem value={"Sfax"}>Sfax</MenuItem>
                                                 <MenuItem value={"Sousse"}>Sousse</MenuItem>
@@ -357,18 +256,18 @@ render(){
                       </Grid>
                     </Grid>
                     <br/>
-                   <NavLink to ={'/EspCand/'+localStorage.getItem('Id_Utilisateur')}> 
+                
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
                       fullWidth
                       variant="contained"
                       sx={{ mt: 10, mb:2 }}
-                      onClick={this.register}
+                      onClick= {this.register}
                     >
                       Sign Up
                     </button>
-                   </NavLink> 
+     
                     <Grid container justifyContent="flex-end">
                       <Grid item>
                         <Link href="/Auth" variant="body2">
@@ -376,12 +275,25 @@ render(){
                         </Link>
                       </Grid>
                     </Grid>
-                    </form>
                   </Box>
                   
-         { /*</Box>*/}
+          </Box>
         </Grid>
       </Grid>
+      <div align="center">
+          {this.state.isOpenSucceed && <PopUpMessage
+            dataFromParent ={<>
+              <h3><b>félicitations !</b></h3><br/>
+              <p>Maintenant c'est le moment de commancer votre aventure</p>
+              
+              <NavLink to ={'/EspCand/'+localStorage.getItem('IdUser')}> 
+              <Button variant="contained" >
+                Ok
+                </Button>
+              </NavLink>
+            </>}
+          />}
+        </div>
     </ThemeProvider>
   );
 }}

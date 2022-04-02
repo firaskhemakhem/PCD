@@ -155,7 +155,7 @@ export default function HeaderCan() {
       </MenuItem>
     </Menu>
   );
-//<p ><a href={"/CandProfile/"+this.props.dataFromParent}>Profile</a></p>
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.core.files.storage import default_storage
+#from DjangoAPI.PcdApp.models import Infopers
 from PcdApp import serializers
 import PcdApp
 from django.dispatch import receiver
