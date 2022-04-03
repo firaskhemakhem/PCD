@@ -5,18 +5,16 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import PopUpMessage from '../../PopUpMessage/PopUpFile';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import "../../styles/Pages/Inscription.css";
+import "../../../styles/Pages/Inscription.css";
 import {NavLink} from "react-router-dom";
-import PopUpMessage from '../PopUpMessage/PopUpFile'
-import Button from '@mui/material/Button';
 
 
 const theme = createTheme();
@@ -35,14 +33,6 @@ class InscEtu extends React.Component{
     isOpenSucceed:false,
     isOpenFailed:false
   }
-  togglePopup =event=> {
-    this.setState({isOpenSucceed:true});
-    console.log(this.state.isOpenSucceed);
-  }
-  togglePopupFailed =event=> {
-    this.setState({isOpenFailed:true});
-    console.log(this.state.isOpenFailed);
-  }
   register = event => {
     fetch('http://127.0.0.1:8000/PcdApp/student/', {
       method: 'POST',
@@ -58,7 +48,6 @@ class InscEtu extends React.Component{
       this.state.credentials.Id_Utilisateur=result.Id_Utilisateur;
       console.log(result);
       console.log(this.state.credentials.Id_Utilisateur);
-      localStorage.setItem("LoginUser",this.state.credentials.Login);
       localStorage.setItem("IdUser",this.state.credentials.Id_Utilisateur);
       this.togglePopup();
     })
@@ -66,8 +55,13 @@ class InscEtu extends React.Component{
 
   }
 
-  getId(){
-    
+  togglePopup =event=> {
+    this.setState({isOpenSucceed:true});
+    console.log(this.state.isOpenSucceed);
+  }
+  togglePopupFailed =event=> {
+    this.setState({isOpenFailed:true});
+    console.log(this.state.isOpenFailed);
   }
 
   inputChanged = (event) => {
@@ -196,15 +190,8 @@ render(){
                           fullWidth
                           name="DDN"
                           label="DDN" 
-                          type="date"
                           value = {this.state.credentials.DDN}
                           onChange ={this.inputChanged}
-                          InputLabelProps={{
-                            style: { color: "grey" },
-                          }}
-                          inputProps={{
-                            style: { color: "black" },
-                          }}
                      
                         />
                       </Grid>
@@ -269,6 +256,7 @@ render(){
                       </Grid>
                     </Grid>
                     <br/>
+                
                     <button
                       type="button" 
                       class="btn btn-outline-secondary"
@@ -279,7 +267,7 @@ render(){
                     >
                       Sign Up
                     </button>
-                 
+     
                     <Grid container justifyContent="flex-end">
                       <Grid item>
                         <Link href="/Auth" variant="body2">
@@ -288,6 +276,7 @@ render(){
                       </Grid>
                     </Grid>
                   </Box>
+                  
           </Box>
         </Grid>
       </Grid>

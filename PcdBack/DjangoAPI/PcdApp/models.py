@@ -1,3 +1,4 @@
+
 from django.db import models
 
 # Create your models here.
@@ -14,6 +15,9 @@ class Utilisateur (models.Model):
 
     class Meta :
         abstract = True
+  
+
+
 
 class Students(Utilisateur):
    DDN =models.CharField(max_length= 30)
@@ -31,7 +35,7 @@ class InfoPer(models.Model):
     Gouvernorat = models.CharField (max_length= 30)
     Adresse = models.CharField(max_length= 30)
     DDN =models.CharField(max_length= 30)
-    Dom= models.CharField(max_length= 45)
+    Dom = models.CharField(max_length= 45)
 
 class Competence(models.Model):
     Id_Com=models.AutoField(primary_key=True)

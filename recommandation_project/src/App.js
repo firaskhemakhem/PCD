@@ -3,22 +3,24 @@ import Footer from '../src/Components/Footer/Footer'
 import { BrowserRouter, Routes , Route} from 'react-router-dom';
 import Acceuil from './Components/Acceuil/Acceuil';
 
-import AuthEtudiant from './Components/Pages/AuthEtudiant';
-import AuthRecruteur from './Components/Pages/AuthRecruteur';
+import AuthEtudiant from './Components/Pages/Etudiant/AuthEtudiant';
+import AuthRecruteur from './Components/Pages/Recruteur/AuthRecruteur';
 
-import InscRec from './Components/Pages/InscRec';
+import InscRec from './Components/Pages/Recruteur/InscRec';
 import Detaille from './Components/Detaille/Detaille';
-import InscEtu from './Components/Pages/InscEtu';
-import EspaceCandidat from './Components/Pages/EspaceCandidat';
-import EspaceRec from './Components/Pages/EspaceRec';
+import InscEtu from './Components/Pages/Etudiant/InscEtu';
+import EspaceCandidat from './Components/Pages/Etudiant/EspaceCandidat';
+import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 
-import CandProfile from './Components/Pages/CandidatProfile';
+import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
+import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
 
 /*<Route exact path = "/CandProfile/:id" element={<CandProfile/>}/> ki nrigel 7keyet el id*/
 
 
 import Cv from './Components/Pages/formCv/Cv';
 import StepContext from './Components/Pages/formCv/StepContext';
+import Registration from './Components/Pages/Registration';
 
 function App() {
   const [token, setToken] = useState('');
@@ -34,11 +36,13 @@ function App() {
         <Route exact path ="/authEtud"element={<AuthEtudiant/>}/>
         <Route exact path ="/AuthRec"element={<AuthRecruteur/>}/>
         <Route exact path ="/InscEtud" element ={<InscEtu/>} userLogin={userLogin}/>
-        <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} />
+        <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} /> 
+        {/* <Route exact path ="/InscRec" element ={<Registration/>} userLogin={userLogin} /> */}
         <Route exact path ="/footer" element ={<Footer/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>
         <Route exact path = "/EspRec" element={<EspaceRec/>}/>
+        <Route exact path ="/FeedBack" element={<AcceuilFed/>}/>
 
         <Route exact path = "/CandProfile/:id" element={<CandProfile/>}/>
         

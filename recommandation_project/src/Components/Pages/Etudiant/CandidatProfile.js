@@ -5,18 +5,14 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import "../../styles/Pages/CandidatProfile.css";
+import "../../../styles/Pages/CandidatProfile.css";
 import {NavLink} from "react-router-dom";
 
-import Input from '@mui/material/Input';
-
-import {useParams} from "react-router-dom"
 
 /*var {idStudent}=1;
 
@@ -229,15 +225,9 @@ class CandProfile extends Component{
                                 fullWidth
                                 name="DDN"
                                 label="DDN" 
-                                type='date'
                                 value = {this.state.credentials.DDN}
                                 onChange ={this.inputChanged}
-                                InputLabelProps={{
-                                  style: { color: "grey" },
-                                }}
-                                inputProps={{
-                                  style: { color: "black" },
-                                }}
+                            
                            
                               />
                             </Grid>

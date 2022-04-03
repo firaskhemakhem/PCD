@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Component} from 'react';
+import {useState,Component} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,53 +8,29 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import "../../styles/Pages/Authentification.css";
+import "../../../styles/Pages/Authentification.css";
 import {NavLink} from "react-router-dom";
-import PopUpMessage from '../PopUpMessage/PopUpFile'
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import PopUpMessage from '../../PopUpMessage/PopUpFile'
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
-
-/*preventDefault();
-    const data = new FormData(currentTarget);*/
-    /*console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });*/
-
 class AuthEtudiant extends Component  {
-  constructor(){
-    super();
-    
+  constructor(props){
+    super(props);
+    this.props = props;
   }
   state={
     credentials:{},
     data:{},
     id:'',
-    isOpenSucceed:false,
-    isOpenFailed:false
+    isOpen:false
   }
 
   componentDidMount(){
     
-    fetch('http://127.0.0.1:8000/PcdApp/student/',{
+    fetch('http://127.0.0.1:8000/PcdApp/recruteur/',{
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
         })
@@ -65,13 +41,10 @@ class AuthEtudiant extends Component  {
         console.log(this.state.credentials);
     })
   }
-  togglePopup =event=> {
-    this.setState({isOpenSucceed:true});
-    console.log(this.state.isOpenSucceed);
-  }
-  togglePopupFailed =event=> {
-    this.setState({isOpenFailed:true});
-    console.log(this.state.isOpenFailed);
+
+  togglePopup () {
+    this.setState({isOpen:true});
+    console.log(this.state.isOpen);
   }
 
   VerifUser (){
@@ -94,14 +67,6 @@ class AuthEtudiant extends Component  {
       localStorage.setItem("IdUser",this.state.id);
       this.togglePopup();
     }
-    else if (!val){
-      this.togglePopupFailed();
-    }
-  };
-
-  handleErreur= event => {
-    this.setState({isOpenFailed:false});
-    
   };
 
   inputChanged = (event) => {
@@ -172,7 +137,7 @@ class AuthEtudiant extends Component  {
                   label="Remember me"
                 />
                 <br/><br/>
-                <NavLink to ='#'>
+
                   <button
                     type="submit"
                     class="btn btn-outline-secondary"
@@ -183,9 +148,8 @@ class AuthEtudiant extends Component  {
                   >
                     Sign In
                   </button>
-                  </NavLink>
                 <br/><br/>
-                  
+                
                 <Grid container>
                   <Grid item xs>
                     <Link href="#" variant="body2">
@@ -202,34 +166,19 @@ class AuthEtudiant extends Component  {
             </Box>
           </Grid>
         </Grid>
-        <div align="center">
-          {this.state.isOpenSucceed && <PopUpMessage
+        <div>
+          {this.state.isOpen && <PopUpMessage
             dataFromParent ={<>
-              <h3><b>félicitations !</b></h3><br/>
-              <p>Maintenant c'est le moment de commancer votre aventure</p>
-              
+              <b>Well Done</b>
+              <p>fuck off !! </p>
               <NavLink to ={'/EspCand/'+localStorage.getItem('IdUser')}> 
-              <Button variant="contained" >
-                Ok
-                </Button>
+                <button >Test button</button>
               </NavLink>
             </>}
           />}
         </div>
-        <div align="center">
-          {this.state.isOpenFailed && <PopUpMessage
-            dataFromParent ={<>
-              <h3><b>Oups!</b></h3><br/>
-              <p>Un erreur c'est reproduit ! </p>
-               
-              <Button variant="contained"  onClick={this.handleErreur}>
-                Ok
-                </Button>
-              
-            </>}
-          />}
-        </div>
       </ThemeProvider>
+      
     );
   }
 }

@@ -23,7 +23,7 @@ export default function Navig() {
    if(index === 0){return <PermIdentityIcon/>;}
    else if (index=== 1 ){return <DateRangeIcon/>;}
    else if (index=== 2 ){return <MailOutlineIcon/>;}
-   else {return <FeedbackIcon />;}
+   else {return <NavLink to = "/FeedBack"><FeedbackIcon /></NavLink>;}
  }
 const Icons2 =(index)=>{
   if(index === 0){return <NavLink to = "/"><HomeIcon /> </NavLink>;}

@@ -6,12 +6,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FeaturedPost from './FeaturedPost';
 import MainFeaturedPost from './MainFeaturePost';
-import Footer from '../Footer/Footer';
-import '../../styles/Pages/EspaceCandidat.css'
-import AgendaPartagee from './AgendaPartagee';
+import Footer from '../../Footer/Footer';
+import '../../../styles/Pages/EspaceCandidat.css'
 import HeaderCan from './HeaderCan';
-import {useState} from 'react';
-//import Input from '@mui/material/Input';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -27,13 +24,8 @@ const Input = styled('input')({
 
 
 const mainFeaturedPost = {
-  title: 'Espace Candidat',
-  description:
-    "Bienvenue chez PIAPE : Plateform Intelligente pour Achever votre Parcours Educatifs ",
-  image:'http://www.enicarthage.rnu.tn/uploads/actualite/cropped/48d5685c423bc80f4135d971a2357653f40a55fd.png',
+  image:'https://emploi-tunisie-travail.com/wp-content/uploads/2019/12/jobs-in-tunisia-1.png',
   imageText: 'main image description',
- /* linkText: 'Continue reading…',*/
-
 };
 
 const featuredPosts = [
@@ -81,7 +73,7 @@ const featuredPosts2 = [
     {
         title: 'OPTIMISER VOTRE CANDIDATURES',
         description:
-          'Ecrire votre lettre de motivation via notre application. Ecrire un test de personnalité.', 
+          'Pour optimiser votre candidature vous devez écrire une lettre de motivation via notre application.', 
         image: 'https://edito.regionsjob.com/xjob/wp-content/uploads/sites/3/2021/12/AdobeStock_348132153-1-1-722x489.jpeg',
         imageLabel: 'Déposer',
         link : <button
@@ -96,40 +88,24 @@ const featuredPosts2 = [
         
       },
       {
-        title: 'AGENDA PARTAGEE',
+        title: 'PASSER UN TEST DE PERSONNALITE',
         description:
-          'Sélectionner votre temps libre pour obtenir une entretien .', 
-        image: 'https://i0.wp.com/maitriser-son-temps.com/wp-content/uploads/2020/12/agenda-electronique.jpg?resize=800%2C445&ssl=1&is-pending-load=1',
+          'Le résultat du test de personnalité est importante pour la recommandation.', 
+        image: 'http://www.psychomedia.qc.ca/image/2015-12/36543-63194-image',
         imageLabel: 'Déposer',
-        link :<AgendaPartagee/>
+        link : <button
+        type="button" 
+        class="btn btn-outline-secondary"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 4, mb:2 }}
+      >
+        Sélectionner
+      </button>
+        
       },
       
 ];
-
-
-const sidebar = {
- /* title: 'About',
-  description:
-    'PIAPE est une application intélligente qui facilite au candidat de trouver leur PFE le plus adéquat .',*/
-  /*archives: [
-    { title: 'March 2020', url: '#' },
-    { title: 'February 2020', url: '#' },
-    { title: 'January 2020', url: '#' },
-    { title: 'November 1999', url: '#' },
-    { title: 'October 1999', url: '#' },
-    { title: 'September 1999', url: '#' },
-    { title: 'August 1999', url: '#' },
-    { title: 'July 1999', url: '#' },
-    { title: 'June 1999', url: '#' },
-    { title: 'May 1999', url: '#' },
-    { title: 'April 1999', url: '#' },
-  ],*/
-  /*social: [
-    { name: 'GitHub', icon: GitHubIcon },
-    { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
-  ],*/
-};
 
 const theme = createTheme();
 
@@ -141,7 +117,6 @@ class EspaceCandidat extends Component {
   }
   componentDidMount(){
     var id=localStorage.getItem('IdUser');
-     //fetch('http://127.0.0.1:8000/PcdApp/student/1/',{
     fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
    
         method: 'GET',
@@ -174,15 +149,14 @@ class EspaceCandidat extends Component {
                 <FeaturedPost key={post.title} post={post} />
               ))}
             </Grid>
-            <Grid container spacing={5} sx={{ mt: 3 }}>
-               <p className='parag'>Nos Consultants a vos cote pour : </p> 
-            <Grid container spacing={4}>
+            <Grid >
+               <p  style={{textAlign :'center', color:'#023C59',fontSize:'35px'}}>NOS CONSULTANTS À VOS CÔTÉS POUR : </p> 
+            <Grid container spacing={3}>
               {featuredPosts2.map((post) => (
                 <FeaturedPost key={post.title} post={post} />
               ))}
             </Grid>
-            <Grid container spacing={5} sx={{ mt: 3 }}>
-            </Grid>
+            <br/>
             </Grid>
           </main>
         </Container>
