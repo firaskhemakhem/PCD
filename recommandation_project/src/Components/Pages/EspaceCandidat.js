@@ -18,6 +18,8 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 
+import axios from 'axios';
+
 
 const Input = styled('input')({
   display: 'none',
@@ -134,7 +136,8 @@ const theme = createTheme();
 class EspaceCandidat extends Component {
   
   state = {
-    credentials: {}
+    credentials: {},
+    file:''
   }
   componentDidMount(){
     var id=localStorage.getItem('IdUser');
@@ -150,6 +153,14 @@ class EspaceCandidat extends Component {
         console.log(result);
     })
   }
+
+  inputChanged = (event) => {
+    const cred = this.state.file;
+    cred = event.target.file[0];
+    this.setFile({file: cred});
+    
+  }
+
   render(){
     return (
       <ThemeProvider theme={theme}>
@@ -175,6 +186,13 @@ class EspaceCandidat extends Component {
             </Grid>
           </main>
         </Container>
+        <div className="App">
+          <form onSubmit={this.handleSubmit}>
+            <h1>React File Upload</h1>
+            <input type="file" onChange={this.inputChanged}/>
+            <button type="submit">Upload</button>
+          </form>
+        </div>
         <Footer/>
       </ThemeProvider>
     );
