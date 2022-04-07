@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+.body {
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+  }
+
+  
+  /* Toggle Styles */
+  
+.viewport {
+    padding-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  
+  .content {
+    width: 100%;
+    position: relative;
+    margin-right: 0;
+  }
+.acceuilag{
+ padding-left : 50px;
+  background-color: #023C59;
+  background-origin: initial;
+  background-position-y: top;
+
+}
+.contenuag{
+  padding-left : 30px;
+  padding-right: 30px;
+}
+.contenue{
+ border: 1px solid #023C59;
+ border-radius: 10px;
+ border-width: 15px;
+ height: 250px;
+ width: 1050px;
+
+}
+.datelibre{
+  padding-left: 50px;
+  padding-top: 50px;
+}
+.tempslibre{
+  padding-left: 250px;
+ 
+}
+.tempsdepart{
+  padding-left: 430px;
+}
+
+.dat{
+  padding-left: 100px;
+}
+.valide{
+  padding-left: 50%;
+}
+.hh{
+  padding-left: 200px;
+  padding-top: 50px;
+}
+.hhh{
+  padding-left: 400px;
+}
+  

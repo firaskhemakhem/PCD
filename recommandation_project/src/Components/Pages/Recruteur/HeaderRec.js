@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function HeaderCan() {
+export default function HeaderRec() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -99,7 +99,7 @@ export default function HeaderCan() {
       onClose={handleMenuClose}
     >
     <NavLink to="/Images"><MenuItem onClick={handleMenuClose}>Profile</MenuItem></NavLink>
-    <NavLink to={"/CandProfile/"+localStorage.getItem('LoginUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
+    <NavLink to={"/RecProfile/"+localStorage.getItem('LoginUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
     </Menu>
   );
 //    <NavLink to={"/CandProfile/"+localStorage.getItem('IdUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
@@ -158,7 +158,9 @@ export default function HeaderCan() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style ={{backgroundColor:'#023C59'}}>
+      <AppBar position="static" style={{
+          backgroundColor:'#023C59'
+      }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -234,4 +236,3 @@ export default function HeaderCan() {
     </Box>
   );
 }
-

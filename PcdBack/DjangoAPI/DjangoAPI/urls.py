@@ -24,9 +24,9 @@ urlpatterns = [
     path('PcdApp/',include('PcdApp.urls')),
     path('student/', obtain_auth_token),
     path('recruteur/',obtain_auth_token),
-
+    path('authrec/',obtain_auth_token),
     path('auth/',obtain_auth_token),
-
+    path('agenda/',obtain_auth_token),
 
     path('infoper/',obtain_auth_token),
     path('competence/',obtain_auth_token),

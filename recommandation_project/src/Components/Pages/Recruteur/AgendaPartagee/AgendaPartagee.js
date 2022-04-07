@@ -5,17 +5,30 @@ class AgendaPartagee extends React.Component{
 constructor(){
     super();
     this.state={
-        data:[]
+        data:[],
+        isLogin:false
     };
 }
 
 fetchData(){
-    fetch('http://127.0.0.1:8000/PcdApp/agendapartage/')
+  fetch(`http://127.0.0.1:8000/PcdApp/agenda/`)
+    
     .then(response=>response.json())
     .then((data)=>{
         this.setState({
             data:data
         });
+        for(let i=0 ; i< data.length;i++){
+          if(data[i].LoginRec == localStorage.getItem("LoginUser")){
+            this.setState({
+              isLogin:true
+            })
+          }
+          console.log(data[i].LoginRec);
+        }
+        
+        console.log(localStorage.getItem("LoginUser"))
+         console.log(this.state.isLogin);
     });
 }
 
@@ -23,7 +36,7 @@ componentDidMount(){
     this.fetchData();
 }
 deleteData(id){
-  fetch('http://127.0.0.1:8000/PcdApp/agendapartage/'+id,{
+  fetch('http://127.0.0.1:8000/PcdApp/agenda/'+id,{
       method:'DELETE',
       body:JSON.stringify(this.state),
   })
@@ -37,28 +50,36 @@ deleteData(id){
 
   render() {
     const agendaData=this.state.data;
-        const rows=agendaData.map((agenda)=>
+   
+    for(let i=0 ; i< this.state.data.length;i++){
+      if ((this.state.data[i].LoginRec == localStorage.getItem("LoginUser"))){
+          console.log(this.state.data[i]);
+          const Date=this.state.data[i].Date;
+      }
+
+    }
+         const rows=agendaData.map((agenda)=>
   
-            <tr key={agenda.Id_Agenda}>
-                <td>{agenda.Date}</td>
-                <td>{agenda.StartTime}</td>
-                <td>{agenda.EndTime}</td>
-                <td>
-                <NavLink to={'/Update/'+agenda.Id_Agenda}>
-                  <button 
-                      type="button" 
-                      class="btn btn-outline-secondary"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 4, mb:2 }}
-                      onClick ={()=>localStorage.setItem("Id_Agenda", agenda.Id_Agenda )}
-                    >
-                     Mettre à jour
-                  </button>
-                </NavLink>
-                </td>
-                <td><button onClick={()=>this.deleteData(agenda.Id_Agenda)} className="btn btn-danger">Supprimer</button></td>
-              </tr>);
+          (this.state.isLogin && <tr key={agenda.Id_Calend}>
+                 <td>{agenda.Date}</td>
+                 <td>{agenda.StartTime}</td>
+                 <td>{agenda.EndTime}</td>
+                 <td>
+                 <NavLink to={'/Update/'+localStorage.getItem("LoginUser")+'/'+localStorage.getItem("IdUser")}>
+                   <button 
+                       type="button" 
+                       class="btn btn-outline-secondary"
+                       fullWidth
+                       variant="contained"
+                       sx={{ mt: 4, mb:2 }}
+                       onClick ={()=>localStorage.setItem("Id_Calend",agenda.Id_Calend)}
+                     >
+                      Mettre à jour
+                   </button>
+                 </NavLink>
+                 </td>
+                 <td><button onClick={()=>this.deleteData(agenda.Id_Calend)} className="btn btn-danger">Supprimer</button></td>
+               </tr>));
 
     return( <div style={{paddingRight:'100px'}}>
       <table class="table">
@@ -72,7 +93,7 @@ deleteData(id){
         </tr>
        </thead>
       <tbody>
-        {rows}
+         {rows} 
       </tbody>
     </table>
  </div>

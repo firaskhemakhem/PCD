@@ -11,7 +11,7 @@ const defaultBodyStyles = {
 const defaultMessageStyles = {
 	boxSizing: 'border-box',
 	padding: '10px 10px 0 10px',
-	overflow: 'hidden',
+   overflow: 'hidden',
 	width: '370px',
 	fontFamily: 'arial'
 }
@@ -41,7 +41,7 @@ const Body = ({ bodyText, bodyStyles, nameInput, messageInput, emailInput, ratin
 			<div style={defaultMessageStyles}>
 				<StarRatings 
 					rating={ratingInput}
-					starRatedColor="blue"
+					starRatedColor="#023C59"
 					changeRating={newRating => handleMessageInput('rating', newRating)}
 					numberOfStars={numberOfStars}
 					name='rating'

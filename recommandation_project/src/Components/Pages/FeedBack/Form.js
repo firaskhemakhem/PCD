@@ -8,7 +8,7 @@ const formStyles = {
     backgroundColor: '#FAFAFA',
     border: '1px solid #dcdcdc',
     borderRadius: '6px 6px 0 0',
-    zIndex: '50000',
+    zIndex: '3',
     bottom: '20px',
     padding:'5px 5px',
     margin:'50px 450px 50px 500px '
@@ -41,11 +41,11 @@ class Form extends Component {
     var customFormStyles = handleCustomPosition(position, formStyles); 
     return(
       <div style={{...customFormStyles , ...this.props.style}}>
-        <Header
+        { <Header
           styles={headerStyles}
           headerText={headerText}
          // handleClose={handleClose}
-          />
+          /> }
         <Body
           bodyText={bodyText}
           numberOfStars={numberOfStars}
@@ -59,10 +59,10 @@ class Form extends Component {
           emailInput={emailInput}
           ratingInput={ratingInput}
         />
-        <Footer
+        { <Footer
           handleSubmit={handleSubmit}
           handleClose={handleClose}
-          />
+          /> }
       </div>
     )
   }

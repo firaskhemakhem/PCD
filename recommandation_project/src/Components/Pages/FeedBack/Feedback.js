@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from './Button';
 import Form from './Form';
 import PropTypes from 'prop-types';
-
+import "../../../styles/PopUpMessage/PopUpFile.css"
 
 const isEmpty = str => !str.trim().length;
 
@@ -23,6 +23,7 @@ class Feedback extends Component {
 		super(props);
 		this.state = {
 			//showButton: true,
+			
 			showForm: true,
 			showModal: false,
 			nameInput: '',
@@ -91,9 +92,9 @@ class Feedback extends Component {
 	render() {
 		const {
 			headerText,
-			//buttonText,
+			buttonText,
 			position,
-			//buttonStyles,
+			buttonStyles,
 			headerStyles,
 			headerBtnStyles,
 			headerBtnText,
@@ -109,7 +110,8 @@ class Feedback extends Component {
 		return (
 			<div>
 				{this.state.showForm &&
-					<div>
+				
+				
 						<Form
 							style={style}
 							headerText={headerText}
@@ -132,7 +134,7 @@ class Feedback extends Component {
 							handleMessageInput={this.handleMessageInput}
 							handleCustomPosition={handleCustomPosition}
 						/>
-					</div>
+			
 				}
 				{//this.state.showButton // &&
 					// <Button

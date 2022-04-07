@@ -17,7 +17,7 @@ const defaultHeaderStyles = {
   paddingLeft: '15px',
   height: '40px',
   borderRadius: '6px 6px 0 0',
-  backgroundColor: '#1976D2',
+  backgroundColor: '#023C59',
   color: '#FFFFFF',
   fontSize: '18px',
   fontWeight: '500',

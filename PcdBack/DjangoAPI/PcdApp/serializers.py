@@ -1,18 +1,18 @@
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv
+from PcdApp.models import  Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda
 from rest_framework.authtoken.models import Token
 
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Students
-        fields = ['Id_Utilisateur',
+        fields = [
                    'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','DDN','Civ']
 
 class RecruteursSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recruteurs
-        fields = ['Id_Utilisateur',
+        fields = [
                    'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','CodePostal']
 
 #Login
@@ -21,6 +21,11 @@ class StudentsLoginSerializer(serializers.ModelSerializer):
         model = Students
         fields = ['Login','MDP']
 
+
+class RecruteursLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recruteurs
+        fields = ['Login','MDP']
 
 class InfoPerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,3 +50,9 @@ class CvSerializer(serializers.ModelSerializer):
         model = Cv
         fields = ['Id_Cv',
                    'InfoPer','Compe','InfoAdd']
+
+class AgendaSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Agenda
+        fields = ['Id_Calend','Date','StartTime','EndTime','LoginRec']
+

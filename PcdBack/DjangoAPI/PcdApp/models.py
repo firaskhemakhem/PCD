@@ -4,9 +4,9 @@ from django.db import models
 # Create your models here.
 
 class Utilisateur (models.Model):
-    Id_Utilisateur = models.AutoField(primary_key=True)
-    Login = models.CharField(max_length= 30,unique=True)
-    MDP = models.CharField(max_length= 30)
+    #Id_Utilisateur = models.AutoField()
+    Login = models.CharField(max_length= 30,primary_key=True)
+    MDP = models.CharField(max_length= 30,null=False)
     Email = models.CharField(max_length= 30,unique=True)
     Nom = models.CharField(max_length= 30)
     Tel = models.CharField(max_length=10,unique=True)
@@ -44,7 +44,7 @@ class Competence(models.Model):
     Certif=models.CharField(max_length=250)
     Lang=models.CharField(max_length=250)
     Liens=models.CharField(max_length=250)
-    Dom=models.CharField(max_length= 30)
+
 
 class InfoAdd(models.Model):
     Id_InfoAdd=models.AutoField(primary_key=True)
@@ -58,3 +58,10 @@ class Cv(models.Model):
     InfoAdd=models.TextField()
 
 
+
+class Agenda(models.Model):
+    Id_Calend = models.AutoField(primary_key=True)
+    LoginRec = models.ForeignKey(Recruteurs,on_delete=models.CASCADE,null=False)
+    Date = models.CharField(max_length=10)
+    StartTime = models.CharField(max_length=5)
+    EndTime =models.CharField(max_length=5)

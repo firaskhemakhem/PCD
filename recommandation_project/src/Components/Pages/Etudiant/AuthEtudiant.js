@@ -32,13 +32,6 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-/*preventDefault();
-    const data = new FormData(currentTarget);*/
-    /*console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });*/
-
 class AuthEtudiant extends Component  {
   constructor(){
     super();
@@ -79,7 +72,7 @@ class AuthEtudiant extends Component  {
     for(let i=0;i<this.state.data.length;i++){
       if((this.state.data[i].Login == this.state.credentials.Login) && (this.state.data[i].MDP == this.state.credentials.MDP)){
         valid=true;
-        this.state.id=this.state.data[i].Id_Utilisateur;
+        this.state.id=this.state.data[i].Login;
       }
     }
     console.log(valid);
@@ -91,7 +84,7 @@ class AuthEtudiant extends Component  {
     console.log(val);
     if(val){
       localStorage.setItem("LoginUser",this.state.credentials.Login);
-      localStorage.setItem("IdUser",this.state.id);
+    //  localStorage.setItem("IdUser",this.state.id);
       this.togglePopup();
     }
     else if (!val){
@@ -208,7 +201,7 @@ class AuthEtudiant extends Component  {
               <h3><b>félicitations !</b></h3><br/>
               <p>Maintenant c'est le moment de commancer votre aventure</p>
               
-              <NavLink to ={'/EspCand/'+localStorage.getItem('IdUser')}> 
+              <NavLink to ={'/EspCand/'+localStorage.getItem('LoginUser')}> 
               <Button variant="contained" >
                 Ok
                 </Button>

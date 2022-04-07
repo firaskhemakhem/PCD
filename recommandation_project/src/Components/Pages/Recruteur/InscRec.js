@@ -15,28 +15,11 @@ import { useNavigate } from 'react-router';
 
 
 const theme = createTheme();
-
-/*const handleSubmit = (event) => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  console.log({
-    email: data.get('email'),
-    password: data.get('password'),
-  });
-};*/
 const regtel = RegExp( /^(\d{8})+$/)
+const regPostal = RegExp( /^(\d{4})+$/)
 const regExp = RegExp(
   /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$/
 )
-const regDDN = RegExp(
-  /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})+$/
-
-)
-
-
-
- 
-  
 
 function InscRec() {
   const formValid = ( {isError, ...rest }) => {
@@ -81,7 +64,7 @@ function InscRec() {
          case "Email":
              isError.Email = regExp.test(value)
                  ? ""
-                 : "l'adresse email est invalid";
+                 : "l'adresse email est invalide";
            
              break;
          case "Login":
@@ -100,11 +83,8 @@ function InscRec() {
                isError.Tel =regtel.test(value) ?"":"Votre numéro de téléphone doit contient exactement 8 chiffres";
                break;
             case "CodePostal":
-                isError.CodePostal =regtel.test(value) ?"":"Votre numéro de téléphone doit contient exactement 8 chiffres";
+                isError.CodePostal =regPostal.test(value) ?"":"Code Postal doit contient exactement 4 chiffres";
                 break;
-         case "Gouvernorat":
-           isError.Gouvernorat  = value == "" ? "Sélectionner votre Gouvernorat":"";
-           break;
          default:
              break;}
                  const cred = state;
@@ -129,18 +109,19 @@ function InscRec() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         {"Nom":state.Nom,
-      "Email":state.Email,
-      "Adresse":state.Adresse,
-      "Gouvernorat":state.Gouvernorat,
-      "Login":state.Login,
-      "MDP":state.MDP,
-      "Tel":state.Tel,
-     "CodePostal":state.CodePostal}
+        "Email":state.Email,
+        "Adresse":state.Adresse,
+        "Gouvernorat":state.Gouvernorat,
+        "Login":state.Login,
+        "MDP":state.MDP,
+        "Tel":state.Tel,
+        "CodePostal":state.CodePostal}
       )
     })
       .then(data => data.json())
       .then((res) => {
         console.log(res);
+        localStorage.setItem("LoginUser",state.Login);
         if (res.Nom == "recruteurs with this Email already exists.") {
           alert("Nom d'entreprise déjà existe");
         };
@@ -156,7 +137,7 @@ function InscRec() {
         if (res.Nom == "This field is required."|| res.Email == "This field is required."|| res.Login == "This field may not be blank."|| res.CodePostal == "This field may not be blank."|| res.MDP == "This field may not be blank."|| res.Tel == "This field may not be blank."||res.Adresse == "This field may not be blank."|| res.Gouvernorat == "This field may not be blank.")
          { alert("Il existe un ou des champs vides"); };
         if ( res.Nom == state.Nom  && res.Email == state.Email && res.Login == state.Login && res.CodePostal == state.CodePostal && res.MDP == state.MDP && res.Tel == state.Tel && res.Adresse == state.Adresse && res.Gouvernorat==state.Gouvernorat  ) {
-          navigate('/')
+          navigate('/EspRec/'+localStorage.getItem('LoginUser'))
         }
       })
       .catch((error) => console.error(error))

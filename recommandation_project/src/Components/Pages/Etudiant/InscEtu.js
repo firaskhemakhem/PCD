@@ -29,7 +29,7 @@ const handleSubmit = (event) => {
 
 class InscEtu extends React.Component{
   state = {
-    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''},
+    credentials: {Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''},
     isOpenSucceed:false,
     isOpenFailed:false
   }
@@ -45,10 +45,10 @@ class InscEtu extends React.Component{
     .then(data => data.json())
     .then((result)=>{
       this.setState({credentials:result});
-      this.state.credentials.Id_Utilisateur=result.Id_Utilisateur;
+      this.state.credentials.Login=result.Login;
       console.log(result);
-      console.log(this.state.credentials.Id_Utilisateur);
-      localStorage.setItem("IdUser",this.state.credentials.Id_Utilisateur);
+      console.log(this.state.credentials.Login);
+      localStorage.setItem("LoginUser",this.state.credentials.Login);
       this.togglePopup();
     })
     .catch( error => console.error(error));
@@ -286,7 +286,7 @@ render(){
               <h3><b>félicitations !</b></h3><br/>
               <p>Maintenant c'est le moment de commancer votre aventure</p>
               
-              <NavLink to ={'/EspCand/'+localStorage.getItem('IdUser')}> 
+              <NavLink to ={'/EspCand/'+localStorage.getItem('LoginUser')}> 
               <Button variant="contained" >
                 Ok
                 </Button>

@@ -62,13 +62,13 @@ class CandProfile extends Component{
   constructor(){
     super();
     this.state = {
-      credentials: {Id_Utilisateur:localStorage.getItem('IdUser'),Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
+      credentials: {Login:localStorage.getItem('LoginUser'),MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''}
     }
   }
   
 
     componentDidMount(){
-      var id=localStorage.getItem('IdUser');
+      var id=localStorage.getItem('LoginUser');
         fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
             method: 'GET',
             headers: {'Content-Type': 'application/json'}
@@ -81,7 +81,7 @@ class CandProfile extends Component{
     }
 
     update = event => {
-      var id=this.state.credentials.Id_Utilisateur;
+      var id=this.state.credentials.Login;
         fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -293,7 +293,7 @@ class CandProfile extends Component{
                             </Grid>
                           </Grid>
                           <br/>
-                          <NavLink to ={'/EspCand/'+localStorage.getItem('Id_Utilisateur')}> 
+                          <NavLink to ={'/EspCand/'+localStorage.getItem('LoginUser')}> 
                           <button
                             type="button" 
                             class="btn btn-outline-secondary"
@@ -306,7 +306,7 @@ class CandProfile extends Component{
                           </button>
                           </NavLink>
 
-                          <NavLink to ={'/EspCand/'+localStorage.getItem('Id_Utilisateur')}>
+                          <NavLink to ={'/EspCand/'+localStorage.getItem('LoginUser')}>
                           <button
                             type="button" 
                             class="btn btn-outline-secondary"
