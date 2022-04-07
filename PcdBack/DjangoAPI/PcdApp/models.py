@@ -66,6 +66,7 @@ class Sujet(models.Model):
     Tech=  models.TextField()
     paye= models.BooleanField(default=False)
     Bin = models.BooleanField(default=False)
+    Att=  models.BooleanField(default=False)
 
 class Agenda(models.Model):
     Id_Calend = models.AutoField(primary_key=True)

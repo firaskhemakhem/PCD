@@ -1,10 +1,9 @@
 from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import  Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda
+from PcdApp.models import  Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda, Sujet
 from rest_framework.authtoken.models import Token
 
-from PcdBack.DjangoAPI.PcdApp.models import Sujet
 
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:

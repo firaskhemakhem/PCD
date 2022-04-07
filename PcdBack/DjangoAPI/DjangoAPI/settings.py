@@ -47,14 +47,14 @@ INSTALLED_APPS = [
 ]
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework_simplejwt.authentication.JWTAuthentication',
+#    ),
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     )
+# }
 CORS_ORIGIN_ALLOW_ALL = True 
 
 MIDDLEWARE = [
@@ -114,7 +114,7 @@ DATABASES = {
         'NAME': 'pcdappdb',
         'USER': 'root',
 
-        'PASSWORD' : 'mysql',
+        'PASSWORD' : 'sara',
 
         'HOST':'127.0.0.1',
         'PORT': '3306',
