@@ -28,6 +28,7 @@ import AuthRecruteur from './Components/Pages/Recruteur/AuthRecruteur';
 import RecProfile from './Components/Pages/Recruteur/RecProfile';
 
 import Update from './Components/Pages/Recruteur/AgendaPartagee/Update';
+import FormSuj from './Components/Pages/Recruteur/Sujets/FormSuj';
 
 
 function App() {
@@ -58,7 +59,7 @@ function App() {
         <Route exact path = "/Creation" element={<Creation/>}/>
         <Route exact path="/Update/:id/:id" element={<Update/>}/>
         <Route exact path = "/Res" element={<ResulatFinal/>}/>
-
+        <Route exact path = "/Sujet" element={<FormSuj/>}/>
       </Routes>
     </BrowserRouter>   
     </div>
