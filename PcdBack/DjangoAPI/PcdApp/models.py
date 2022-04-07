@@ -57,7 +57,15 @@ class Cv(models.Model):
     Compe=models.TextField()
     InfoAdd=models.TextField()
 
-
+class Sujet(models.Model):
+    Id_sujet = models.AutoField(primary_key=True)
+    Titre = models.TextField()
+    Description = models.TextField()
+    Domaine= models.TextField()
+    duree=  models.TextField()
+    Tech=  models.TextField()
+    paye= models.BooleanField(default=False)
+    Bin = models.BooleanField(default=False)
 
 class Agenda(models.Model):
     Id_Calend = models.AutoField(primary_key=True)

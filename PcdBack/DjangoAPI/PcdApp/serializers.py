@@ -1,7 +1,10 @@
+from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
 from PcdApp.models import  Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda
 from rest_framework.authtoken.models import Token
+
+from PcdBack.DjangoAPI.PcdApp.models import Sujet
 
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,6 +53,12 @@ class CvSerializer(serializers.ModelSerializer):
         model = Cv
         fields = ['Id_Cv',
                    'InfoPer','Compe','InfoAdd']
+
+class SujetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sujet
+        fields= ['Id_sujet',
+                'Titre','Description','Domaine','duree','Tech','paye','Bin']
 
 class AgendaSerializer (serializers.ModelSerializer):
     class Meta:

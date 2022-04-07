@@ -31,6 +31,8 @@ urlpatterns = [
     path('infoper/',obtain_auth_token),
     path('competence/',obtain_auth_token),
     path('infoadd/',obtain_auth_token),
-    path('cv/',obtain_auth_token)
+    path('cv/',obtain_auth_token),
+
+    path('sujet/',obtain_auth_token)
 
 ]

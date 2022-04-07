@@ -16,8 +16,8 @@ from django.contrib.auth import authenticate, login
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib import auth
-from PcdApp.models import Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda
-from PcdApp.serializers import  AgendaSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer
+from PcdApp.models import Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda, Sujet
+from PcdApp.serializers import  AgendaSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer,SujetSerializer
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -42,6 +42,11 @@ class InfoAddView (viewsets.ModelViewSet):
 class CvView (viewsets.ModelViewSet):
     serializer_class = CvSerializer
     queryset = Cv.objects.all()
+
+class SujetView (viewsets.ModelViewSet):
+    serializer_class = SujetSerializer
+    queryset = Sujet.objects.all()
+
 
 class AgendaView (viewsets.ModelViewSet):
     serializer_class = AgendaSerializer
