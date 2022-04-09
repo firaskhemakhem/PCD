@@ -29,12 +29,12 @@ const Body = ({ bodyText, bodyStyles, nameInput, messageInput, emailInput, ratin
 
 		{showEmailInput &&
 			<div>
-				<input type='email' rows="5" value={emailInput} placeholder="Entrer Votre Email" required onChange={e => handleMessageInput('email', e.target.value)} style={defaultMessageStyles} />
+				<input type='text' rows="5" value={emailInput} placeholder="Entrer Votre Email" required onChange={e => handleMessageInput('Email', e.target.value)} style={defaultMessageStyles} />
 			</div>
 		}
 		{showMessageInput &&
 			<div>
-				<textarea rows="5" value={messageInput} placeholder="Entrer Votre Avis" onChange={e => handleMessageInput('message', e.target.value)} style={defaultMessageStyles} />
+				<textarea rows="5" value={messageInput} placeholder="Entrer Votre Avis" onChange={e => handleMessageInput('Message', e.target.value)} style={defaultMessageStyles} />
 			</div>
 		}
 		{showRatingInput &&
@@ -42,9 +42,9 @@ const Body = ({ bodyText, bodyStyles, nameInput, messageInput, emailInput, ratin
 				<StarRatings 
 					rating={ratingInput}
 					starRatedColor="#023C59"
-					changeRating={newRating => handleMessageInput('rating', newRating)}
+					changeRating={newRating => handleMessageInput('Rating', newRating)}
 					numberOfStars={numberOfStars}
-					name='rating'
+					name='Rating'
 					starDimension="35px"
 					starSpacing="10px"
 				/>

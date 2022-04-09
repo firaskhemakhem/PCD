@@ -28,7 +28,7 @@ const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
    if(index === 0){return <PermIdentityIcon/>;}
    else if (index=== 1 ){return <NavLink to = {'/Agenda/'+localStorage.getItem('LoginUser')}><DateRangeIcon/></NavLink>;}
    else if (index=== 2 ){return <MailOutlineIcon/>;}
-   else {return <IconButton onClick={()=>popup()}><FeedbackIcon/></IconButton>};}
+   else {return <NavLink to = {"/FeedBack/"+localStorage.getItem("LoginUser")}><FeedbackIcon/></NavLink>};}
 const popup =event=>{
   
     setisOpenSucceed({isOpenSucceed:true});

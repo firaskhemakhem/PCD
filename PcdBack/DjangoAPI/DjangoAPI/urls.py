@@ -27,6 +27,7 @@ urlpatterns = [
     path('authrec/',obtain_auth_token),
     path('auth/',obtain_auth_token),
     path('agenda/',obtain_auth_token),
+    path('feedback/',obtain_auth_token),
 
     path('infoper/',obtain_auth_token),
     path('competence/',obtain_auth_token),

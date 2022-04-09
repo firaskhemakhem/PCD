@@ -5,18 +5,13 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.core.files.storage import default_storage
-from PcdApp import serializers
-import PcdApp
-from django.dispatch import receiver
-from django.forms import ValidationError
-from django.db.models.signals import pre_save
-from django.contrib.auth import authenticate, login
+
 #from django.core.files.storages import default_storage  #file storage
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib import auth
-from PcdApp.models import Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda, Sujet
-from PcdApp.serializers import  AgendaSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer,SujetSerializer
+from PcdApp.models import FeedBackRec, Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda,Sujet
+from PcdApp.serializers import  AgendaSerializer, FeedBackSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer,SujetSerializer
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -51,14 +46,10 @@ class AgendaView (viewsets.ModelViewSet):
     serializer_class = AgendaSerializer
     queryset = Agenda.objects.all()
 
+class FeedBackView (viewsets.ModelViewSet):
+    serializer_class = FeedBackSerializer
+    queryset = FeedBackRec.objects.all()
 
-class LogoutView(APIView):
-    def post(self, request, format=None):
-        try:
-            auth.logout(request)
-            return Response({ 'success': 'Loggout Out' })
-        except:
-            return Response({ 'error': 'Something went wrong when logging out' })
 @csrf_exempt
 def SaveFile(request):
     file=request.FILES['file']

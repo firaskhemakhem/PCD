@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .views import StudentsView ,RecruteursView,AgendaView,LogoutView, SujetView
+from .views import FeedBackView, StudentsView ,RecruteursView,AgendaView,SujetView
 
 from .views import InfoAddView, InfoPerView , CompetenceView, CvView,Student_login
 
@@ -19,11 +19,11 @@ router.register(r'infoadd',InfoAddView)
 router.register(r'cv',CvView)
 
 router.register(r'sujet', SujetView)
-
+router.register(r'feedback',FeedBackView)
 router.register(r'agenda',AgendaView)
 urlpatterns = [
     path('', include(router.urls) ),
-    path('logout', LogoutView.as_view()),
+
 ]
 
 #+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

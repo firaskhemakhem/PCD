@@ -51,7 +51,7 @@ function App() {
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>
         <Route exact path = "/EspRec/:id" element={<EspaceRec/>}/>
-        <Route exact path ="/FeedBack" element={<AcceuilFed/>}/>
+        <Route exact path ="/FeedBack/:id" element={<AcceuilFed/>}/>
         <Route exact path = "/CandProfile/:id" element={<CandProfile/>}/>
         <Route exact path = "/RecProfile/:id" element={<RecProfile/>}/>
         <Route exact path ="/Agenda/:id" element={<AcceuilAgen/>}/>

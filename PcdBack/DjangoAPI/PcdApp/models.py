@@ -66,7 +66,8 @@ class Sujet(models.Model):
     Tech=  models.TextField()
     paye= models.BooleanField(default=False)
     Bin = models.BooleanField(default=False)
-    Att=  models.BooleanField(default=False)
+    Att = models.BooleanField(default=False)
+
 
 class Agenda(models.Model):
     Id_Calend = models.AutoField(primary_key=True)
@@ -74,3 +75,14 @@ class Agenda(models.Model):
     Date = models.CharField(max_length=10)
     StartTime = models.CharField(max_length=5)
     EndTime =models.CharField(max_length=5)
+
+class FeedBackRec(models.Model):
+    Login = models.OneToOneField(
+        "Recruteurs",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    Email = models.CharField(max_length= 30,unique=True)
+    Message = models.TextField()
+    Rating = models.IntegerField()
+

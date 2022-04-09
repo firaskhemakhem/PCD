@@ -6,7 +6,7 @@ constructor(){
     super();
     this.state={
         data:[],
-        isLogin:false
+        credentials:[],
     };
 }
 
@@ -28,7 +28,7 @@ fetchData(){
         }
         
         console.log(localStorage.getItem("LoginUser"))
-         console.log(this.state.isLogin);
+        console.log(this.state.isLogin);
     });
 }
 
@@ -54,8 +54,9 @@ deleteData(id){
     for(let i=0 ; i< this.state.data.length;i++){
       if ((this.state.data[i].LoginRec == localStorage.getItem("LoginUser"))){
           console.log(this.state.data[i]);
-          const Date=this.state.data[i].Date;
+          this.setState({...this.state.credentials,credentials:this.state.data[i]});
       }
+      console.log(this.state.credentials)
 
     }
          const rows=agendaData.map((agenda)=>
