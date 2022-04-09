@@ -9,7 +9,8 @@ import "../../../../styles/AgendaPartagee/AgendaPartagee.css"
 class AcceuilAgen extends React.Component{
   state = {
     credentials: {Id_Calend:localStorage.getItem("IdUser"), Date:'', StartTime:'', EndTime:'',LoginRec:localStorage.getItem("LoginUser")},
-    isLogin:false ,
+    data:[],
+    isLogin:false
   }
   
   register = event => {
@@ -40,19 +41,20 @@ fetchLogin = event => {
     .catch( error => console.error(error))
   }
 
+
   render(){
         return(
             <div>
-     
-         
-              <img src={agenda} width='90%' height='380px'   style={{ alignSelf: 'center',
+              <form>
+                <img src={agenda} width='90%' height='380px'   style={{ alignSelf: 'center',
                                                                        paddingLeft :'160px' }}/>
-              <div  style={{ alignSelf: 'center', paddingLeft :'130px' }}>
-              <h4 className="hh">Selectionner puis valider la date et le temps de votre disponibilité</h4>
+                <div  style={{ alignSelf: 'center', paddingLeft :'130px' }}>
+                  <h4 className="hh">Selectionner puis valider la date et le temps de votre disponibilité</h4>
                 <div className="contenuag">
                   <div className="contenue">
                     <p><div className="datelibre"> Sélectionner la date selon votre disponibilité 
-                    <i className="tempslibre">Sélectionner le temps selon votre disponibilité</i></div></p>
+                    <i className="tempslibre">Sélectionner le temps selon votre disponibilité</i>
+                    </div></p>
                   <div>
                   <i class="dat"> 
                     <input type="date" name="Date"
@@ -72,35 +74,27 @@ fetchLogin = event => {
                       onChange ={this.inputChanged}>
                    </input>
                   </i>
+                </div>
+                <br/><br/>
+                <div className="valide">
+                  <button 
+                        type="submit" 
+                        class="btn btn-outline-secondary"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 4, mb:2 }}
+                        onClick= {this.register} 
+                      >
+                        Valider
+                    </button>
+                </div>
+                
               </div>
-<br/><br/>
-              <div className="valide">
-                <button 
-                      type="button" 
-                      class="btn btn-outline-secondary"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 4, mb:2 }}
-                      onClick= {this.register} 
-                    >
-                      Valider
-         </button></div></div>
-          <br/>
-         <h4 className="hhh">Votre Agenda</h4>
-         <button 
-                      type="button" 
-                      class="btn btn-outline-secondary"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 4, mb:2 }}
-                      onClick= {this.fetchLogin} 
-                    >
-                      fetch
-         </button>
-         
-           <AgendaPartagee/>
-         </div>
+              <br/>
+              <AgendaPartagee/>
+            </div>
         </div>
+        </form>
         </div>
      
         );

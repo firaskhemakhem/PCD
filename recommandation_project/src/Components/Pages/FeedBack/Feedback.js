@@ -22,16 +22,13 @@ class Feedback extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			//showButton: true,
-			
 			showForm: true,
 			showModal: false,
 			nameInput: '',
 			messageInput: '',
 			emailInput: '',
 			ratingInput: -1,
-			data:{},
-			isEmail:false ,
+			Email:''
 		
 		};
 		this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -46,8 +43,8 @@ class Feedback extends Component {
 			console.log (content);
 		//	console.log (this.state.emailInput);
 			//this.setState({finEmail:content});
-			finEmail = content;
-			console.log(finEmail)
+			// finEmail = content;
+			// console.log(finEmail)
 
 		} 
 		 else if (inputName === 'Rating') {
@@ -81,20 +78,11 @@ class Feedback extends Component {
 		  .then(response=>response.json())
 		  .then((data)=>{
 			  this.setState({
-				  data:data
+				  Email:data.Email
 			  });
-			  console.log (data.Email)
-
-			   console.log (finEmail)
-			     if(data.Email == finEmail){
-			   	  this.setState({
-			   		  isEmail :true
-			   	  })
-			    }
-			  
+			   console.log (this.state.Email)
 			  console.log(localStorage.getItem("LoginUser"));
 			  console.log(this.state.data);
-			  console.log(this.state.isEmail);
 		  });
 	  }
 	  
@@ -107,12 +95,16 @@ class Feedback extends Component {
 		if ( isEmpty(this.state.emailInput) || isEmpty(this.state.messageInput) || (this.state.ratingInput===-1)) {
 			alert("Fields are missing!");
 		} else {
-		(this.state.isEmail && handleSubmit({
+			if (this.state.Email == this.state.emailInput){
+		(handleSubmit({
 				Login: localStorage.getItem("LoginUser"),
 				Message: this.state.messageInput,
 				Rating: this.state.ratingInput,
 				Email: this.state.emailInput
-			}));
+			}));}
+			else {
+				alert ('incorrecte')
+			}
 			if (showButtonOnSubmit) {
 				this.setState({ showButton: true });
 			}
@@ -132,9 +124,7 @@ class Feedback extends Component {
 	render() {
 		const {
 			headerText,
-			buttonText,
 			position,
-			buttonStyles,
 			headerStyles,
 			headerBtnStyles,
 			headerBtnText,

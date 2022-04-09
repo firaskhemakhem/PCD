@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HeaderCan from '../Etudiant/HeaderCan';
 import Feedback from './Feedback';
-import PopUpMessage from '../../PopUpMessage/PopUpFile';
+
 
 class AcceuilFed extends Component{
   state = { isOpenSucceed:false}
