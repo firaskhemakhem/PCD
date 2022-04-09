@@ -34,10 +34,7 @@ function InscRec() {
   
     Object.values(rest).forEach(val =>{
         if (val === null) {
-            isValid = false;}
-  
-  
-            
+            isValid = false;} 
          else {
             isValid = true;}});
     return isValid;
@@ -77,7 +74,7 @@ function InscRec() {
              break;
          case "Adresse":
            isError.Adresse=
-               value.length < 5 ? "L'adresse doit comprendre au minimum 5 caractéres" :"";
+               value.length < 4 ? "L'adresse doit comprendre au minimum 4 caractéres" :"";
              break;
            case "Tel":
                isError.Tel =regtel.test(value) ?"":"Votre numéro de téléphone doit contient exactement 8 chiffres";
