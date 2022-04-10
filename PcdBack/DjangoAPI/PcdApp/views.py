@@ -10,13 +10,13 @@ import PcdApp
 from django.dispatch import receiver
 from django.forms import ValidationError
 from django.db.models.signals import pre_save
-from PcdApp.models import Students,Recruteurs
-from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer,StudentsLoginSerializer
+from PcdApp.models import Students,Recruteurs,UploadImage
+from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
-from PcdApp.models import Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv
-from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer
+from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile
+from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,ImageSerializer,PDFSerializer
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -25,7 +25,6 @@ class StudentsView (viewsets.ModelViewSet):
 class RecruteursView (viewsets.ModelViewSet):
     serializer_class = RecruteursSerializer
     queryset = Recruteurs.objects.all()
-
 
 
 class InfoPerView (viewsets.ModelViewSet):
@@ -43,6 +42,31 @@ class InfoAddView (viewsets.ModelViewSet):
 class CvView (viewsets.ModelViewSet):
     serializer_class = CvSerializer
     queryset = Cv.objects.all()
+
+class ImageView(viewsets.ModelViewSet):
+    serializer_class = ImageSerializer
+    queryset = UploadImage.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        Id_Image = request.data['Id_Image']
+        Login = request.data['Login']
+        Image = request.data['Image']
+        UploadImage.objects.create(Id_Image=Id_Image,Login=Login, Image=Image)
+        return HttpResponse({'message': 'Image created'}, status=200)
+
+
+class PDFView(viewsets.ModelViewSet):
+    serializer_class = PDFSerializer
+    queryset = UploadFile.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        Id_PDF = request.data['Id_PDF']
+        Login = request.data['Login']
+        PDF = request.data['PDF']
+        UploadImage.objects.create(Id_PDF=Id_Image,Login=Login, PDF=PDF)
+        return HttpResponse({'message': 'CV imported'}, status=200)
+
+
 
 @csrf_exempt
 def SaveFile(request):
@@ -93,7 +117,4 @@ def studentsApi(request,id=0):
         return JsonResponse("Deleted Successfully",safe=False)
 
 
-class Student_login(viewsets.ModelViewSet):
-    serializer_class = StudentsLoginSerializer
-    queryset = Students.objects.values_list('Login','MDP')
 

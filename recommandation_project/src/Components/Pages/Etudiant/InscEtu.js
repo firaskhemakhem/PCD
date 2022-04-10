@@ -29,7 +29,7 @@ const handleSubmit = (event) => {
 
 class InscEtu extends React.Component{
   state = {
-    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''},
+    credentials: {Id_Utilisateur:'',Login:'',MDP:'',Nom:'',Prenom:'',Email:'',Gouvernorat:'',Adresse:'',Civ:'',DDN:'',Tel:''},
     isOpenSucceed:false,
     isOpenFailed:false
   }
@@ -49,6 +49,7 @@ class InscEtu extends React.Component{
       console.log(result);
       console.log(this.state.credentials.Id_Utilisateur);
       localStorage.setItem("IdUser",this.state.credentials.Id_Utilisateur);
+      localStorage.setItem("LoginUser",this.state.credentials.Login);
       this.togglePopup();
     })
     .catch( error => console.error(error));
@@ -103,15 +104,27 @@ render(){
             <h1 className='Titre'>Inscrivez-vous!</h1>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={6}>
                         <TextField
                           required
                           fullWidth
                           id="nom"
-                          label="Nom & Prénom"
+                          label="Nom"
                           name="Nom"
                           autoComplete="nom"
                           value = {this.state.credentials.Nom}
+                          onChange ={this.inputChanged}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          required
+                          fullWidth
+                          id="prenom"
+                          label="Prénom"
+                          name="Prenom"
+                          autoComplete="prenom"
+                          value = {this.state.credentials.Prenom}
                           onChange ={this.inputChanged}
                         />
                       </Grid>

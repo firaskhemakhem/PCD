@@ -8,7 +8,7 @@ class Utilisateur (models.Model):
     Login = models.CharField(max_length= 30,unique=True)
     MDP = models.CharField(max_length= 30)
     Email = models.CharField(max_length= 30,unique=True)
-    Nom = models.CharField(max_length= 30)
+    #Nom = models.CharField(max_length= 30)
     Tel = models.CharField(max_length=10,unique=True)
     Gouvernorat = models.CharField (max_length= 30)
     Adresse = models.CharField(max_length= 30)
@@ -20,12 +20,15 @@ class Utilisateur (models.Model):
 
 
 class Students(Utilisateur):
-   DDN =models.CharField(max_length= 30)
-   Civ = models.CharField(max_length= 30)
+    Nom = models.CharField(max_length= 30)
+    Prenom = models.CharField(max_length= 30)
+    DDN =models.CharField(max_length= 30)
+    Civ = models.CharField(max_length= 30)
 
 
 class Recruteurs(Utilisateur):
     CodePostal = models.CharField(max_length=6)
+    Nom = models.CharField(max_length= 30)
 
 class InfoPer(models.Model):
     Id_InfoPer=models.AutoField(primary_key=True)
@@ -57,4 +60,18 @@ class Cv(models.Model):
     Compe=models.TextField()
     InfoAdd=models.TextField()
 
+#imageUpload
+def uploadFile(instance,filename):
+    return '/'.join(['students',str(instance.Login),filename])
 
+
+class UploadImage(models.Model):
+    Id_Image = models.AutoField(primary_key=True)
+    Login = models.CharField(max_length= 30,unique=True)
+    Image = models. ImageField(blank=True,null=True,upload_to=uploadFile)
+
+#fileUpload
+class UploadFile(models.Model):
+    Id_PDF = models.AutoField(primary_key=True)
+    Login = models.CharField(max_length= 30)
+    PDF = models. FileField(blank=True,null=True,upload_to=uploadFile)

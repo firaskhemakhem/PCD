@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
-
+import ImageUpload from '../FileUpload/ImageUpload'
 import axios from 'axios';
 
 
@@ -52,18 +52,7 @@ const featuredPosts = [
     image: 'https://www.mastersbooking.fr/sites/default/files/styles/img_blog/public/field/image/resume-2296951_1920_1_0.png?itok=ESjYBHbn',
     imageLabel: 'Déposer',
     link :  <Stack direction="row" alignItems="center" spacing={2}>
-              <label htmlFor="contained-button-file">
-                <Input id="contained-button-file" multiple type="file" display="none"/>
-                <Button variant="contained" component="span" class="btn btn-outline-secondary">
-                  Upload
-                </Button>
-              </label>
-              <label htmlFor="icon-button-file">
-                <Input id="icon-button-file" type="file" display="none" />
-                <IconButton color="primary" aria-label="upload picture" component="span">
-                  <PhotoCamera />
-                </IconButton>
-              </label>
+              <ImageUpload/>
             </Stack>
   },
  
@@ -113,7 +102,22 @@ class EspaceCandidat extends Component {
   
   state = {
     credentials: {},
-    file:''
+    data:{Id_Image:'',Login:'',Image:''}
+  }
+  newImage=event=>{
+    const uploadData = new FormData();
+    uploadData.append('Id_Iamge', this.state.data.Id_Image);
+    uploadData.append('Login', this.state.credentials.Login);
+    uploadData.append('Image', this.state.data.Image, this.state.data.Image.name);
+    fetch("http://127.0.0.1:8000/PcdApp/media/",{
+      method:'POST',
+      body: uploadData
+    })
+    .then(data => data.json())
+    .then((result)=>{
+      console.log(result)
+    })
+    .catch(error => console.log(error))
   }
   componentDidMount(){
     var id=localStorage.getItem('IdUser');
@@ -129,12 +133,7 @@ class EspaceCandidat extends Component {
     })
   }
 
-  inputChanged = (event) => {
-    const cred = this.state.file;
-    cred = event.target.file[0];
-    this.setFile({file: cred});
-    
-  }
+  
 
   render(){
     return (
@@ -160,13 +159,7 @@ class EspaceCandidat extends Component {
             </Grid>
           </main>
         </Container>
-        <div className="App">
-          <form onSubmit={this.handleSubmit}>
-            <h1>React File Upload</h1>
-            <input type="file" onChange={this.inputChanged}/>
-            <button type="submit">Upload</button>
-          </form>
-        </div>
+        
         <Footer/>
       </ThemeProvider>
     );
@@ -175,3 +168,22 @@ class EspaceCandidat extends Component {
 }
 
 export default EspaceCandidat;
+
+
+/* 
+inputChanged = (event) => {
+    const cred = this.state.data;
+    cred['Login']= this.state.credentials.Login;
+    cred[event.target.name] = event.target.files[0];
+    this.setState({data: cred});
+    console.log(this.state.data);
+  }
+
+<div className="App">
+  <form onSubmit={this.handleSubmit}>
+    <h1>React File Upload</h1>
+    <input type="file" name="Image" onChange={this.inputChanged}/>
+    <button onClick={this.newImage}>Upload</button>
+  </form>
+</div>
+*/

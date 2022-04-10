@@ -20,7 +20,6 @@ import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
 
 import Cv from './Components/Pages/formCv/Cv';
 import StepContext from './Components/Pages/formCv/StepContext';
-import Registration from './Components/Pages/Registration';
 
 function App() {
   const [token, setToken] = useState('');

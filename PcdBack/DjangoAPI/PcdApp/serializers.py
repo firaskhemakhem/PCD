@@ -1,13 +1,13 @@
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv
+from PcdApp.models import Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,UploadImage,UploadFile
 from rest_framework.authtoken.models import Token
 
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Students
         fields = ['Id_Utilisateur',
-                   'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','DDN','Civ']
+                   'Login','MDP','Email','Nom','Prenom','Tel','Gouvernorat','Adresse','DDN','Civ']
 
 class RecruteursSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +20,18 @@ class StudentsLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = Students
         fields = ['Login','MDP']
+
+#imageUpload
+class ImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UploadImage
+        fields = ['Id_Image','Login','Image']
+
+#PDFUpload
+class PDFSerializer(serializers.HyperlinkedModelSerializer):
+   class Meta:
+        model = UploadFile
+        fields = ['Id_PDF','Login','PDF']
 
 
 class InfoPerSerializer(serializers.ModelSerializer):
