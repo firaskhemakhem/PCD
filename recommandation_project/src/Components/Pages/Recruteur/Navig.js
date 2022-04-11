@@ -20,6 +20,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import PopUpMessage from '../../PopUpMessage/PopUpFile';
 import Feedback from '../FeedBack/Feedback';
 import { IconButton } from '@mui/material';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 export default function Navig() {
 const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
@@ -28,7 +29,8 @@ const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
    if(index === 0){return <PermIdentityIcon/>;}
    else if (index=== 1 ){return <NavLink to = {'/Agenda/'+localStorage.getItem('LoginUser')}><DateRangeIcon/></NavLink>;}
    else if (index=== 2 ){return <MailOutlineIcon/>;}
-   else {return <NavLink to = {"/FeedBack/"+localStorage.getItem("LoginUser")}><FeedbackIcon/></NavLink>};}
+   else if (index ===3){return <NavLink to = {'/FeedBack/'+localStorage.getItem("LoginUser")}><FeedbackIcon/></NavLink>;}
+   else {return <NavLink to ={'/Sujet/'+localStorage.getItem('LoginUser')}><AppRegistrationIcon/></NavLink>};}
 const popup =event=>{
   
     setisOpenSucceed({isOpenSucceed:true});
@@ -37,8 +39,9 @@ const popup =event=>{
 const Icons2 =(index)=>{
   if(index === 0){return <NavLink to = "/" style={{color:'grey'}}><HomeIcon /> </NavLink>;}
   else if (index=== 1 ){return <InfoIcon />;}
-  else {return <NavLink to ="/AuthRec"><InboxIcon /></NavLink> ;}
+  else{ return <NavLink to ="/AuthRec"><InboxIcon /></NavLink> ;}
 }
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -59,7 +62,7 @@ const Icons2 =(index)=>{
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Profile', 'Agenda', 'Email', 'Votre Avis'].map((text, index) => (
+        {['Profile', 'Agenda', 'Email', 'Votre Avis','Vos Sujets'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
      

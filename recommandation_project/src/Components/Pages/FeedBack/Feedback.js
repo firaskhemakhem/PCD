@@ -140,8 +140,6 @@ class Feedback extends Component {
 		return (
 			<div>
 				{this.state.showForm &&
-				
-				
 						<Form
 							style={style}
 							headerText={headerText}

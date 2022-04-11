@@ -29,6 +29,9 @@ import RecProfile from './Components/Pages/Recruteur/RecProfile';
 
 import Update from './Components/Pages/Recruteur/AgendaPartagee/Update';
 import FormSuj from './Components/Pages/Recruteur/Sujets/FormSuj';
+import Entreprise from './Components/Pages/Entreprise/Entreprise';
+import VisibleStu from './Components/Pages/Entreprise/VisibleStu';
+import Favoris from './Components/Pages/Entreprise/Favoris';
 
 
 function App() {
@@ -59,7 +62,10 @@ function App() {
         <Route exact path = "/Creation" element={<Creation/>}/>
         <Route exact path="/Update/:id/:id" element={<Update/>}/>
         <Route exact path = "/Res" element={<ResulatFinal/>}/>
-        <Route exact path = "/Sujet" element={<FormSuj/>}/>
+        <Route exact path = "/Sujet/:id" element={<FormSuj/>}/>
+        <Route exact path = "/entreprise" element={<Entreprise/>}/>
+        <Route exact path = "/entreprise/:id" element={<VisibleStu/>}/>
+        <Route exact path = "/Favoris/:id" element={<Favoris/>}/>
       </Routes>
     </BrowserRouter>   
     </div>

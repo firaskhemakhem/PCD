@@ -10,8 +10,8 @@ from django.core.files.storage import default_storage
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib import auth
-from PcdApp.models import FeedBackRec, Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda,Sujet
-from PcdApp.serializers import  AgendaSerializer, FeedBackSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer,SujetSerializer
+from PcdApp.models import FeedBackRec, InterSuj, Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda, Suit,Sujet
+from PcdApp.serializers import  AgendaSerializer, FeedBackSerializer, InterSujSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer, SuitSerializer,SujetSerializer
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -49,6 +49,14 @@ class AgendaView (viewsets.ModelViewSet):
 class FeedBackView (viewsets.ModelViewSet):
     serializer_class = FeedBackSerializer
     queryset = FeedBackRec.objects.all()
+
+class SuitView (viewsets.ModelViewSet):
+    serializer_class = SuitSerializer
+    queryset = Suit.objects.all()
+
+class InterSujView (viewsets.ModelViewSet):
+    serializer_class = InterSujSerializer
+    queryset = InterSuj.objects.all()
 
 @csrf_exempt
 def SaveFile(request):

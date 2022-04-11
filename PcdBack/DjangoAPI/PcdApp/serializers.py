@@ -1,7 +1,7 @@
 from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import  FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet
+from PcdApp.models import  FeedBackRec, InterSuj, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda, Suit,Sujet
 from rest_framework.authtoken.models import Token
 
 
@@ -15,7 +15,16 @@ class RecruteursSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recruteurs
         fields = [
-                   'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','CodePostal']
+                   'Login','MDP','Email','Nom','Tel','Gouvernorat','Adresse','CodePostal','Domaine']
+class SuitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Suit
+        fields =['id','follow','recruteur','student']
+
+class InterSujSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InterSuj
+        fields =['id','inter','recruteur','student','id_sujet','id_agenda']
 
 #Login
 class StudentsLoginSerializer(serializers.ModelSerializer):
@@ -57,7 +66,7 @@ class SujetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sujet
         fields= ['Id_sujet',
-                'Titre','Description','Domaine','duree','Tech','paye','Bin','Att']
+                'Titre','Description','Domaine','duree','Tech','paye','Bin','Att','LoginRec']
 
 class AgendaSerializer (serializers.ModelSerializer):
     class Meta:

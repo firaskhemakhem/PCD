@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .views import FeedBackView, StudentsView ,RecruteursView,AgendaView,SujetView
+from .views import FeedBackView, InterSujView, StudentsView ,RecruteursView,AgendaView, SuitView,SujetView
 
 from .views import InfoAddView, InfoPerView , CompetenceView, CvView,Student_login
 
@@ -21,6 +21,10 @@ router.register(r'cv',CvView)
 router.register(r'sujet', SujetView)
 router.register(r'feedback',FeedBackView)
 router.register(r'agenda',AgendaView)
+
+router.register(r'suit',SuitView)
+
+router.register(r'interessant',InterSujView)
 urlpatterns = [
     path('', include(router.urls) ),
 

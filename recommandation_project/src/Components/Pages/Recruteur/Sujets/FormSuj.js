@@ -14,14 +14,15 @@ import Sujets from './Sujets';
 
 const theme = createTheme();
 const FormSuj =()=>{
-  const [dataSuj, setDataSuj]=React.useState([]);
+  const [dataSuj, setDataSuj]=React.useState({LoginRec:localStorage.getItem("LoginUser")});
   const registerSujet = event => {
     fetch('http://127.0.0.1:8000/PcdApp/sujet/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(dataSuj)
     })
-    .then( data => data.json())
+    .then( data => data.json(),
+    window.location.reload(true))
     .catch( error => console.error(error))
 }
   return (
@@ -159,6 +160,7 @@ const FormSuj =()=>{
                       variant="contained"
                       sx={{ mt: 10, mb:2 }}
                       onClick={registerSujet}
+                      
                     >
                       Ajouter Sujet
                     </button>

@@ -40,7 +40,7 @@ function InscRec() {
     return isValid;
     };
   const navigate = useNavigate();
-  const [state, setState] = React.useState({ Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',CodePostal:'',Tel:'',
+  const [state, setState] = React.useState({ Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',CodePostal:'',Tel:'',Domaine:'',
   isError: {Login:'',MDP:'',Nom:'',Email:'',Gouvernorat:'',Adresse:'',CodePostal:'',Tel:'' },});
   const onSubmit = e => {
     e.preventDefault();
@@ -96,6 +96,7 @@ function InscRec() {
                ...state,"CodePostal":e.target.value,
                ...state,"Gouvernorat":e.target.value,
                ...state,"MDP":e.target.value,
+               ...state,"Domaine":e.target.value,
                ...state,
                isError,
               })
@@ -112,7 +113,8 @@ function InscRec() {
         "Login":state.Login,
         "MDP":state.MDP,
         "Tel":state.Tel,
-        "CodePostal":state.CodePostal}
+        "CodePostal":state.CodePostal,
+        "Domaine":state.Domaine}
       )
     })
       .then(data => data.json())
@@ -291,12 +293,25 @@ function InscRec() {
                     )}
                 </Grid>
                 <Grid item
-                  xs={12}>
+                  xs={12}
+                  sm={6}>
+                  <TextField required name="Domaine"
+                    fullWidth id="domaine"
+                    label="Domaine" autoFocus
+                    value={state.Domaine} 
+                   onChange={formValChange}
+                 // className= {(isError.Login.length)>0 ? "is-invalid form-control" : "form-control"} 
+                   />
+                
+                </Grid>
+                <Grid item
+                  xs={12}
+                  sm={6}>
                   <FormControl required
                     sx={
                       {
                         sm: 4,
-                        minWidth: 460
+                        minWidth: 240
                       }
                     }>
                     <InputLabel id="demo-simple-select-required-label">Gouvernorat</InputLabel>
@@ -305,8 +320,7 @@ function InscRec() {
                       label="Gouvernorat"
                       name="Gouvernorat"
                       value={state.Gouvernorat}
-                     onChange={formValChange}
-                     className= {(isError.Gouvernorat.length)>0 ? "is-invalid form-control" : "form-control"} 
+                      onChange={formValChange}
                       >
                       <MenuItem value={"Sfax"}>Sfax</MenuItem>
                       <MenuItem value={"Sousse"}>Sousse</MenuItem>
@@ -336,10 +350,6 @@ function InscRec() {
                       <MenuItem value={"Zaghouan"}>Zaghouan</MenuItem>
                     </Select>
                   </FormControl>
-                  {isError.Gouvernorat.length > 0 && (
-                        <span className="invalid-feedback">{isError.Gouvernorat}</span>
-                       
-                    )}
                 </Grid>
               </Grid>
               <br />

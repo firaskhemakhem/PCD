@@ -54,6 +54,7 @@ deleteData(id){
          const rows=agendaData.map((agenda)=>
   
           (this.state.isLogin && <tr key={agenda.Id_Calend}>
+           { localStorage.setItem("Id_Calend",agenda.Id_Calend)}
                  <td>{agenda.Date}</td>
                  <td>{agenda.StartTime}</td>
                  <td>{agenda.EndTime}</td>
@@ -65,7 +66,6 @@ deleteData(id){
                        fullWidth
                        variant="contained"
                        sx={{ mt: 4, mb:2 }}
-                       onClick ={()=>localStorage.setItem("Id_Calend",agenda.Id_Calend)}
                      >
                       Mettre à jour
                    </button>

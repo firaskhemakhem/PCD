@@ -11,7 +11,6 @@ class Update extends React.Component {
     constructor(){
         super();
         this.state={
-         // data:[],
           Id_Calend:localStorage.getItem("Id_Calend"),
           Date:'',
           StartTime:'',
@@ -21,24 +20,16 @@ class Update extends React.Component {
         this.changeHandler=this.changeHandler.bind(this);
         this.submitForm=this.submitForm.bind(this);
     }
-
-    // Input Change Handler
     changeHandler(event){
         this.setState({
             [event.target.name]:event.target.value
         });
     }
 
-    // Submit Form
+    
 
    
    submitForm(){
-      // const id = 2;
-  //     alert(this.state.Id_Agenda);
-     // var isload = false ;
-      //if(!isload){
-      // var id = localStorage.getItem("IdUser");
-    //  const id=1;
     var id = this.state.Id_Calend;
         fetch(`http://127.0.0.1:8000/PcdApp/agenda/${id}/`,{
             method:'PUT',
@@ -50,22 +41,14 @@ class Update extends React.Component {
         .then(response=>response.json())
         .then((data)=>console.log(data));
        // window.location.reload(true);
-       // isload = true;
-
-   // }
-
     }
 
     fetchData(){
-      //  const id =1;
-       // var id = localStorage.getItem("IdUser");
        var id = this.state.Id_Calend;
         fetch(`http://127.0.0.1:8000/PcdApp/agenda/${id}/`)
         .then(response=>response.json())
         .then((data)=>{
             this.setState({
-               // data:data,
-              //  Id_Calend: data.Id_Calend,
                 Date:data.Date,
                 StartTime:data.StartTime,
                 EndTime:data.EndTime,
@@ -76,25 +59,11 @@ class Update extends React.Component {
 
     componentDidMount(){
         this.fetchData();
-        // const id =1;
-        // //var id = this.state.Id_Agenda;
-        // fetch(`http://127.0.0.1:8000/PcdApp/agendapartage/${id}/`)
-        // .then(response=>response.json())
-        // .then((data)=>{
-        //     this.setState({
-        //        // data:data,
-        //         Id_Agenda:data.Id_Agenda,
-        //         Date:data.Date,
-        //         StartTime:data.StartTime,
-        //         EndTime:data.EndTime
-        //     });
-        // });
        
     }
 
 
     render(){
-       //const agendaId = this.state.data;
         return(<div>
             <HeaderRec/>
          <div style={{ paddingLeft :'130px' ,paddingRight:'130px', paddingTop:'100px'}}>

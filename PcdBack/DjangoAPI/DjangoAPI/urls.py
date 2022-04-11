@@ -34,6 +34,9 @@ urlpatterns = [
     path('infoadd/',obtain_auth_token),
     path('cv/',obtain_auth_token),
 
-    path('sujet/',obtain_auth_token)
+    path('sujet/',obtain_auth_token),
+    path('suit/',obtain_auth_token),
 
+    path('interessant/',obtain_auth_token)
+        
 ]
