@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 
-class forgetpassword extends Component{
+class Forgetpassword extends Component{
     render (){
         return(
             <div>
@@ -50,4 +50,4 @@ class forgetpassword extends Component{
         )
     }
 }
-export default forgetpassword;
+export default Forgetpassword;

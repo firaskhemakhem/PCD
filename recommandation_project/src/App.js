@@ -14,7 +14,7 @@ import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 import AcceuilAgen from './Components/Pages/Recruteur/AgendaPartagee/AcceuilAgen';
 import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
 import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
-import forgetPassword from './Components/Pages/Etudiant/forgetPassword'
+import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword'
 
 /*<Route exact path = "/CandProfile/:id" element={<CandProfile/>}/> ki nrigel 7keyet el id*/
 
@@ -49,6 +49,7 @@ function App() {
         <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} /> 
         {/* <Route exact path ="/InscRec" element ={<Registration/>} userLogin={userLogin} /> */}
         <Route exact path ="/footer" element ={<Footer/>}/>
+        <Route exact path ="/password/" element ={<ForgetPassword/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>
         <Route exact path = "/EspRec/:id" element={<EspaceRec/>}/>

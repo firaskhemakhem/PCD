@@ -28,7 +28,7 @@ export default function Navig() {
 const Icons2 =(index)=>{
   if(index === 0){return <NavLink to = "/"><HomeIcon /> </NavLink>;}
   else if (index=== 1 ){return <InfoIcon />;}
-  else {return <InboxIcon />;}
+  else {return <NavLink to = "/"><InboxIcon /></NavLink>;}
 }
   const toggleDrawer = (anchor, open) => (event) => {
     if (
