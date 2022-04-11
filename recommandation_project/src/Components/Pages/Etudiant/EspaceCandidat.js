@@ -14,6 +14,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
+import { Link, NavLink } from 'react-router-dom';
+//import {useParams} from "react-router-dom";
 
 
 const Input = styled('input')({
@@ -25,7 +27,10 @@ const mainFeaturedPost = {
   image:'https://emploi-tunisie-travail.com/wp-content/uploads/2019/12/jobs-in-tunisia-1.png',
   imageText: 'main image description',
 };
-
+const queryParams = new URLSearchParams(window.location.search);
+//const login = localStorge.getItem("LoginUser")
+//<Link to={'/cv/'+this.state.credentials.Login}>
+const name = queryParams.get('Login');
 const featuredPosts = [
   {
     title: 'OBTENIR UN CV',
@@ -33,15 +38,16 @@ const featuredPosts = [
       'Remplir notre formulaire pour obtenir un CV via notre application.',
     image: 'https://coda.newjobs.com/api/imagesproxy/ms/xmonsterfrx/marketing/Articles/actualiser-regulierement-son-cv.jpg',
     imageLabel: 'Remplir',
-    link : <button
+    link : <NavLink to={'/cv/'+localStorage.getItem('LoginUser')}><button
         type="button" 
         class="btn btn-outline-secondary"
         fullWidth
         variant="contained"
         sx={{ mt: 4, mb:2 }}
+        onClick={()=>{console.log(this.state.credentials)}}
       >
         Remplir
-      </button>
+      </button></NavLink>
   },
   {
     title: 'TELECHARGER VOTRE CV',
@@ -104,9 +110,7 @@ const featuredPosts2 = [
       },
       
 ];
-
 const theme = createTheme();
-
 class EspaceCandidat extends Component {
   
   state = {
@@ -122,7 +126,7 @@ class EspaceCandidat extends Component {
     .then(response => response.json())
     .then((result)=>{
         this.setState({credentials:result})
-        console.log(result);
+        //console.log(result);
     })
   }
   render(){

@@ -19,7 +19,7 @@ import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
 
 
 import Cv from './Components/Pages/formCv/Cv';
-import ResulatFinal from './Components/Pages/formCv/ResultatFinal';
+//import ResulatFinal from './Components/Pages/formCv/ResultatFinal';
 import StepContext from './Components/Pages/formCv/StepContext';
 
 
@@ -55,10 +55,9 @@ function App() {
         <Route exact path = "/CandProfile/:id" element={<CandProfile/>}/>
         <Route exact path = "/RecProfile/:id" element={<RecProfile/>}/>
         <Route exact path ="/Agenda/:id" element={<AcceuilAgen/>}/>
-        <Route exact path="/CV" element={<StepContext><Cv/></StepContext>}/>
+        <Route exact path="/CV/:id" element={<StepContext><Cv/></StepContext>}/>
         <Route exact path = "/Creation" element={<Creation/>}/>
         <Route exact path="/Update/:id/:id" element={<Update/>}/>
-        <Route exact path = "/Res" element={<ResulatFinal/>}/>
         <Route exact path = "/Sujet" element={<FormSuj/>}/>
       </Routes>
     </BrowserRouter>   

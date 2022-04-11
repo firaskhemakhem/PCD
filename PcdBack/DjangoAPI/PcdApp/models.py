@@ -28,7 +28,11 @@ class Recruteurs(Utilisateur):
     CodePostal = models.CharField(max_length=6)
 
 class InfoPer(models.Model):
-    Id_InfoPer=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     Nom = models.CharField(max_length= 30)
     Email = models.CharField(max_length= 30,unique=True)
     Tel = models.CharField(max_length=10,unique=True)
@@ -38,7 +42,11 @@ class InfoPer(models.Model):
     Dom = models.CharField(max_length= 45)
 
 class Competence(models.Model):
-    Id_Com=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     Formation=models.CharField(max_length=250)
     ExpProf=models.CharField(max_length=250)
     Certif=models.CharField(max_length=250)
@@ -47,12 +55,20 @@ class Competence(models.Model):
 
 
 class InfoAdd(models.Model):
-    Id_InfoAdd=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     CentreInt=models.CharField(max_length=250)
     VieAsso=models.CharField(max_length=250)
 
 class Cv(models.Model):
-    Id_Cv=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     InfoPer=models.TextField()
     Compe=models.TextField()
     InfoAdd=models.TextField()
