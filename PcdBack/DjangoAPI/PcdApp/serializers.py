@@ -44,25 +44,25 @@ class RecruteursLoginSerializer(serializers.ModelSerializer):
 class InfoPerSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoPer
-        fields = ['Id_InfoPer',
+        fields = ['LoginStu',
                    'Nom','Email','Tel','Gouvernorat','Adresse','DDN','Dom']
 
 class CompetenceSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Competence
-        fields = ['Id_Com',
+        fields = ['LoginStu',
                    'Formation','ExpProf','Certif','Lang','Liens']
 
 class InfoAddSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoAdd
-        fields = ['Id_InfoAdd',
+        fields = ['LoginStu',
                    'CentreInt','VieAsso']
 
 class CvSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cv
-        fields = ['Id_Cv',
+        fields = ['LoginStu',
                    'InfoPer','Compe','InfoAdd']
 
 class SujetSerializer(serializers.ModelSerializer):
