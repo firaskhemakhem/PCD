@@ -29,7 +29,7 @@ import RecProfile from './Components/Pages/Recruteur/RecProfile';
 
 import Update from './Components/Pages/Recruteur/AgendaPartagee/Update';
 import FormSuj from './Components/Pages/Recruteur/Sujets/FormSuj';
-
+import LettreDeMotiv from './Components/Pages/Etudiant/LettreDeMotiv'
 
 function App() {
   const [token, setToken] = useState('');
@@ -59,6 +59,7 @@ function App() {
         <Route exact path = "/Creation" element={<Creation/>}/>
         <Route exact path="/Update/:id/:id" element={<Update/>}/>
         <Route exact path = "/Sujet" element={<FormSuj/>}/>
+        <Route exact path="/LettreDeMotivation" element={<LettreDeMotiv/>} />
       </Routes>
     </BrowserRouter>   
     </div>
