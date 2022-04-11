@@ -99,7 +99,7 @@ export default function HeaderCan() {
       onClose={handleMenuClose}
     >
     <NavLink to="/Images"><MenuItem onClick={handleMenuClose}>Profile</MenuItem></NavLink>
-    <NavLink to={"/CandProfile/"+localStorage.getItem('IdUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
+    <NavLink to={"/CandProfile/"+localStorage.getItem('LoginUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
     </Menu>
   );
 //    <NavLink to={"/CandProfile/"+localStorage.getItem('IdUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
@@ -158,7 +158,7 @@ export default function HeaderCan() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style ={{backgroundColor:'#023C59'}}>
         <Toolbar>
           <IconButton
             size="large"

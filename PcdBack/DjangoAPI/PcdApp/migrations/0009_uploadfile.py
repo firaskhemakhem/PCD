@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('PcdApp', '0008_uploadimage_alter_students_prenom'),
+        ('PcdApp', '0008_uploadimage'),
     ]
 
     operations = [

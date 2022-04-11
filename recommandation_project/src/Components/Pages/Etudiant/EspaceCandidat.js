@@ -120,7 +120,7 @@ class EspaceCandidat extends Component {
     .catch(error => console.log(error))
   }
   componentDidMount(){
-    var id=localStorage.getItem('IdUser');
+    var id=localStorage.getItem('LoginUser');
     fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
    
         method: 'GET',
@@ -139,7 +139,7 @@ class EspaceCandidat extends Component {
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <HeaderCan dataFromParent = {this.state.credentials.Id_Utilisateur}/>
+        <HeaderCan dataFromParent = {this.state.credentials.Login}/>
         <Container maxWidth="lg">
           <main>
             <MainFeaturedPost post={mainFeaturedPost}/>

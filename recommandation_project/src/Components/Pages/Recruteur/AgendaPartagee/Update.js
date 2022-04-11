@@ -1,6 +1,7 @@
 import React from "react";
-import HeaderCan from "../Candidat/HeaderCan";
+
 import {NavLink} from "react-router-dom"
+import HeaderRec from "../HeaderRec";
 
 
 
@@ -11,10 +12,11 @@ class Update extends React.Component {
         super();
         this.state={
          // data:[],
-          Id_Agenda:localStorage.getItem("Id_Agenda"),
+          Id_Calend:localStorage.getItem("Id_Calend"),
           Date:'',
           StartTime:'',
-          EndTime:''
+          EndTime:'',
+          LoginRec:localStorage.getItem("LoginRec")
         }
         this.changeHandler=this.changeHandler.bind(this);
         this.submitForm=this.submitForm.bind(this);
@@ -35,8 +37,10 @@ class Update extends React.Component {
   //     alert(this.state.Id_Agenda);
      // var isload = false ;
       //if(!isload){
-       var id = this.state.Id_Agenda;
-        fetch(`http://127.0.0.1:8000/PcdApp/agendapartage/${id}/`,{
+      // var id = localStorage.getItem("IdUser");
+    //  const id=1;
+    var id = this.state.Id_Calend;
+        fetch(`http://127.0.0.1:8000/PcdApp/agenda/${id}/`,{
             method:'PUT',
             body:JSON.stringify(this.state),
             headers:{
@@ -53,16 +57,19 @@ class Update extends React.Component {
     }
 
     fetchData(){
-        var id = this.state.Id_Agenda;
-        fetch(`http://127.0.0.1:8000/PcdApp/agendapartage/${id}/`)
+      //  const id =1;
+       // var id = localStorage.getItem("IdUser");
+       var id = this.state.Id_Calend;
+        fetch(`http://127.0.0.1:8000/PcdApp/agenda/${id}/`)
         .then(response=>response.json())
         .then((data)=>{
             this.setState({
                // data:data,
-               // Id_Agenda: data.Id_Agenda,
+              //  Id_Calend: data.Id_Calend,
                 Date:data.Date,
                 StartTime:data.StartTime,
-                EndTime:data.EndTime
+                EndTime:data.EndTime,
+                LoginRec:data.LoginRec
             });
         });
     }
@@ -89,7 +96,7 @@ class Update extends React.Component {
     render(){
        //const agendaId = this.state.data;
         return(<div>
-            <HeaderCan/>
+            <HeaderRec/>
          <div style={{ paddingLeft :'130px' ,paddingRight:'130px', paddingTop:'100px'}}>
             <div  style={{ border :'1px solid #023C59',borderRadius:'15px',borderWidth:'10px'}}>
             <h4  style={{paddingTop:'15px',textAlign:'center',color:'#023C59'}}>Mettre à jour votre agneda</h4><br/><br/>
@@ -115,7 +122,7 @@ class Update extends React.Component {
                     </tr>
                     <tr>
                         <td colSpan="2">
-                           <NavLink to ="/Agenda"> <input type="submit" onClick={this.submitForm(this.state.Id_Agenda)} className="btn btn-outline-secondary" /></NavLink>
+                           <NavLink to ={"/Agenda/"+localStorage.getItem("LoginUser")}> <input type="submit" onClick={this.submitForm(this.state.Id_Calend)} className="btn btn-outline-secondary" /></NavLink>
                         </td>
                     </tr>
                 </tbody>

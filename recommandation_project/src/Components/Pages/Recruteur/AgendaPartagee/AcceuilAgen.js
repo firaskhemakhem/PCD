@@ -1,16 +1,20 @@
 import React from "react";
-import BarNavig from "../BarNavig";
+
 import AgendaPartagee from "./AgendaPartagee";
-import agenda from  "../../../assets/images/agendaa.jpg"
-import "../../../styles/AgendaPartagee/AgendaPartagee.css"
-import HeaderCan from "../Candidat/HeaderCan";
+
+import agenda from  "../../../../assets/images/agendaa.jpg";
+import "../../../../styles/AgendaPartagee/AgendaPartagee.css"
+
 
 class AcceuilAgen extends React.Component{
   state = {
-    credentials: {Id_Agenda:'', Date:'', StartTime:'', EndTime:''}
+    credentials: {Id_Calend:localStorage.getItem("IdUser"), Date:'', StartTime:'', EndTime:'',LoginRec:localStorage.getItem("LoginUser")},
+    data:[],
+    isLogin:false
   }
+  
   register = event => {
-    fetch('http://127.0.0.1:8000/PcdApp/agendapartage/', {
+    fetch('http://127.0.0.1:8000/PcdApp/agenda/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.credentials)
@@ -25,19 +29,32 @@ class AcceuilAgen extends React.Component{
     this.setState({credentials: cred});
     
   }
+fetchLogin = event => {
+  var id = this.state.Id_Calend
+    fetch(`http://127.0.0.1:8000/PcdApp/agenda/`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.state.credentials)
+    })
+    .then( data => data.json())
+    .then(res => {console.log(res);})
+    .catch( error => console.error(error))
+  }
+
+
   render(){
         return(
             <div>
-            <HeaderCan/>
-         
-              <img src={agenda} width='90%' height='380px'   style={{ alignSelf: 'center',
+              <form>
+                <img src={agenda} width='90%' height='380px'   style={{ alignSelf: 'center',
                                                                        paddingLeft :'160px' }}/>
-              <div  style={{ alignSelf: 'center', paddingLeft :'130px' }}>
-              <h4 className="hh">Selectionner puis valider la date et le temps de votre disponibilité</h4>
+                <div  style={{ alignSelf: 'center', paddingLeft :'130px' }}>
+                  <h4 className="hh">Selectionner puis valider la date et le temps de votre disponibilité</h4>
                 <div className="contenuag">
                   <div className="contenue">
                     <p><div className="datelibre"> Sélectionner la date selon votre disponibilité 
-                    <i className="tempslibre">Sélectionner le temps selon votre disponibilité</i></div></p>
+                    <i className="tempslibre">Sélectionner le temps selon votre disponibilité</i>
+                    </div></p>
                   <div>
                   <i class="dat"> 
                     <input type="date" name="Date"
@@ -57,24 +74,27 @@ class AcceuilAgen extends React.Component{
                       onChange ={this.inputChanged}>
                    </input>
                   </i>
+                </div>
+                <br/><br/>
+                <div className="valide">
+                  <button 
+                        type="submit" 
+                        class="btn btn-outline-secondary"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 4, mb:2 }}
+                        onClick= {this.register} 
+                      >
+                        Valider
+                    </button>
+                </div>
+                
               </div>
-<br/><br/>
-              <div className="valide">
-                <button 
-                      type="button" 
-                      class="btn btn-outline-secondary"
-                      fullWidth
-                      variant="contained"
-                      sx={{ mt: 4, mb:2 }}
-                      onClick= {this.register} 
-                    >
-                      Valider
-         </button></div></div>
-          <br/>
-         <h4 className="hhh">Votre Agenda</h4>
-            <AgendaPartagee/>
-         </div>
+              <br/>
+              <AgendaPartagee/>
+            </div>
         </div>
+        </form>
         </div>
      
         );

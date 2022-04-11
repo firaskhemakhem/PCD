@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from './Button';
 import Form from './Form';
 import PropTypes from 'prop-types';
-
+import "../../../styles/PopUpMessage/PopUpFile.css"
 
 const isEmpty = str => !str.trim().length;
 
@@ -16,33 +16,40 @@ const handleCustomPosition = ((position, formStyles) => {
 	} 
 	return customFormStyles;
 })
-
+let finEmail ='';
 class Feedback extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			//showButton: true,
 			showForm: true,
 			showModal: false,
 			nameInput: '',
 			messageInput: '',
 			emailInput: '',
-			ratingInput: -1
+			ratingInput: -1,
+			Email:''
+		
 		};
 		this.handleButtonClick = this.handleButtonClick.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleMessageInput = this.handleMessageInput.bind(this);
 	}
+	
 	handleMessageInput(inputName, content) {
-		if (inputName === 'email') {
+		if (inputName === 'Email') {
 			this.setState({ emailInput: content });
-		} else if (inputName === 'name') {
-			this.setState({ nameInput: content });
-		} else if (inputName === 'rating') {
+			console.log (content);
+		//	console.log (this.state.emailInput);
+			//this.setState({finEmail:content});
+			// finEmail = content;
+			// console.log(finEmail)
+
+		} 
+		 else if (inputName === 'Rating') {
 			this.setState({ ratingInput: content });
-		} else if (inputName === 'message') {
+		} else if (inputName === 'Message') {
 			this.setState({ messageInput: content });
 		}
 	}
@@ -51,27 +58,53 @@ class Feedback extends Component {
 	}
 	handleNameInput(nameInput) {
 		this.setState({ nameInput: nameInput });
+		
 	}
 	handleEmailInput(emailInput) {
 		this.setState({ emailInput: emailInput });
+	
+		
 	}
+	
 	handleButtonClick() {
 		const { handleButtonClick } = this.props;
 		this.setState({ showButton: false, showForm: true });
 		handleButtonClick();
 	}
+	fetchData(){
+		var id = localStorage.getItem("LoginUser");
+		fetch(`http://127.0.0.1:8000/PcdApp/recruteur/${id}/`)
+		  
+		  .then(response=>response.json())
+		  .then((data)=>{
+			  this.setState({
+				  Email:data.Email
+			  });
+			   console.log (this.state.Email)
+			  console.log(localStorage.getItem("LoginUser"));
+			  console.log(this.state.data);
+		  });
+	  }
+	  
+	  componentDidMount(){
+		  this.fetchData();
+	  }
 	handleSubmit() {
 		const { showButtonOnSubmit, handleSubmit, handleClose } = this.props;
 		// Check if the values are missing.
-		if (isEmpty(this.state.nameInput) || isEmpty(this.state.emailInput) || isEmpty(this.state.messageInput) || (this.state.ratingInput===-1)) {
+		if ( isEmpty(this.state.emailInput) || isEmpty(this.state.messageInput) || (this.state.ratingInput===-1)) {
 			alert("Fields are missing!");
 		} else {
-			handleSubmit({
-				name: this.state.nameInput,
-				message: this.state.messageInput,
-				rating: this.state.ratingInput,
-				email: this.state.emailInput
-			});
+			if (this.state.Email == this.state.emailInput){
+		(handleSubmit({
+				Login: localStorage.getItem("LoginUser"),
+				Message: this.state.messageInput,
+				Rating: this.state.ratingInput,
+				Email: this.state.emailInput
+			}));}
+			else {
+				alert ('incorrecte')
+			}
 			if (showButtonOnSubmit) {
 				this.setState({ showButton: true });
 			}
@@ -91,9 +124,7 @@ class Feedback extends Component {
 	render() {
 		const {
 			headerText,
-			//buttonText,
 			position,
-			//buttonStyles,
 			headerStyles,
 			headerBtnStyles,
 			headerBtnText,
@@ -109,7 +140,8 @@ class Feedback extends Component {
 		return (
 			<div>
 				{this.state.showForm &&
-					<div>
+				
+				
 						<Form
 							style={style}
 							headerText={headerText}
@@ -132,7 +164,7 @@ class Feedback extends Component {
 							handleMessageInput={this.handleMessageInput}
 							handleCustomPosition={handleCustomPosition}
 						/>
-					</div>
+			
 				}
 				{//this.state.showButton // &&
 					// <Button

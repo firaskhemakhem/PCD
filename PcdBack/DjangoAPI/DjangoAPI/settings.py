@@ -46,6 +46,15 @@ INSTALLED_APPS = [
     'PcdApp',
 ]
 
+
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework_simplejwt.authentication.JWTAuthentication',
+#    ),
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     )
+# }
 CORS_ORIGIN_ALLOW_ALL = True 
 
 MIDDLEWARE = [
@@ -81,6 +90,17 @@ WSGI_APPLICATION = 'DjangoAPI.wsgi.application'
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000"
+]
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "LOGIN",
+    "POST",
+    "PUT",
 ]
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

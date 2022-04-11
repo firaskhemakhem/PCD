@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState,Component} from 'react';
+import {Component} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -12,71 +12,81 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../../../styles/Pages/Authentification.css";
 import {NavLink} from "react-router-dom";
 import PopUpMessage from '../../PopUpMessage/PopUpFile'
-
-
+import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router';
 
 const theme = createTheme();
-class AuthEtudiant extends Component  {
-  constructor(props){
-    super(props);
-    this.props = props;
-  }
-  state={
+function AuthRecruteur() {
+const navigate = useNavigate();
+ const [state,setState]=React.useState({
     credentials:{},
     data:{},
     id:'',
-    isOpen:false
-  }
+    isOpenSucceed:false,
+    isOpenFailed:false
+ })
 
-  componentDidMount(){
-    
+ React.useEffect(() => {
     fetch('http://127.0.0.1:8000/PcdApp/recruteur/',{
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
         })
     .then(response => response.json())
     .then((result)=>{
-        this.setState({data:result}) 
-        console.log(this.state.data);
-        console.log(this.state.credentials);
+        setState({...state,data:result}) 
+        console.log(state.data);
+        console.log(state.credentials);
     })
+  }, []);
+
+ const togglePopup =event=> {
+    setState({...state,isOpenSucceed:true});
+    console.log(state.isOpenSucceed);
+  }
+const togglePopupFailed =event=> {
+    setState({...state,isOpenFailed:true});
+    console.log(state.isOpenFailed);
   }
 
-  togglePopup () {
-    this.setState({isOpen:true});
-    console.log(this.state.isOpen);
-  }
-
-  VerifUser (){
+ const VerifUser = ()=>{
     var valid=false;
-    for(let i=0;i<this.state.data.length;i++){
-      if((this.state.data[i].Login == this.state.credentials.Login) && (this.state.data[i].MDP == this.state.credentials.MDP)){
+    for(let i=0;i<state.data.length;i++){
+      if((state.data[i].Login == state.credentials.Login) && (state.data[i].MDP ==state.credentials.MDP)){
         valid=true;
-        this.state.id=this.state.data[i].Id_Utilisateur;
+        state.id=state.data[i].Login;
       }
     }
     console.log(valid);
     return valid;
   }
 
-  handleSubmit= event => {
-    const val=this.VerifUser()
+ const handleSubmit= event => {
+    const val= VerifUser()
     console.log(val);
     if(val){
-      localStorage.setItem("LoginUser",this.state.credentials.Login);
-      localStorage.setItem("IdUser",this.state.id);
-      this.togglePopup();
+      localStorage.setItem("LoginUser",state.credentials.Login);
+      togglePopup();    
+    }
+    else if (!val){
+      togglePopupFailed();
     }
   };
 
-  inputChanged = (event) => {
-    const cred = this.state.credentials;
+ const handleErreur= event => {
+    setState({...state,isOpenFailed:false});
+    
+  };
+
+ const inputChanged = (event) => {
+    const cred = state.credentials;
     console.log(event.target.value);
     cred[event.target.name] = event.target.value;
-    this.setState({credentials: cred}); 
+    setState({...state,"Login":event.target.value,
+               ...state,"MDP":event.target.value,
+              ...state}); 
   }
 
-  render(){
+
     return (
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
@@ -107,7 +117,7 @@ class AuthEtudiant extends Component  {
             >
               <br/><br/>
               <h1 classname='Titre'>Sign In</h1>
-              <Box component="form" noValidate onSubmit={this.VerifUser} sx={{ mt: 1 }}>
+              <Box component="form" noValidate onSubmit={VerifUser} sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
                   required
@@ -117,8 +127,8 @@ class AuthEtudiant extends Component  {
                   name="Login"
                   autoComplete="login"
                   autoFocus
-                  value = {this.state.credentials.Login}
-                  onChange ={this.inputChanged}
+                  value = {state.credentials.Login}
+                  onChange ={inputChanged}
                 />
                 <TextField
                   margin="normal"
@@ -129,27 +139,28 @@ class AuthEtudiant extends Component  {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  value = {this.state.credentials.MDP}
-                  onChange ={this.inputChanged}
+                  value = {state.credentials.MDP}
+                  onChange ={inputChanged}
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
                 />
                 <br/><br/>
-
+                <NavLink to ='#'>
                   <button
                     type="submit"
                     class="btn btn-outline-secondary"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                    onClick={this.handleSubmit}
+                    onClick={handleSubmit}
                   >
                     Sign In
                   </button>
+                  </NavLink>
                 <br/><br/>
-                
+                  
                 <Grid container>
                   <Grid item xs>
                     <Link href="#" variant="body2">
@@ -166,21 +177,25 @@ class AuthEtudiant extends Component  {
             </Box>
           </Grid>
         </Grid>
-        <div>
-          {this.state.isOpen && <PopUpMessage
+        <div align="center">
+        {state.isOpenSucceed && navigate('/EspRec/'+localStorage.getItem('LoginUser'))}
+        </div> 
+        <div align="center">
+          {state.isOpenFailed && <PopUpMessage
             dataFromParent ={<>
-              <b>Well Done</b>
-              <p>fuck off !! </p>
-              <NavLink to ={'/EspCand/'+localStorage.getItem('IdUser')}> 
-                <button >Test button</button>
-              </NavLink>
+              <h3><b>Erreur!</b></h3><br/>
+              <p>Vérifier Votre Login ou Votre Mot De Passe</p>
+               
+              <Button variant="contained"  onClick={handleErreur}>
+                Ok
+                </Button>
+              
             </>}
           />}
         </div>
       </ThemeProvider>
-      
     );
   }
-}
 
-export default AuthEtudiant;
+
+export default AuthRecruteur;

@@ -11,7 +11,7 @@ const defaultBodyStyles = {
 const defaultMessageStyles = {
 	boxSizing: 'border-box',
 	padding: '10px 10px 0 10px',
-	overflow: 'hidden',
+   overflow: 'hidden',
 	width: '370px',
 	fontFamily: 'arial'
 }
@@ -29,22 +29,22 @@ const Body = ({ bodyText, bodyStyles, nameInput, messageInput, emailInput, ratin
 
 		{showEmailInput &&
 			<div>
-				<input type='email' rows="5" value={emailInput} placeholder="Entrer Votre Email" required onChange={e => handleMessageInput('email', e.target.value)} style={defaultMessageStyles} />
+				<input type='text' rows="5" value={emailInput} placeholder="Entrer Votre Email" required onChange={e => handleMessageInput('Email', e.target.value)} style={defaultMessageStyles} />
 			</div>
 		}
 		{showMessageInput &&
 			<div>
-				<textarea rows="5" value={messageInput} placeholder="Entrer Votre Avis" onChange={e => handleMessageInput('message', e.target.value)} style={defaultMessageStyles} />
+				<textarea rows="5" value={messageInput} placeholder="Entrer Votre Avis" onChange={e => handleMessageInput('Message', e.target.value)} style={defaultMessageStyles} />
 			</div>
 		}
 		{showRatingInput &&
 			<div style={defaultMessageStyles}>
 				<StarRatings 
 					rating={ratingInput}
-					starRatedColor="blue"
-					changeRating={newRating => handleMessageInput('rating', newRating)}
+					starRatedColor="#023C59"
+					changeRating={newRating => handleMessageInput('Rating', newRating)}
 					numberOfStars={numberOfStars}
-					name='rating'
+					name='Rating'
 					starDimension="35px"
 					starSpacing="10px"
 				/>

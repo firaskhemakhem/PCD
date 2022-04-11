@@ -12,10 +12,13 @@ urlpatterns = [
     path('recruteur/',obtain_auth_token),
     path('media/image/',obtain_auth_token),
     path('media/pdf/',obtain_auth_token),
-    path('auth/',obtain_auth_token),
+    path('authrec/',obtain_auth_token),
+    path('agenda/',obtain_auth_token),
+    path('feedback/',obtain_auth_token),
     path('infoper/',obtain_auth_token),
     path('competence/',obtain_auth_token),
     path('infoadd/',obtain_auth_token),
-    path('cv/',obtain_auth_token)
+    path('cv/',obtain_auth_token),
+    path('sujet/',obtain_auth_token)
 
 ]
