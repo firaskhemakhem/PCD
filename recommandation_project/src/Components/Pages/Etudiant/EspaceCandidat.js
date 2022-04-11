@@ -24,9 +24,12 @@ const Input = styled('input')({
   display: 'none',
 });
 
+//https://emploi-tunisie-travail.com/wp-content/uploads/2019/12/jobs-in-tunisia-1.png
+//https://i.pinimg.com/564x/9b/9d/87/9b9d87aac970486a8793525e233ee783.jpg
+//https://i.pinimg.com/564x/49/8d/08/498d08478c0c6473db4fcc0b52c5fe02.jpg
 
 const mainFeaturedPost = {
-  image:'https://emploi-tunisie-travail.com/wp-content/uploads/2019/12/jobs-in-tunisia-1.png',
+  image:'https://i.pinimg.com/564x/9b/9d/87/9b9d87aac970486a8793525e233ee783.jpg',
   imageText: 'main image description',
 };
 const queryParams = new URLSearchParams(window.location.search);
