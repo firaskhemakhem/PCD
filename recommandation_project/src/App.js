@@ -14,6 +14,7 @@ import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 import AcceuilAgen from './Components/Pages/Recruteur/AgendaPartagee/AcceuilAgen';
 import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
 import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
+import forgetPassword from './Components/Pages/Etudiant/forgetPassword'
 
 /*<Route exact path = "/CandProfile/:id" element={<CandProfile/>}/> ki nrigel 7keyet el id*/
 

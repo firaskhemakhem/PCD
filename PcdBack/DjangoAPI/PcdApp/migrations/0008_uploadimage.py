@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('PcdApp', '0007_feedbackrec'),
+        ('PcdApp', '0005_competence_cv_feedbackrec_infoadd_infoper_sujet_and_more'),
     ]
 
     operations = [
