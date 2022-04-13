@@ -7,9 +7,7 @@ import Main from '../Main/Main';
 
 
 class Acceuil extends React.Component {
-    /*componentDidCatch(){
-        localStorage.setItem('LoginUser',null)
-    }*/
+
     render(){
 
         {localStorage.setItem('LoginUser',null)}
