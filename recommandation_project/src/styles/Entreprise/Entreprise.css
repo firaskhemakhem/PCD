@@ -7,11 +7,13 @@
     border-radius: 8px;
     box-shadow: 0px 0px 8px #ccc;
     color: #253b56;
-    margin: 12px 12px;
+   /* margin: 14px 12px;*/
+   
   }
   
   .styleCardContent {
     padding: 4px 16px 20px 16px;
+  
   }
   
   .styleImage {

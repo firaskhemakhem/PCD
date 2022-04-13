@@ -26,6 +26,7 @@ import React from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
 import { NavLink } from 'react-router-dom';
+import CallIcon from '@mui/icons-material/Call';
   function CardContent(props) {
     return (
       <div className="styleCardContent">
@@ -40,7 +41,7 @@ import { NavLink } from 'react-router-dom';
         }}>CONTACT</p>
        <p className="styleLocationLabel"> <LocationOnIcon/>{props.Adresse}</p>
        <p className="styleDescription"><EmailIcon/>{props.Email}</p>
-       
+       <p className="styleDescription"><CallIcon/>{props.Tel}</p>
   
         <NavLink to = {props.Login}> <p style={{
           textAlign:'right'
@@ -90,6 +91,7 @@ import { NavLink } from 'react-router-dom';
               Adresse={this.props.Adresse}
               Email={this.props.Email}
               Domaine ={this.props.Domaine}
+              Tel ={this.props.Tel}
          
             />
           </div>

@@ -17,6 +17,7 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import {NavLink} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 export default function Navig() {
  const [state, setState] = React.useState({});
@@ -24,13 +25,21 @@ export default function Navig() {
    if(index === 0){return <PermIdentityIcon/>;}
    else if (index=== 1 ){return <DateRangeIcon/>;}
    else if (index=== 2 ){return <MailOutlineIcon/>;}
-   else if(index === 3) {return <NavLink to = {"/Favoris/"+localStorage.getItem('LoginUser')}><FeedbackIcon /></NavLink>;}
-   else {return <NavLink to = "/entreprise"><DensityMediumIcon/></NavLink>}
+   else if(index === 3) {return <NavLink to = {"/Favoris/"+localStorage.getItem('LoginUser')} style={{
+     color:'grey'
+   }}><FavoriteIcon /></NavLink>;}
+   else {return <NavLink to = "/entreprise" style={{
+    color:'grey'
+  }}><DensityMediumIcon/></NavLink>}
  }
 const Icons2 =(index)=>{
-  if(index === 0){return <NavLink to = "/"><HomeIcon /> </NavLink>;}
+  if(index === 0){return <NavLink to = "/" style={{
+    color:'grey'
+  }}><HomeIcon /> </NavLink>;}
   else if (index=== 1 ){return <InfoIcon />;}
-  else {return <InboxIcon />;}
+  else {return <NavLink to = "/" style={{
+    color:'grey'
+  }}><InboxIcon /></NavLink>;}
 }
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -52,7 +61,7 @@ const Icons2 =(index)=>{
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Profile', 'Agenda', 'Email', 'Votre Avis','Liste des entreprises'].map((text, index) => (
+        {['Profile', 'Agenda', 'Email', 'Liste des Favoris','Liste des entreprises'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
      

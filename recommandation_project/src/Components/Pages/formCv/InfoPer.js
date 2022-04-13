@@ -7,16 +7,19 @@ import { multiStepContext } from "./StepContext";
 
 function InfoPer() {
     const {setCurrentStep,userData, setUserData}=useContext(multiStepContext);   
-    const register = event => {
-        fetch("http://127.0.0.1:8000/PcdApp/infoper/", {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({Nom:userData.Nom, Email: userData.Email, Tel:userData.Tel, Gouvernorat:userData.Gouvernorat, Adresse:userData.Adresse, DDN: userData.DDN, Dom: userData.Dom})
+    const [tableData,setTableData]=useState([])
+    React.useEffect(() => {
+        fetch('http://127.0.0.1:8000/PcdApp/infoper/',{
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+            })
+        .then(response => response.json())
+        .then((result)=>{
+            setTableData({...tableData,result}) 
+            console.log(tableData);
+            //console.log(tableData.credentials);
         })
-        .then( data => data.json())
-        .catch( error => console.error(error))
-        console.log(userData)
-    }
+      }, []);
         return (
             <React.Fragment>
                 <Typography variant="h6" gutterBottom>
@@ -117,12 +120,16 @@ function InfoPer() {
                             value={userData.Dom}
                             onChange={(e)=>{setUserData({...userData,"Dom":e.target.value})}}
                         />
+                        <br/>
                     </Grid>
                     <Grid item
-                        sm={6}>
+                        xs={40}
+                        sm={12}>
+                    <Grid container justifyContent="flex-end">
                         <button class="btn btn-light" onClick={()=>{setCurrentStep(2)}}>
                             next
                         </button>
+                    </Grid>
                     </Grid>
                 </Grid>
             </React.Fragment>

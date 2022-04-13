@@ -13,6 +13,7 @@ export default function EventsList(props) {
       Adresse={event.Adresse}
       Email={event.Email}
       Domaine={event.Domaine}
+      Tel={event.Tel}
     />
   ));
 

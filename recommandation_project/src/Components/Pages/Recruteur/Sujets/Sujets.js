@@ -37,6 +37,18 @@ class Sujets extends React.Component {
     componentDidMount() {
         this.fetchData();
     }
+    deleteData(id){
+        fetch('http://127.0.0.1:8000/PcdApp/sujet/'+id,{
+            method:'DELETE',
+            body:JSON.stringify(this.state),
+        })
+        .then(response=>response)
+        .then((data)=>{
+            if(data){
+                this.fetchData();
+            }
+        });
+      }
 
     render() {
         const sujetData = this.state.data;
@@ -49,6 +61,18 @@ class Sujets extends React.Component {
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
+            <td>  
+                   <button 
+                       type="button" 
+                       class="btn btn-outline-secondary"
+                       fullWidth
+                       variant="contained"
+                       sx={{ mt: 4, mb:2 }}
+                     >
+                      Mettre à jour
+                   </button>
+                 </td>
+                 <td><button onClick={()=>this.deleteData(sujet.Id_Calend)} className="btn btn-danger">Supprimer</button></td>
         </tr>));
         return (
           
@@ -65,22 +89,25 @@ class Sujets extends React.Component {
                       <div style={{
                         border: '1px solid #023C59',
                         borderWidth: '3px',
-                        borderRadius: '10px'
+                        borderRadius: '10px',
+                        marginTop:'15px'
+                       
                     }}>
                     <div>
                         <h4 style={{
                             textAlign: 'center',
-                            color: '#023C59'
+                            color: '#023C59', paddingTop:'8px'
                         }}>Vos Sujets Déposés</h4>
                         <table class="table">
                             <thead>
 
 
                                 <tr>
-
-                                    <th scope="col">Titre</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Domaine</th>
+                                <th scope="col">Mettre à jour</th>
+                                <th scope="col">Supprimer</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Domaine</th>
                                 </tr>
 
 

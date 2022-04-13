@@ -112,14 +112,17 @@ function Competence() {
                     </Grid>
                     <Grid item
                         xs={20}
-                        sm={6}>
+                        sm={1}>
                         <button class="btn btn-light" onClick={()=>{setCurrentStep(1)}}>
                             Back
                         </button>
                     </Grid>
                     <Grid item
+                        xs={20}
+                        sm={10}></Grid>
+                    <Grid item
                         xs={12}
-                        sm={6}>
+                        sm={1}>
                         <button class="btn btn-light" onClick={()=>{setCurrentStep(3)}}>
                             Next
                         </button>

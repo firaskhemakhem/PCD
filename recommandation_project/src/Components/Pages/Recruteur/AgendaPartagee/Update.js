@@ -5,9 +5,7 @@ import HeaderRec from "../HeaderRec";
 
 
 
-class Update extends React.Component {
-
-    
+class Update extends React.Component {  
     constructor(){
         super();
         this.state={
@@ -25,9 +23,6 @@ class Update extends React.Component {
             [event.target.name]:event.target.value
         });
     }
-
-    
-
    
    submitForm(){
     var id = this.state.Id_Calend;
@@ -40,7 +35,6 @@ class Update extends React.Component {
         })
         .then(response=>response.json())
         .then((data)=>console.log(data));
-       // window.location.reload(true);
     }
 
     fetchData(){
@@ -58,8 +52,7 @@ class Update extends React.Component {
     }
 
     componentDidMount(){
-        this.fetchData();
-       
+        this.fetchData();   
     }
 
 

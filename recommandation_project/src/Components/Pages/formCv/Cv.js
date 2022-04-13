@@ -1,4 +1,4 @@
-import react,{useContext} from 'react';
+import React,{useContext} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -33,12 +33,14 @@ const Cv=()=>{
         throw new Error('Unknown step');
     }
   }
+
+  
   return(
     <header className='App-header'>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header/>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Curriculum vitæ

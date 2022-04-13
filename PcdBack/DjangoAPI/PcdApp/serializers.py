@@ -1,7 +1,7 @@
 from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import  FeedBackRec, InterSuj, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda, Suit,Sujet
+from PcdApp.models import  FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit
 from rest_framework.authtoken.models import Token
 
 
@@ -32,6 +32,18 @@ class StudentsLoginSerializer(serializers.ModelSerializer):
         model = Students
         fields = ['Login','MDP']
 
+#imageUpload
+class ImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UploadImage
+        fields = ['Id_Image','Login','Image']
+
+#PDFUpload
+class PDFSerializer(serializers.HyperlinkedModelSerializer):
+   class Meta:
+        model = UploadFile
+        fields = ['Id_PDF','Login','PDF']
+
 
 class RecruteursLoginSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,25 +53,25 @@ class RecruteursLoginSerializer(serializers.ModelSerializer):
 class InfoPerSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoPer
-        fields = ['Id_InfoPer',
+        fields = ['LoginStu',
                    'Nom','Email','Tel','Gouvernorat','Adresse','DDN','Dom']
 
 class CompetenceSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Competence
-        fields = ['Id_Com',
+        fields = ['LoginStu',
                    'Formation','ExpProf','Certif','Lang','Liens']
 
 class InfoAddSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoAdd
-        fields = ['Id_InfoAdd',
+        fields = ['LoginStu',
                    'CentreInt','VieAsso']
 
 class CvSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cv
-        fields = ['Id_Cv',
+        fields = ['LoginStu',
                    'InfoPer','Compe','InfoAdd']
 
 class SujetSerializer(serializers.ModelSerializer):

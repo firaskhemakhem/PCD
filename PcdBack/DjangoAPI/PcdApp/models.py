@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 
 class Utilisateur (models.Model):
-    #Id_Utilisateur = models.AutoField()
     Login = models.CharField(max_length= 30,primary_key=True)
     MDP = models.CharField(max_length= 30,null=False)
     Email = models.CharField(max_length= 30,unique=True)
@@ -23,6 +22,7 @@ class Students(Utilisateur):
    DDN =models.CharField(max_length= 30)
    Civ = models.CharField(max_length= 30)
    follow = models.ManyToManyField('Recruteurs',through='Suit',related_name='follows')
+   
 
 
 
@@ -34,7 +34,11 @@ class Recruteurs(Utilisateur):
 
 
 class InfoPer(models.Model):
-    Id_InfoPer=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     Nom = models.CharField(max_length= 30)
     Email = models.CharField(max_length= 30,unique=True)
     Tel = models.CharField(max_length=10,unique=True)
@@ -44,7 +48,11 @@ class InfoPer(models.Model):
     Dom = models.CharField(max_length= 45)
 
 class Competence(models.Model):
-    Id_Com=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     Formation=models.CharField(max_length=250)
     ExpProf=models.CharField(max_length=250)
     Certif=models.CharField(max_length=250)
@@ -53,16 +61,40 @@ class Competence(models.Model):
 
 
 class InfoAdd(models.Model):
-    Id_InfoAdd=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     CentreInt=models.CharField(max_length=250)
     VieAsso=models.CharField(max_length=250)
 
 class Cv(models.Model):
-    Id_Cv=models.AutoField(primary_key=True)
+    LoginStu = models.OneToOneField(
+        "Students",
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     InfoPer=models.TextField()
     Compe=models.TextField()
     InfoAdd=models.TextField()
 
+#imageUpload
+def uploadFile(instance,filename):
+    return '/'.join(['students',str(instance.Login),filename])
+
+#fileUpload
+class UploadFile(models.Model):
+    Id_PDF = models.AutoField(primary_key=True)
+    Login = models.CharField(max_length= 30)
+    PDF = models. FileField(blank=True,null=True,upload_to=uploadFile)
+
+class UploadImage(models.Model):
+    Id_Image = models.AutoField(primary_key=True)
+    Login = models.CharField(max_length= 30,unique=True)
+    Image = models. ImageField(blank=True,null=True,upload_to=uploadFile)
+
+    
 class Sujet(models.Model):
     Id_sujet = models.AutoField(primary_key=True)
     Titre = models.TextField()

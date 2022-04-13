@@ -14,12 +14,13 @@ import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 import AcceuilAgen from './Components/Pages/Recruteur/AgendaPartagee/AcceuilAgen';
 import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
 import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
+import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword'
 
 /*<Route exact path = "/CandProfile/:id" element={<CandProfile/>}/> ki nrigel 7keyet el id*/
 
 
 import Cv from './Components/Pages/formCv/Cv';
-import ResulatFinal from './Components/Pages/formCv/ResultatFinal';
+//import ResulatFinal from './Components/Pages/formCv/ResultatFinal';
 import StepContext from './Components/Pages/formCv/StepContext';
 
 
@@ -33,6 +34,7 @@ import Entreprise from './Components/Pages/Entreprise/Entreprise';
 import VisibleStu from './Components/Pages/Entreprise/VisibleStu';
 import Favoris from './Components/Pages/Entreprise/Favoris';
 
+import LettreDeMotiv from './Components/Pages/Etudiant/LettreDeMotiv'
 
 function App() {
   const [token, setToken] = useState('');
@@ -51,6 +53,7 @@ function App() {
         <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} /> 
         {/* <Route exact path ="/InscRec" element ={<Registration/>} userLogin={userLogin} /> */}
         <Route exact path ="/footer" element ={<Footer/>}/>
+        <Route exact path ="/password/" element ={<ForgetPassword/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>
         <Route exact path = "/EspRec/:id" element={<EspaceRec/>}/>
@@ -58,14 +61,15 @@ function App() {
         <Route exact path = "/CandProfile/:id" element={<CandProfile/>}/>
         <Route exact path = "/RecProfile/:id" element={<RecProfile/>}/>
         <Route exact path ="/Agenda/:id" element={<AcceuilAgen/>}/>
-        <Route exact path="/CV" element={<StepContext><Cv/></StepContext>}/>
+        <Route exact path="/CV/:id" element={<StepContext><Cv/></StepContext>}/>
         <Route exact path = "/Creation" element={<Creation/>}/>
         <Route exact path="/Update/:id/:id" element={<Update/>}/>
-        <Route exact path = "/Res" element={<ResulatFinal/>}/>
         <Route exact path = "/Sujet/:id" element={<FormSuj/>}/>
         <Route exact path = "/entreprise" element={<Entreprise/>}/>
         <Route exact path = "/entreprise/:id" element={<VisibleStu/>}/>
         <Route exact path = "/Favoris/:id" element={<Favoris/>}/>
+        <Route exact path = "/Sujet" element={<FormSuj/>}/>
+        <Route exact path="/LettreDeMotivation/:id" element={<LettreDeMotiv/>} />
       </Routes>
     </BrowserRouter>   
     </div>

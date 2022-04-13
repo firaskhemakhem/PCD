@@ -3,6 +3,7 @@ import HeaderCan from '../Etudiant/HeaderCan'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
 class VisibleStu extends React.Component {
 
     constructor() {
@@ -16,43 +17,23 @@ class VisibleStu extends React.Component {
             credentials: {},
             isFavorite: false,
             color: 'success',
-            content:'Follow',
-            data: {}
+            content:'Suivre',
+            data: {},
+            id:''
             
 
         };
     }
-    change = event => {
-      if( this.state.isFavorite==true){
-        this.setState({
-            color: 'error',
-            content:'DesFollow',
-            isFavorite:true
-        });
-      
-        {this.update()}
-    }
-    else if( this.state.isFavorite==false) {
-        this.setState({
-            color: 'success',
-            content:'Follow',
-            isFavorite:false
-        });
-        {this.update()}
-    }
-        console.log(this.state.color);
-        console.log(this.state.isFavorite)
-     
-
-    }
+    
     update = event => {
-        var id = this.state.data.id;
+        var id =this.state.data.id;
+        console.log(id)
         fetch(`http://127.0.0.1:8000/PcdApp/suit/${id}/`, {
-            method: 'PUT',
+           method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    "follow": this.state.isFavorite,
+                    "follow":(!this.state.isFavorite),
                     "recruteur": this.state.url,
                     "student": localStorage.getItem("LoginUser")
                 }
@@ -61,10 +42,12 @@ class VisibleStu extends React.Component {
             .then(data => data.json())
             .then((result) => {
                 console.log(result);
+                window.location.reload(true);
             })
             .catch(error => console.error(error));
 
     }
+
     register = event => {
         fetch('http://127.0.0.1:8000/PcdApp/suit/', {
             method: 'POST',
@@ -75,55 +58,91 @@ class VisibleStu extends React.Component {
                     "recruteur": this.state.url,
                     "student": localStorage.getItem("LoginUser"),
                 }
+               
             )
         })
             .then(data => data.json())
             .then((result) => {
+                
                 this.setState({
                     credentials: result
                 });
+                //window.location.reload(true);
                 console.log(result);
 
             })
             .catch(error => console.error(error));
 
     }
-    fetchDataFollow() {
+    fetchDataFollow=event=> {
         fetch(`http://127.0.0.1:8000/PcdApp/suit/`)
 
             .then(response => response.json())
             .then((result) => {
                 console.log(result);
                 console.log(window.location.href.split('/')[4]);
-
+                
                 this.setState({
                     url: window.location.href.split('/')[4]
                 })
-                
                 for (let i = 0; i < result.length; i++) {
-                    if (result[i].recruteur == this.state.url && result[i].student == localStorage.getItem("LoginUser")) {
-                        this.setState({
-                            data:result[i]
-                        })
+                    console.log(result[i].recruteur )
+                    console.log(result[i].student )
+                    if (result[i].recruteur == window.location.href.split('/')[4] && result[i].student == localStorage.getItem("LoginUser")) {
+                         this.setState({
+                            ...this.state,data:result[i]
+                      
+                         })
                         if(result[i].follow == true){
                             this.setState({
                                 color:'error',
-                                content :'DesFollow',
+                                content :'Ne plus Suivre',
                                 isFavorite:false
-                            })
-                        }else if (result[i].follow == false){
-                            this.setState({
-                                color:'success',
-                                content :'Follow',
-                                isFavorite:true
-                            })
-                        }
+                            })}
                  
+                    else if(result[i].recruteur !== window.location.href.split('/')[4] && result[i].student == localStorage.getItem("LoginUser")){
+                         this.setState({
+                            ...this.state, data:result[i]
+                         })
+                        this.register(event)}
+                    }else if (result[i].recruteur !== window.location.href.split('/')[4]){
+                         this.setState({
+                            data:result[i], ...this.state
+                         })
+                        this.register(event)
                     }
 
                 }
             });
     }
+    change =event=> {
+        if( this.state.isFavorite== false){
+            window.location.reload(true);
+            this.setState({
+                color: 'error',
+                content:'Ne plus Suivre',
+                isFavorite:true
+            });
+            {this.update(event)}
+          
+        }else if(this.state.isFavorite== true) {
+            window.location.reload(true);
+        
+            this.setState({
+                color: 'success',
+                content:'Suivre',
+                isFavorite:false,
+               
+            });
+            {this.update(event)}
+        }
+        
+            console.log(this.state.color);
+            console.log(this.state.isFavorite)
+        
+   
+        }
+   
     fetchDataSujet() {
         fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
 
@@ -179,14 +198,13 @@ class VisibleStu extends React.Component {
         this.fetchDataSujet();
         this.fetchDataAgenda();
         this.fetchDataFollow();
+ 
     }
 
     render() {
+      
         const sujetData = this.state.dataSujet;
         const agendaData = this.state.dataAgenda;
-        { localStorage.setItem('isFav', false) }
-
-        console.log(sujetData)
 
         const rowsSujet = sujetData.map((sujet) =>
 
@@ -195,7 +213,7 @@ class VisibleStu extends React.Component {
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
-            <td><button className="btn btn-outline-secondary" >Intéresser</button></td>
+            <td><NavLink to ={"/LettreDeMotivation/"+localStorage.getItem("LoginUser")}><button className="btn btn-outline-secondary" >Intéresser</button></NavLink></td>
         </tr>));
         const rowsAgenda = agendaData.map((agenda) =>
 
@@ -210,12 +228,17 @@ class VisibleStu extends React.Component {
         </tr>));
 
         return (
+           
             <div>
+               
                 <HeaderCan /><br />
-                <Button variant="contained" color={`${this.state.color}`} onClick={()=>{this.change()}}>
+                <div style={{
+                    marginLeft:'15px'
+                }}><Button variant="contained" color={`${this.state.color}`} onClick={(e)=>this.change(e)}>
                    {this.state.content}
-                </Button>
+                </Button></div>
                 <div >
+              
                     {this.state.isLoginSujet &&
 
                         <div>
@@ -278,7 +301,7 @@ class VisibleStu extends React.Component {
                             <h4 style={{
                                 textAlign: 'center',
                                 color: '#023C59'
-                            }} >La disponilité de {this.state.url} pour les entretiens</h4>
+                            }} >La disponibilité de {this.state.url} pour les entretiens</h4>
                             <div style={{
                                 border: '4px solid #023C59',
                                 borderRadius: '8px',
