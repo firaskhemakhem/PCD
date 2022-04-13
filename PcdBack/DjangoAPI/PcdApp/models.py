@@ -19,12 +19,19 @@ class Utilisateur (models.Model):
 
 
 class Students(Utilisateur):
-    DDN =models.CharField(max_length= 30)
-    Civ = models.CharField(max_length= 30)
+   DDN =models.CharField(max_length= 30)
+   Civ = models.CharField(max_length= 30)
+   follow = models.ManyToManyField('Recruteurs',through='Suit',related_name='follows')
+   
+
 
 
 class Recruteurs(Utilisateur):
     CodePostal = models.CharField(max_length=6)
+    Domaine = models.CharField(max_length=30,null=False,default='')
+
+
+
 
 class InfoPer(models.Model):
     LoginStu = models.OneToOneField(
@@ -98,6 +105,7 @@ class Sujet(models.Model):
     paye= models.BooleanField(default=False)
     Bin = models.BooleanField(default=False)
     Att = models.BooleanField(default=False)
+    LoginRec = models.ForeignKey(Recruteurs,on_delete=models.CASCADE,null=False,default='')
 
 
 class Agenda(models.Model):
@@ -117,3 +125,18 @@ class FeedBackRec(models.Model):
     Message = models.TextField()
     Rating = models.IntegerField()
 
+class Suit(models.Model):
+    student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
+    follow = models.BooleanField(blank=True)
+
+    class Meta:
+        unique_together = ('student', 'recruteur')
+
+
+class InterSuj(models.Model):
+    student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
+    inter = models.BooleanField(default=False,blank=True)
+    id_sujet= models.ForeignKey(Sujet,on_delete=models.CASCADE)
+    id_agenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)

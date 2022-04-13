@@ -56,6 +56,7 @@ class AuthEtudiant extends Component  {
         this.setState({data:result}) 
         console.log(this.state.data);
         console.log(this.state.credentials);
+        
     })
   }
   togglePopup =event=> {

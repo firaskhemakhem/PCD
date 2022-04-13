@@ -53,6 +53,7 @@ function InscRec() {
         Adresse: '',
         CodePostal: '',
         Tel: '',
+        Domaine:'',
         isError: {
             Login: '',
             MDP: '',
@@ -62,7 +63,8 @@ function InscRec() {
             Adresse: '',
             CodePostal: '',
             Tel: '',
-            ConfMDP: ''
+            ConfMDP: '',
+            Domaine:''
         }
     });
     const [ConfMDP, setConfMDP] = React.useState('')
@@ -98,6 +100,9 @@ function InscRec() {
             case "CodePostal": isError.CodePostal = regPostal.test(value) ? "" : "Code Postal doit contient exactement 4 chiffres";
                 break;
             case "ConfMDP": isError.ConfMDP = value !== state.MDP ? "MDP et ConfMDP does not match" : "";
+                break;
+            case "Domaine": isError.Domaine = value.length < 4 ? "Attention doit comprendre au minimum 4 caractéres" : "";
+                break;
             default:
                 break;
         }
@@ -122,6 +127,8 @@ function InscRec() {
             ...state,
             "MDP": e.target.value,
             ...state,
+            "Domaine":e.target.value,
+            ...state,
             isError
         })
         setConfMDP(e.target.value)
@@ -141,7 +148,8 @@ function InscRec() {
                     "Login": state.Login,
                     "MDP": state.MDP,
                     "Tel": state.Tel,
-                    "CodePostal": state.CodePostal
+                    "CodePostal": state.CodePostal,
+                    "Domaine":state.Domaine
                 }
             )
         }).then(data => data.json()).then((res) => {
@@ -306,7 +314,6 @@ function InscRec() {
                                         }</span>
                                     )
                                 } </Grid>
-                                {/* /////////////////////////////////////////// */}
                                 <Grid item
                                     xs={12}>
                                     <TextField required fullWidth name="ConfMDP" label="Confirmer votre Mot de passe" type="password" id="ConfMDP"
@@ -363,13 +370,33 @@ function InscRec() {
 
                                     )
                                 } </Grid>
+                                 <Grid item
+                                    xs={12}
+                                    sm={6}>
+                                    <TextField required name="Domaine" fullWidth id="domaine" label="Domaine" autoFocus
+                                        value={
+                                            state.Domaine
+                                        }
+                                        onChange={formValChange}
+                                        className={
+                                            (isError.Domaine.length) > 0 ? "is-invalid form-control" : "form-control"
+                                        }/> {
+                                    isError.Domaine.length > 0 && (
+                                        <span className="invalid-feedback">
+                                            {
+                                            isError.Domaine
+                                        }</span>
+
+                                    )
+                                } </Grid>
                                 <Grid item
-                                    xs={12}>
+                                    xs={12}
+                                    sm={6}>
                                     <FormControl required
                                         sx={
                                             {
                                                 sm: 4,
-                                                minWidth: 460
+                                                minWidth: 240
                                             }
                                     }>
                                         <InputLabel id="demo-simple-select-required-label">Gouvernorat</InputLabel>
@@ -378,9 +405,8 @@ function InscRec() {
                                                 state.Gouvernorat
                                             }
                                             onChange={formValChange}
-                                            className={
-                                                (isError.Gouvernorat.length) > 0 ? "is-invalid form-control" : "form-control"
-                                        }>
+                                           
+                                        >
                                             <MenuItem value={"Sfax"}>Sfax</MenuItem>
                                             <MenuItem value={"Sousse"}>Sousse</MenuItem>
 
@@ -409,15 +435,7 @@ function InscRec() {
                                             <MenuItem value={"Zaghouan"}>Zaghouan</MenuItem>
                                         </Select>
                                     </FormControl>
-                                    {
-                                    isError.Gouvernorat.length > 0 && (
-                                        <span className="invalid-feedback">
-                                            {
-                                            isError.Gouvernorat
-                                        }</span>
-
-                                    )
-                                } </Grid>
+                              </Grid>
                             </Grid>
                             <br/>
 

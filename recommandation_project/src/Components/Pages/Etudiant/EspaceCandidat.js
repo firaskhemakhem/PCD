@@ -69,21 +69,22 @@ const featuredPosts = [
 
 const featuredPosts2 = [
     {
-        title: 'OPTIMISER VOTRE CANDIDATURES',
+        title: 'RECHERCHER UNE OFFRE DE STAGE',
         description:
-          'Pour optimiser votre candidature vous devez écrire une lettre de motivation via notre application.', 
+          'Rechercher et visiter les entreprises qui ont postulé des sujets de PFE', 
         image: 'https://edito.regionsjob.com/xjob/wp-content/uploads/sites/3/2021/12/AdobeStock_348132153-1-1-722x489.jpeg',
         imageLabel: 'Déposer',
-        link : <button
+        link : <NavLink to ="/entreprise">
+        <button
         type="button" 
         class="btn btn-outline-secondary"
         fullWidth
         variant="contained"
         sx={{ mt: 4, mb:2 }}
       >
-        Sélectionner
+        Rechercher
       </button>
-        
+      </NavLink>
       },
       {
         title: 'PASSER UN TEST DE PERSONNALITE',

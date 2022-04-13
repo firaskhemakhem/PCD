@@ -18,7 +18,6 @@ class Update extends React.Component {
         this.changeHandler=this.changeHandler.bind(this);
         this.submitForm=this.submitForm.bind(this);
     }
-
     changeHandler(event){
         this.setState({
             [event.target.name]:event.target.value

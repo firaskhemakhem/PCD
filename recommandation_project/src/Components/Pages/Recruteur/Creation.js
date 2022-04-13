@@ -9,6 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Stages from "../../../assets/images/Stages.png";
+import { NavLink } from 'react-router-dom';
 const theme = createTheme();
 class Creation extends Component{
 
@@ -70,7 +71,10 @@ class Creation extends Component{
     <div class="card-body">
       <h5 class="card-title">Remplir un formulaire</h5>
       <p class="card-text">Déposez votre offre de poste via notre formulaire, un de nos conseillers vous recontactera pour vous accompagner dans votre recrutement.</p>
-      <p class="card-text"><small class="text-muted">Remplir</small></p>
+      <NavLink to={"/Sujet/"+localStorage.getItem("LoginUser")}><button type="button" class="btn btn-outline-secondary" >
+                               Remplir
+                            </button></NavLink>
+
     </div>
   </div>
 

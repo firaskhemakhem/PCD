@@ -16,6 +16,25 @@ const formStyles = {
 }
 
 class Form extends Component {
+  state = {
+    credentials: {}
+  }
+  fetchData(){
+		var id = localStorage.getItem("LoginUser");
+		fetch(`http://127.0.0.1:8000/PcdApp/feedback/${id}/`)
+		  
+		  .then(response=>response.json())
+		  .then((data)=>{
+			  this.setState({
+				  credentials:data
+			  });
+			  console.log(this.state.credentials);
+		  });
+	  }
+	  
+	  componentDidMount(){
+		  this.fetchData();
+	  }
 
   render(){
     const {
@@ -55,6 +74,7 @@ class Form extends Component {
           handleMessageInput={handleMessageInput}
           handleEmailInput={handleEmailInput}
           handleRatingInput={handleRatingInput}
+          // messageInput={this.state.crede.Message}
           messageInput={messageInput}
           emailInput={emailInput}
           ratingInput={ratingInput}
