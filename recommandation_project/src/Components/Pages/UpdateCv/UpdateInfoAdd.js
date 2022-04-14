@@ -1,33 +1,48 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import {multiStepContext} from "./StepContext";
+import {multiStepContext} from "./StepContextUpdate";
 
-const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({email: data.get('email'), password: data.get('password')});
-};
 
-/*const register = event => {
-    fetch('http://127.0.0.1:8000/PcdApp/infoper/', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(finalData)
-    })
-    .then( data => data.json())
-    .catch( error => console.error(error))
-}*/
 
-function InfoAdd() {
+function UpdateInfoAdd() {
     const {
         setCurrentStep,
-        userData,
-        setUserData,
-        submitData,
-        finalData
+        updateInfoAdd,
+        setUpdateInfoAdd
     } = useContext(multiStepContext);
+    const [tableData,setTableData]=useState([])
+    function submitData(){
+        update();
+        setCurrentStep(4);
+    };
+    useEffect(() => {
+        const id = window.location.href.split('/')[4]
+        fetch(`http://127.0.0.1:8000/PcdApp/infoadd/${id}/`,{
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+            })
+        .then(response => response.json())
+        .then((result)=>{
+            setUpdateInfoAdd(result) 
+        })
+      }, []);
+    
+    const update = event => {
+        const id = window.location.href.split('/')[4]
+        setUpdateInfoAdd({
+            ...updateInfoAdd,
+            "LoginStu": id
+        });
+        fetch(`http://127.0.0.1:8000/PcdApp/infoadd/${id}/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateInfoAdd)
+        }).then(data => data.json()).then(console.log(updateInfoAdd)).catch(error => console.error(error))
+    }
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -45,14 +60,15 @@ function InfoAdd() {
                         placeholder="Donnez vos centre d'intérêt"
                         variant="standard"
                         fullWidth
+                        focused
                         name="CentreInt"
                         value={
-                            userData.CentreInt
+                            updateInfoAdd.CentreInt
                         }
                         onChange={
                             (e) => {
-                                setUserData({
-                                    ...userData,
+                                setUpdateInfoAdd({
+                                    ...updateInfoAdd,
                                     "CentreInt": e.target.value
                                 })
                             }
@@ -66,14 +82,15 @@ function InfoAdd() {
                     placeholder="Donnez des exemples sur votre vie associative"
                     variant="standard"
                     fullWidth
+                    focused
                     name="VieAsso"
                     value={
-                        userData.VieAsso
+                        updateInfoAdd.VieAsso
                     }
                     onChange={
                         (e) => {
-                            setUserData({
-                                ...userData,
+                            setUpdateInfoAdd({
+                                ...updateInfoAdd,
                                 "VieAsso": e.target.value
                             })
                         }
@@ -110,4 +127,4 @@ function InfoAdd() {
 </React.Fragment>
     )
 }
-export default InfoAdd;
+export default UpdateInfoAdd;

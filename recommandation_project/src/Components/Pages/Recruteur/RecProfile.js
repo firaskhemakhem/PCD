@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+//import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -72,12 +72,11 @@ class RecProfile extends Component {
       .then(console.log(this.state.credentials))
       .catch(error => console.error(error))
   }
-  inputChanged = (event) => {
+  inputChanged = (event) =>{
     const cred = this.state.credentials;
     console.log(event.target.value);
     cred[event.target.name] = event.target.value;
     this.setState({ credentials: cred });
-
   }
 
   render() {

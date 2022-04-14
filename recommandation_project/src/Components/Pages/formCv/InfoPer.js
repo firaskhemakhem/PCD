@@ -8,18 +8,7 @@ import { multiStepContext } from "./StepContext";
 function InfoPer() {
     const {setCurrentStep,userData, setUserData}=useContext(multiStepContext);   
     const [tableData,setTableData]=useState([])
-    React.useEffect(() => {
-        fetch('http://127.0.0.1:8000/PcdApp/infoper/',{
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'}
-            })
-        .then(response => response.json())
-        .then((result)=>{
-            setTableData({...tableData,result}) 
-            console.log(tableData);
-            //console.log(tableData.credentials);
-        })
-      }, []);
+    
         return (
             <React.Fragment>
                 <Typography variant="h6" gutterBottom>
