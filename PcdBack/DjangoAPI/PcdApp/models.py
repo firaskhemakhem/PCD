@@ -137,6 +137,18 @@ class Suit(models.Model):
 class InterSuj(models.Model):
     student = models.ForeignKey(Students,on_delete=models.CASCADE)
     recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
-    inter = models.BooleanField(default=False,blank=True)
+    #inter = models.BooleanField(default=False,blank=True)
+    Att = models.BooleanField(default=False,blank=True)
     id_sujet= models.ForeignKey(Sujet,on_delete=models.CASCADE)
-    id_agenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)
+    #id_agenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('student', 'recruteur','id_sujet')
+
+
+class FeedBackEtudEntr(models.Model):
+#     student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    Recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
+#     id_sujet= models.ForeignKey(Sujet,on_delete=models.CASCADE)
+    FeedBack= models.TextField()
+    Rating = models.IntegerField()
+

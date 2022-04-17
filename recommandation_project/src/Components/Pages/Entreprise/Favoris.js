@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PopUpMessage from '../../PopUpMessage/PopUpFile';
 import HeaderCan from "../Etudiant/HeaderCan"
 class Favoris extends React.Component{
@@ -40,26 +41,46 @@ componentDidMount(){
     render(){
       const followData=this.state.data;
       const rows=followData.map((follow)=>
-  
-          (this.state.isLogin && <tr key={follow.id}>
+     
+          (this.state.isLogin && 
+            
+          <tr key={follow.id}>
          
-                 <td>{follow.recruteur}</td>
+                 <td style={{
+                   height :'75px'
+                 }}>{follow.recruteur}</td>
+                 <td><NavLink to={"/entreprise/"+follow.recruteur}>
+                   <button className="btn btn-outline-secondary">Consulter</button></NavLink></td>
+
                  
                  
           
                </tr>));
+             
         return(
             <div>
              <HeaderCan/>
                 
                 {this.state.isLogin &&<div classname ='paddbody' style={{paddingRight:'100px'}}>
-      <h4 className="hhh" >Votre Fav</h4>
+      <h4 style={{
+        textAlign:'center',
+        color :'#023C59',
+        paddingTop:'20px',
+
+      }} >Liste de Votre Favoris</h4>
+      <div style={{
+        border :'2px solid #023C59',
+        borderRadius:'8px',
+        marginLeft:'300px',
+        marginRight:'300px'
+
+      }}>
       <table class="table">
        <thead>
        
         
         <tr>
-          <th scope="col">Fav</th>
+          <th scope="col" >Favoris</th>
          
         </tr>
         
@@ -69,6 +90,7 @@ componentDidMount(){
          {rows} 
       </tbody>
     </table>
+    </div>
   </div>}
             </div>
         );

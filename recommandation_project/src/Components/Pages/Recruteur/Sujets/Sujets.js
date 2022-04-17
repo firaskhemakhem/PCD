@@ -1,5 +1,6 @@
 import { ContactSupportOutlined } from '@material-ui/icons';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 class Sujets extends React.Component {
 
@@ -8,7 +9,8 @@ class Sujets extends React.Component {
         this.state = {
             data: [],
             isLogin: false,
-            nb: 0
+            nb: 0,
+            Att:false
 
 
         };
@@ -27,6 +29,7 @@ class Sujets extends React.Component {
                         })
                         localStorage.setItem('isLogin', true)
                     }
+                 
 
                 }
                 console.log(this.state.data);
@@ -55,13 +58,14 @@ class Sujets extends React.Component {
          console.log(sujetData)
         
         const rows = sujetData.map((sujet) =>
+        
 
-        (this.state.isLogin && <tr key={sujet.Id_sujet}>
+        (this.state.isLogin  && !sujet.Att &&<tr key={sujet.Id_sujet}>
 
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
-            <td>  
+            <td>  <NavLink to={"/UpdateSujet/"+sujet.Id_sujet}>
                    <button 
                        type="button" 
                        class="btn btn-outline-secondary"
@@ -70,9 +74,9 @@ class Sujets extends React.Component {
                        sx={{ mt: 4, mb:2 }}
                      >
                       Mettre à jour
-                   </button>
+                   </button></NavLink>
                  </td>
-                 <td><button onClick={()=>this.deleteData(sujet.Id_Calend)} className="btn btn-danger">Supprimer</button></td>
+                 <td><button onClick={()=>this.deleteData(sujet.Id_sujet)} className="btn btn-danger">Supprimer</button></td>
         </tr>));
         return (
           
@@ -103,11 +107,12 @@ class Sujets extends React.Component {
 
 
                                 <tr>
-                                <th scope="col">Mettre à jour</th>
-                                <th scope="col">Supprimer</th>
+                               
                                 <th scope="col">Titre</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Domaine</th>
+                                <th scope="col">Mettre à jour</th>
+                                <th scope="col">Supprimer</th>
                                 </tr>
 
 

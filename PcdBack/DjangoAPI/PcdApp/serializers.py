@@ -1,7 +1,7 @@
 from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import  FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit
+from PcdApp.models import  FeedBackEtudEntr, FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit
 from rest_framework.authtoken.models import Token
 
 
@@ -24,7 +24,7 @@ class SuitSerializer(serializers.ModelSerializer):
 class InterSujSerializer(serializers.ModelSerializer):
     class Meta:
         model = InterSuj
-        fields =['id','inter','recruteur','student','id_sujet','id_agenda']
+        fields =['id','recruteur','student','id_sujet','Att']
 
 #Login
 class StudentsLoginSerializer(serializers.ModelSerializer):
@@ -89,3 +89,7 @@ class FeedBackSerializer (serializers.ModelSerializer):
     class Meta:
         model = FeedBackRec
         fields = ['Login','Email','Message','Rating']
+class FeedBackEtudEntrSerializer (serializers.ModelSerializer):
+    class Meta :
+        model = FeedBackEtudEntr
+        fields =['Recruteur','FeedBack','Rating']
