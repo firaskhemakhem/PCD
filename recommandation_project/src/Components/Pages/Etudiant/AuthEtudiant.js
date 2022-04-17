@@ -182,7 +182,7 @@ class AuthEtudiant extends Component  {
                   
                 <Grid container>
                   <Grid item xs>
-                    <Link href="#" variant="body2">
+                    <Link href="/forgetpassword/" variant="body2">
                       Forgot password?
                     </Link>
                   </Grid>

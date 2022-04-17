@@ -17,8 +17,8 @@ import { useNavigate } from 'react-router';
 
 const theme = createTheme();
 function AuthRecruteur() {
-const navigate = useNavigate();
- const [state,setState]=React.useState({
+  const navigate = useNavigate();
+  const [state,setState]=React.useState({
     credentials:{},
     data:{},
     id:'',

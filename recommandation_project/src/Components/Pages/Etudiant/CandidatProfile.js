@@ -99,17 +99,6 @@ class CandProfile extends Component{
     
     }
 
-    /*handleClickShowPassword = () => {
-        setValues({
-          ...values,
-          showPassword: !values.showPassword,
-        });
-      };
-    
-    handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };*/
-
     render(){
         return (
           <ThemeProvider theme={theme}>

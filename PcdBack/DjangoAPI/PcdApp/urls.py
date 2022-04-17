@@ -1,7 +1,7 @@
 from rest_framework import routers
 from .views import FeedBackView, InterSujView, StudentsView ,RecruteursView,AgendaView, SuitView,SujetView
 
-from .views import StudentsView ,RecruteursView, InfoAddView, InfoPerView , CompetenceView, CvView,ImageView,PDFView
+from .views import StudentsView ,RecruteursView, InfoAddView, InfoPerView , CompetenceView, CvView,ImageView,PDFView,ChangePass
 from .views import InfoAddView, InfoPerView , CompetenceView, CvView,Student_login
 
 from django.urls import path
@@ -20,6 +20,8 @@ router.register(r'infoper',InfoPerView)
 router.register(r'competence',CompetenceView)
 router.register(r'infoadd',InfoAddView)
 router.register(r'cv',CvView)
+
+router.register(r'changepass',ChangePass)
 
 router.register(r'sujet', SujetView)
 router.register(r'feedback',FeedBackView)

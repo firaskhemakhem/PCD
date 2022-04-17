@@ -140,3 +140,9 @@ class InterSuj(models.Model):
     inter = models.BooleanField(default=False,blank=True)
     id_sujet= models.ForeignKey(Sujet,on_delete=models.CASCADE)
     id_agenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)
+
+class ChangePass(models.Model):
+    Id_MDP = models.AutoField(primary_key=True)
+    Login = models.CharField(max_length= 30)
+    Email = models.CharField(max_length= 30)
+    MDP = models.CharField(max_length= 30)

@@ -124,7 +124,7 @@ class EspaceRec extends Component {
   }
   componentDidMount(){
     var id=localStorage.getItem('LoginUser');
-    fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
+    fetch(`http://127.0.0.1:8000/PcdApp/recruteur/${id}/`,{
    
         method: 'GET',
         headers: {'Content-Type': 'application/json'}

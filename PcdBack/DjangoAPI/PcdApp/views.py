@@ -16,8 +16,8 @@ from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
-from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile
-from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,ImageSerializer,PDFSerializer
+from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile,ChangePass
+from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,ImageSerializer,PDFSerializer,ChangePassSerializer
 
 #from django.core.files.storages import default_storage  #file storage
 from rest_framework.views import APIView
@@ -25,6 +25,7 @@ from rest_framework.response import Response
 from django.contrib import auth
 from PcdApp.models import FeedBackRec, InterSuj, Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda, Suit,Sujet
 from PcdApp.serializers import  AgendaSerializer, FeedBackSerializer, InterSujSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer, SuitSerializer,SujetSerializer
+
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -119,3 +120,32 @@ def SaveFile(request):
 class Student_login(viewsets.ModelViewSet):
     serializer_class = StudentsLoginSerializer
     queryset = Students.objects.values_list('Login','MDP')
+
+
+
+## reset password 
+from django.core.mail import send_mail
+from django.conf import settings
+import uuid
+
+def send_forget_password_mail(email):
+    #token = str(uuid.uuid4())
+    Subject = 'Your forget password link'
+    Message = ' Hi , click on the link to reset your password : http://localhost:3000/changepassword/'
+    send_mail(Subject,Message,'pcdensi911@gmail.com',[email],fail_silently=False)
+    return False
+
+class ChangePass(viewsets.ModelViewSet) :
+    serializer_class = ChangePassSerializer
+    queryset =  ChangePass.objects.all()
+
+    def post (self, request, *args, **kwargs):
+        Id_MDP = request.data['Id_MDP']
+        Login = request.data['Login']
+        Email = request.data['Email']
+        MDP = request.data['MDP']
+        Subject = 'Your forget password link'
+        Message = ' Hi , click on the link to reset your password : http://localhost:3000/changepassword/'
+        ChangePass.objects.create(Id_MDP=Id_MDP,Login=Login,Email=Email,MDP=MDP)
+        send_mail(Subject,Message,'pcdensi911@gmail.com',[Email],fail_silently=False)
+        return HttpResponse({'message': 'Email sent'}, status=200)
