@@ -165,6 +165,7 @@ class CandProfile extends Component{
                                 fullWidth
                                 id="login"
                                 label="Login"
+                                disabled
                                 autoFocus
                                 value = {this.state.credentials.Login}
                                 onChange ={this.inputChanged}

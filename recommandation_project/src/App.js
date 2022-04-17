@@ -5,7 +5,6 @@ import Acceuil from './Components/Acceuil/Acceuil';
 
 import AuthEtudiant from './Components/Pages/Etudiant/AuthEtudiant';
 
-
 import InscRec from './Components/Pages/Recruteur/InscRec';
 import Detaille from './Components/Detaille/Detaille';
 import InscEtu from './Components/Pages/Etudiant/InscEtu';
@@ -17,13 +16,10 @@ import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
 import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword'
 import ChangePassword from './Components/Pages/Etudiant/ChangePassword'
 
-/*<Route exact path = "/CandProfile/:id" element={<CandProfile/>}/> ki nrigel 7keyet el id*/
-
-
 import Cv from './Components/Pages/formCv/Cv';
-//import ResulatFinal from './Components/Pages/formCv/ResultatFinal';
 import StepContext from './Components/Pages/formCv/StepContext';
-
+import StepContextUpdate from './Components/Pages/UpdateCv/StepContextUpdate'
+import UpdateCv from './Components/Pages/UpdateCv/UpdateCv';
 
 import Creation from './Components/Pages/Recruteur/Creation';
 import AuthRecruteur from './Components/Pages/Recruteur/AuthRecruteur';
@@ -52,7 +48,6 @@ function App() {
         <Route exact path ="/AuthRec"element={<AuthRecruteur/>}/>
         <Route exact path ="/InscEtud" element ={<InscEtu/>} userLogin={userLogin}/>
         <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} /> 
-        {/* <Route exact path ="/InscRec" element ={<Registration/>} userLogin={userLogin} /> */}
         <Route exact path ="/footer" element ={<Footer/>}/>
         <Route exact path ="/forgetpassword/" element ={<ForgetPassword/>}/>
         <Route exact path ="/changepassword/" element ={<ChangePassword/>}/>
@@ -64,6 +59,7 @@ function App() {
         <Route exact path = "/RecProfile/:id" element={<RecProfile/>}/>
         <Route exact path ="/Agenda/:id" element={<AcceuilAgen/>}/>
         <Route exact path="/CV/:id" element={<StepContext><Cv/></StepContext>}/>
+        <Route exact path="/UpdateCV/:id" element={<StepContextUpdate><UpdateCv/></StepContextUpdate>}/>
         <Route exact path = "/Creation" element={<Creation/>}/>
         <Route exact path="/Update/:id/:id" element={<Update/>}/>
         <Route exact path = "/Sujet/:id" element={<FormSuj/>}/>

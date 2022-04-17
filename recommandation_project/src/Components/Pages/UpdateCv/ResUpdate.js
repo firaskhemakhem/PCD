@@ -1,94 +1,37 @@
 import React, {useContext, useState, useRef} from "react";
-import {multiStepContext} from "./StepContext";
+import {multiStepContext} from "./StepContextUpdate";
 
 import {PDFExport} from '@progress/kendo-react-pdf';
 import './Cv.css';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router';
 
-function Res() {
-    const navigate = useNavigate();
-    const {userData, setFinalData} = useContext(multiStepContext);
-    const [infoper, setInfoper] = useState([]);
-    const [infoadd, setInfoadd] = useState([]);
-    const [competence, setCompetence] = useState([]);
-    const [cv, setCv] = useState([]);
+function ResUpdate() {  
+    const { updateInfoPer, updateCompétence, updateInfoAdd,updateCv, setUpdateCv} = useContext(multiStepContext);
     const arrangeData = () => {
-        setInfoper({
-            "LoginStu": localStorage.getItem('LoginUser'),
-            "Nom": userData.Nom,
-            "Email": userData.Email,
-            "Adresse": userData.Adresse,
-            "Gouvernorat": userData.Gouvernorat,
-            "Tel": userData.Tel,
-            "DDN": userData.DDN,
-            "Dom": userData.Dom,
+        const id = window.location.href.split('/')[4]
+       setUpdateCv({
+            "LoginStu": id,
+            "InfoPer": updateInfoPer.Nom + "*" + updateInfoPer.Email + "*" + updateInfoPer.Adresse + "*" + updateInfoPer.Gouvernorat + "*" + updateInfoPer.Tel + "*" + updateInfoPer.DDN + "*" + updateInfoPer.Dom,
+            "Compe": updateCompétence.Formation + "*" + updateCompétence.ExpProf + "*" + updateCompétence.Certif + "*" + updateCompétence.Lang + "*" + updateCompétence.Liens,
+            "InfoAdd": updateInfoAdd.CentreInt + "*" + updateInfoAdd.VieAsso,
             
         });
-        setCompetence({
-            "LoginStu": localStorage.getItem('LoginUser'),
-            "Formation": userData.Formation,
-            "ExpProf": userData.ExpProf,
-            "Certif": userData.Certif,
-            "Lang": userData.Lang,
-            "Liens": userData.Liens,
-            
-        });
-        setInfoadd({"LoginStu": localStorage.getItem('LoginUser'),"CentreInt": userData.CentreInt, "VieAsso": userData.VieAsso,});
-        setCv({
-            "LoginStu": localStorage.getItem('LoginUser'),
-            "InfoPer": userData.Nom + "*" + userData.Email + "*" + userData.Adresse + "*" + userData.Gouvernorat + "*" + userData.Tel + "*" + userData.DDN + "*" + userData.Dom,
-            "Compe": userData.Formation + "*" + userData.ExpProf + "*" + userData.Certif + "*" + userData.Lang + "*" + userData.Liens,
-            "InfoAdd": userData.CentreInt + "*" + userData.VieAsso,
-            
-        });
-        setFinalData(userData);
-        console.log(cv);
-        console.log(infoper);
-        console.log(competence);
-        console.log(infoadd);
-        return(console.log(cv))
+        console.log("sara")
+        console.log(updateCompétence)
+        console.log(updateCv);
+        return(console.log(updateCv))
     }
-
-    const registerInfoPer = event => {
+    const update = event => {
         arrangeData();
-        fetch('http://127.0.0.1:8000/PcdApp/infoper/', {
-            method: 'POST',
+        const id = window.location.href.split('/')[4]
+        fetch(`http://127.0.0.1:8000/PcdApp/cv/${id}/`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(infoper)
-        }).then(data => data.json()).catch(error => console.error(error))
-    }
-    const registerInfoAdd = event => {
-        arrangeData();
-        fetch('http://127.0.0.1:8000/PcdApp/infoadd/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(infoadd)
-        }).then(data => data.json()).catch(error => console.error(error))
-    }
-    const registercompetence = event => {
-        arrangeData();
-        fetch('http://127.0.0.1:8000/PcdApp/competence/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(competence)
-        }).then(data => data.json()).catch(error => console.error(error))
-    }
-    const registercv = event => {
-        arrangeData();
-        fetch('http://127.0.0.1:8000/PcdApp/cv/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(cv)
-        }).then(data => data.json()).catch(error => console.error(error))
+            body: JSON.stringify(updateCv)
+        }).then(data => data.json()).then(console.log(updateCv)).catch(error => console.error(error))
     }
     const ddData = [
         {
@@ -126,24 +69,24 @@ function Res() {
                                 <div className="pdf-header">
                                     <span className="company-logo">
                                         {
-                                        userData.Nom
+                                        updateInfoPer.Nom
                                     } </span>
                                     <span className="invoice-number">
                                         {
-                                        userData.Email
+                                        updateInfoPer.Email
                                     }</span><br/>
                                     <span className="invoice-number">
                                         {
-                                        userData.Tel
+                                        updateInfoPer.Tel
                                     }</span>
                                 </div>
                                 <div className="pdf-footer">
                                     <p> {
-                                        userData.Gouvernorat
+                                        updateInfoPer.Gouvernorat
                                     }<br/> {
-                                        userData.Adresse
+                                        updateInfoPer.Adresse
                                     }<br/> {
-                                        userData.DDN
+                                        updateInfoPer.DDN
                                     } </p>
                                 </div>
                                 <div className="addresses">
@@ -151,29 +94,29 @@ function Res() {
                                         <h4>Compétences:</h4>
                                         <h6>Parcour Educatif</h6>
                                         <div>{
-                                            userData.Formation
+                                            updateCompétence.Formation
                                         }</div>
                                         <h6>Expérience Professionnelle</h6>
                                         <div>{
-                                            userData.ExpProf
+                                            updateCompétence.ExpProf
                                         }</div>
                                         <h6>Certificats</h6>
                                         <div>{
-                                            userData.Certif
+                                            updateCompétence.Certif
                                         }</div>
                                         <h6>Langues</h6>
                                         <div>{
-                                            userData.Lang
+                                            updateCompétence.Lang
                                         }</div>
                                         <p> {
-                                            userData.Dom
+                                            updateInfoPer.Dom
                                         }<br/> {
-                                            userData.Tel
+                                            updateInfoPer.Tel
                                         }<br/> {
-                                            userData.Email
+                                            updateInfoPer.Email
                                         } </p>
                                         <p> {
-                                            userData.Liens
+                                            updateInfoPer.Liens
                                         }<br/>
 
                                         </p>
@@ -185,11 +128,11 @@ function Res() {
                                         <h4>Infomation Additionnelles</h4>
                                         <h6>Centre d'Interet</h6>
                                         <div>{
-                                            userData.CentreInt
+                                            updateInfoAdd.CentreInt
                                         }</div>
                                         <h6>vie associative</h6>
                                         <div>{
-                                            userData.VieAsso
+                                            updateInfoAdd.VieAsso
                                         }</div>
                                     </p>
                                 </div>
@@ -204,20 +147,14 @@ function Res() {
 
                     onClick={
                         () => {
-                            registerInfoPer();
-                            registerInfoAdd();
-                            registercv();
-                            registercompetence();
-                            handleExportWithComponent();
-                            //navigate('/EspCand/'+localStorage.getItem('LoginUser'))
+                            update()
                         }
                 }>
-
                     Terminer
                 </button>
             </Grid>
         </div>
-
+////handleExportWithComponent();
     );
 }
-export default Res;
+export default ResUpdate;
