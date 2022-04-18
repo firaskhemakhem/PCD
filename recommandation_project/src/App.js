@@ -32,6 +32,8 @@ import VisibleStu from './Components/Pages/Entreprise/VisibleStu';
 import Favoris from './Components/Pages/Entreprise/Favoris';
 
 import LettreDeMotiv from './Components/Pages/Etudiant/LettreDeMotiv'
+import UpdateSuj from './Components/Pages/Recruteur/Sujets/UpdateSuj';
+import Listedescand from './Components/Pages/Recruteur/Listedescandidatures/Listedescand';
 
 function App() {
   const [token, setToken] = useState('');
@@ -67,6 +69,8 @@ function App() {
         <Route exact path = "/entreprise/:id" element={<VisibleStu/>}/>
         <Route exact path = "/Favoris/:id" element={<Favoris/>}/>
         <Route exact path = "/Sujet" element={<FormSuj/>}/>
+        <Route exact path = "/ListeCand/:id" element={<Listedescand/>}/>
+        <Route exact path = "/UpdateSujet/:id" element={<UpdateSuj/>}/>
         <Route exact path="/LettreDeMotivation/:id" element={<LettreDeMotiv/>} />
       </Routes>
     </BrowserRouter>   

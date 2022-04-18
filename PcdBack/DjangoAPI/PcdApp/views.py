@@ -11,8 +11,8 @@ import PcdApp
 from django.dispatch import receiver
 from django.forms import ValidationError
 from django.db.models.signals import pre_save
-from PcdApp.models import Students,Recruteurs,UploadImage
-from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer
+from PcdApp.models import FeedBackEtudEntr, Students,Recruteurs,UploadImage
+from PcdApp.serializers import FeedBackEtudEntrSerializer, StudentsSerializer ,RecruteursSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
@@ -95,6 +95,10 @@ class SuitView (viewsets.ModelViewSet):
 class InterSujView (viewsets.ModelViewSet):
     serializer_class = InterSujSerializer
     queryset = InterSuj.objects.all()
+
+class FeedBackEtudRecView (viewsets.ModelViewSet):
+    serializer_class = FeedBackEtudEntrSerializer
+    queryset =FeedBackEtudEntr.objects.all()
 
 @csrf_exempt
 def SaveFile(request):

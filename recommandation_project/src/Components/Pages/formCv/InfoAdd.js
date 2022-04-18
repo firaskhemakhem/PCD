@@ -10,15 +10,6 @@ const handleSubmit = (event) => {
     console.log({email: data.get('email'), password: data.get('password')});
 };
 
-/*const register = event => {
-    fetch('http://127.0.0.1:8000/PcdApp/infoper/', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(finalData)
-    })
-    .then( data => data.json())
-    .catch( error => console.error(error))
-}*/
 
 function InfoAdd() {
     const {

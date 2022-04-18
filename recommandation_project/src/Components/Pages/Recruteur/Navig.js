@@ -21,7 +21,7 @@ import PopUpMessage from '../../PopUpMessage/PopUpFile';
 import Feedback from '../FeedBack/Feedback';
 import { IconButton } from '@mui/material';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 export default function Navig() {
 const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
  const [state, setState] = React.useState({});
@@ -34,9 +34,12 @@ const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
    else if (index ===3){return <NavLink to = {'/FeedBack/'+localStorage.getItem("LoginUser")} style={{
     color:'grey'
   }}><FeedbackIcon/></NavLink>;}
-   else {return <NavLink to ={'/Sujet/'+localStorage.getItem('LoginUser')}style={{
+   else if (index === 4){return <NavLink to ={'/Sujet/'+localStorage.getItem('LoginUser')}style={{
     color:'grey'
-  }}><AppRegistrationIcon/></NavLink>};}
+  }}><AppRegistrationIcon/></NavLink>;}
+  else {return <NavLink to={"/ListeCand/"+localStorage.getItem("LoginUser")} style={{
+    color:'grey'
+  }}><DensityMediumIcon/></NavLink>};}
 const popup =event=>{
   
     setisOpenSucceed({isOpenSucceed:true});
@@ -70,7 +73,7 @@ const Icons2 =(index)=>{
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Profile', 'Agenda', 'Email', 'Votre Avis','Vos Sujets'].map((text, index) => (
+        {['Profile', 'Agenda', 'Email', 'Votre Avis','Vos Sujets','Liste des canditatures'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
      

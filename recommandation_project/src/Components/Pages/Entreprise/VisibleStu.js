@@ -4,7 +4,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
+import { Textarea } from '@chakra-ui/react';
+import StarRatings from 'react-star-ratings';
+import FeedBackEntrp from './FeedBackEntrp';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 class VisibleStu extends React.Component {
+
 
     constructor() {
         super();
@@ -17,23 +28,42 @@ class VisibleStu extends React.Component {
             credentials: {},
             isFavorite: false,
             color: 'success',
-            content:'Suivre',
+            content: 'Suivre',
             data: {},
-            id:''
-            
+            id: '',
+            isFeed: false,
+            feedInput: '',
+            ratingInput: -1,
+            open :false
+
 
         };
+        this.handleMessageInput = this.handleMessageInput.bind(this);
     }
-    
+    handleMessageInput(inputName, content) {
+		if (inputName === 'Rating') {
+			this.setState({ ratingInput: content });
+		} else if (inputName === 'FeedBack') {
+			this.setState({ feedInput: content });
+		}
+	}
+    handleRatingInput(ratingInput) {
+		this.setState({ ratingInput: ratingInput });
+	}
+    handleFeedInput(feedInput) {
+		this.setState({ feedInput: feedInput });
+		
+	}
+
     update = event => {
-        var id =this.state.data.id;
+        var id = this.state.data.id;
         console.log(id)
         fetch(`http://127.0.0.1:8000/PcdApp/suit/${id}/`, {
-           method: 'PUT',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    "follow":(!this.state.isFavorite),
+                    "follow": (!this.state.isFavorite),
                     "recruteur": this.state.url,
                     "student": localStorage.getItem("LoginUser")
                 }
@@ -42,7 +72,7 @@ class VisibleStu extends React.Component {
             .then(data => data.json())
             .then((result) => {
                 console.log(result);
-                window.location.reload(true);
+                // window.location.reload(true);
             })
             .catch(error => console.error(error));
 
@@ -58,12 +88,12 @@ class VisibleStu extends React.Component {
                     "recruteur": this.state.url,
                     "student": localStorage.getItem("LoginUser"),
                 }
-               
+
             )
         })
             .then(data => data.json())
             .then((result) => {
-                
+
                 this.setState({
                     credentials: result
                 });
@@ -74,75 +104,126 @@ class VisibleStu extends React.Component {
             .catch(error => console.error(error));
 
     }
-    fetchDataFollow=event=> {
+    registerInter = (event, idsuj) => {
+        fetch('http://127.0.0.1:8000/PcdApp/interessant/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "Att": false,
+                    "id_sujet": idsuj,
+                    "recruteur": this.state.url,
+                    "student": localStorage.getItem("LoginUser"),
+                }
+
+            )
+        })
+            .then(data => data.json())
+            .then((result) => {
+
+                this.setState({
+                    credentials: result
+                });
+                //window.location.reload(true);
+                console.log(result);
+
+            })
+            .catch(error => console.error(error));
+
+    }
+    registerfeed = (event) => {
+        fetch('http://127.0.0.1:8000/PcdApp/feedbacketurec/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "Recruteur": window.location.href.split('/')[4],
+                    "FeedBack":this.state.feedInput,
+                    "Rating":this.state.ratingInput
+
+                }
+
+            )
+        })
+            .then(data => data.json())
+            .then((result) => {
+                
+                console.log(result);
+
+            })
+            .catch(error => console.error(error));
+
+    }
+    fetchDataFollow = event => {
         fetch(`http://127.0.0.1:8000/PcdApp/suit/`)
 
             .then(response => response.json())
             .then((result) => {
                 console.log(result);
                 console.log(window.location.href.split('/')[4]);
-                
+
                 this.setState({
                     url: window.location.href.split('/')[4]
                 })
                 for (let i = 0; i < result.length; i++) {
-                    console.log(result[i].recruteur )
-                    console.log(result[i].student )
+                    console.log(result[i].recruteur)
+                    console.log(result[i].student)
                     if (result[i].recruteur == window.location.href.split('/')[4] && result[i].student == localStorage.getItem("LoginUser")) {
-                         this.setState({
-                            ...this.state,data:result[i]
-                      
-                         })
-                        if(result[i].follow == true){
+                        this.setState({
+                            ...this.state, data: result[i]
+
+                        })
+                        if (result[i].follow == true) {
                             this.setState({
-                                color:'error',
-                                content :'Ne plus Suivre',
-                                isFavorite:false
-                            })}
-                 
-                    else if(result[i].recruteur !== window.location.href.split('/')[4] && result[i].student == localStorage.getItem("LoginUser")){
-                         this.setState({
-                            ...this.state, data:result[i]
-                         })
-                        this.register(event)}
-                    }else if (result[i].recruteur !== window.location.href.split('/')[4]){
-                         this.setState({
-                            data:result[i], ...this.state
-                         })
+                                color: 'error',
+                                content: 'Ne plus Suivre',
+                                isFavorite: false
+                            })
+                        }
+
+                        else if (result[i].recruteur !== window.location.href.split('/')[4] && result[i].student == localStorage.getItem("LoginUser")) {
+                            this.setState({
+                                ...this.state, data: result[i]
+                            })
+                            this.register(event)
+                        }
+                    } else if (result[i].recruteur !== window.location.href.split('/')[4]) {
+                        this.setState({
+                            data: result[i], ...this.state
+                        })
                         this.register(event)
                     }
 
                 }
             });
     }
-    change =event=> {
-        if( this.state.isFavorite== false){
-            window.location.reload(true);
+    change = event => {
+        if (this.state.isFavorite == false) {
+
             this.setState({
                 color: 'error',
-                content:'Ne plus Suivre',
-                isFavorite:true
+                content: 'Ne plus Suivre',
+                isFavorite: true
             });
-            {this.update(event)}
-          
-        }else if(this.state.isFavorite== true) {
-            window.location.reload(true);
-        
+            { this.update(event) }
+
+        } else if (this.state.isFavorite == true) {
+
             this.setState({
                 color: 'success',
-                content:'Suivre',
-                isFavorite:false,
-               
+                content: 'Suivre',
+                isFavorite: false,
+
             });
-            {this.update(event)}
+            { this.update(event) }
         }
-        
-            console.log(this.state.color);
-            console.log(this.state.isFavorite)
-        
-   
-        }
-   
+
+        console.log(this.state.color);
+        console.log(this.state.isFavorite)
+
+
+    }
+
     fetchDataSujet() {
         fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
 
@@ -193,33 +274,78 @@ class VisibleStu extends React.Component {
                 console.log(this.state.isLoginAgenda);
             });
     }
+    fetchDataFeed() {
+        fetch(`http://127.0.0.1:8000/PcdApp/interessant/`)
+
+            .then(response => response.json())
+            .then((result) => {
+                console.log(result);
+                //  console.log(localStorage.getItem("Login"))
+                this.setState({
+                    url: window.location.href.split('/')[4]
+                })
+                for (let i = 0; i < result.length; i++) {
+                    if (result[i].recruteur == this.state.url && result[i].student == localStorage.getItem("LoginUser") && result[i].Att == true) {
+                        // this.setState({ dataAgenda: [...this.state.dataAgenda, result[i]] })
+                        this.setState({
+                            isFeed: true
+                        })
+                        localStorage.setItem('isLoginFeed', true)
+                    }
+
+                }
+                console.log(this.state.dataAgenda);
+                console.log(this.state.isLoginAgenda);
+            });
+    }
 
     componentDidMount() {
         this.fetchDataSujet();
         this.fetchDataAgenda();
         this.fetchDataFollow();
- 
+        this.fetchDataFeed();
+
     }
 
     render() {
-      
+        const Transition = React.forwardRef(function Transition(props, ref) {
+            return <Slide direction="up" ref={ref} {...props} />;
+          });
+          const handleClickOpen = () => {
+           this.setState({
+               open :true
+           })
+          };
+        
+          const handleClose = () => {
+            this.setState({
+                open : false
+            })
+          };
+        const defaultMessageStyles = {
+            boxSizing: 'border-box',
+            padding: '10px 10px 0 10px',
+            overflow: 'hidden',
+            width: '370px',
+            fontFamily: 'arial'
+        }
+
         const sujetData = this.state.dataSujet;
         const agendaData = this.state.dataAgenda;
 
         const rowsSujet = sujetData.map((sujet) =>
 
         (this.state.isLoginSujet && <tr key={sujet.Id_sujet}>
-            {localStorage.setItem("Id_suj", sujet.Id_sujet)}
+            {localStorage.setItem("Id_sujet", sujet.Id_sujet)}
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
-            <td><NavLink to ={"/LettreDeMotivation/"+localStorage.getItem("LoginUser")}><button className="btn btn-outline-secondary" >Intéresser</button></NavLink></td>
+            <td><button className="btn btn-outline-secondary" onClick={(e) => this.registerInter(e, sujet.Id_sujet)}>Intéresser</button></td>
         </tr>));
         const rowsAgenda = agendaData.map((agenda) =>
 
         (this.state.isLoginAgenda && <tr key={agenda.Id_Calend}>
-            {localStorage.setItem("Id_ag", agenda.Id_sujet)}
-            <td>{agenda.Id_Calend}</td>
+            {localStorage.setItem("Id_ag", agenda.Id_Calend)}
             <td>{agenda.Date}</td>
             <td>{agenda.StartTime}</td>
             <td>{agenda.EndTime}</td>
@@ -228,17 +354,17 @@ class VisibleStu extends React.Component {
         </tr>));
 
         return (
-           
+
             <div>
-               
+
                 <HeaderCan /><br />
                 <div style={{
-                    marginLeft:'15px'
-                }}><Button variant="contained" color={`${this.state.color}`} onClick={(e)=>this.change(e)}>
-                   {this.state.content}
-                </Button></div>
+                    marginLeft: '15px'
+                }}><Button variant="contained" color={`${this.state.color}`} onClick={(e) => this.change(e)}>
+                        {this.state.content}
+                    </Button></div>
                 <div >
-              
+
                     {this.state.isLoginSujet &&
 
                         <div>
@@ -283,7 +409,7 @@ class VisibleStu extends React.Component {
                             </div>
                         </div>}
                 </div>
-                <div>
+                {/* <div>
                     {this.state.isLoginAgenda &&
                         <div>
                             <div style={{
@@ -331,6 +457,76 @@ class VisibleStu extends React.Component {
                                 </table>
                             </div>
                         </div>}
+                </div> */}
+                <div>
+                    {this.state.isFeed && <div>
+                        <div style={{
+                            paddingTop: '15px',
+                            textAlign: 'center',
+                            fontSize: '18px'
+                        }}>
+                            <p>Puisque vous etes attribué à l'un des sujets de cette entreprise</p>
+                            <p>N'hésiter pas de partager votre expérience et votre avis avec les autres</p>
+                            <p>Votre Avis est anonyme.</p>
+                        </div>
+
+                        <div style={{
+                            marginLeft: '500px'
+                        }}>
+
+                            <Textarea placeholder='Entrer votre Avis' name='FeedBack'
+                                width={'350px'}
+                                height={'250px'}
+                                onChange ={e =>this.setState({
+                                    feedInput:e.target.value
+                                })}
+                                 />
+                            <div style={{marginLeft:'50px'}}>
+                                <StarRatings
+                                    rating={this.state.ratingInput}
+                                    starRatedColor="#023C59"
+                                   
+                                   changeRating={newRating =>this.setState({
+                                       ratingInput:newRating
+                                   })}
+                                    numberOfStars={5}
+                                    name='Rating'
+                                    starDimension="35px"
+                                    starSpacing="10px"
+                                />
+                            </div>
+
+
+
+
+                        </div>
+                        <button className="btn btn-outline-secondary" style={{ marginLeft: '640px' }} onClick={this.registerfeed}>Envoyer</button>
+                    </div>}
+                    <div>
+                    <Button variant="outlined" onClick={handleClickOpen} style={{
+                        marginLeft:'20px'
+                    }}>
+       Consulter les avis
+      </Button>
+      <Dialog
+        open={this.state.open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Les Avis pour l'entreprise " + `${this.state.url}`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+          <FeedBackEntrp/>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Fermer</Button>
+          
+        </DialogActions>
+      </Dialog>
+                    </div>
                 </div>
             </div>
         );
