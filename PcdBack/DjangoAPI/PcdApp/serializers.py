@@ -4,6 +4,8 @@ from rest_framework import serializers
 from PcdApp.models import  FeedBackEtudEntr, FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit
 from rest_framework.authtoken.models import Token
 
+from PcdApp.models import NotifEtu, NotifRec
+
 
 class StudentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -93,3 +95,13 @@ class FeedBackEtudEntrSerializer (serializers.ModelSerializer):
     class Meta :
         model = FeedBackEtudEntr
         fields =['Recruteur','FeedBack','Rating']
+
+class NotifRecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=NotifRec
+        fields=['Recruteur','Student','Sujet','Nom','Time']
+
+class NotifEtuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=NotifEtu
+        fields=['Recruteur','Student','Sujet','Nom','Time']

@@ -12,11 +12,11 @@ from django.dispatch import receiver
 from django.forms import ValidationError
 from django.db.models.signals import pre_save
 from PcdApp.models import FeedBackEtudEntr, Students,Recruteurs,UploadImage
-from PcdApp.serializers import FeedBackEtudEntrSerializer, StudentsSerializer ,RecruteursSerializer
+from PcdApp.serializers import FeedBackEtudEntrSerializer, StudentsSerializer ,RecruteursSerializer,NotifRecSerializer, NotifEtuSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
-from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile
+from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile, NotifRec, NotifEtu
 from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,ImageSerializer,PDFSerializer
 
 #from django.core.files.storages import default_storage  #file storage
@@ -25,6 +25,7 @@ from rest_framework.response import Response
 from django.contrib import auth
 from PcdApp.models import FeedBackRec, InterSuj, Students,Recruteurs, InfoPer,Competence, InfoAdd, Cv,Agenda, Suit,Sujet
 from PcdApp.serializers import  AgendaSerializer, FeedBackSerializer, InterSujSerializer,StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,StudentsLoginSerializer, SuitSerializer,SujetSerializer
+from PcdApp.models import NotifRec
 
 class StudentsView (viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
@@ -99,11 +100,21 @@ class FeedBackEtudRecView (viewsets.ModelViewSet):
     serializer_class = FeedBackEtudEntrSerializer
     queryset =FeedBackEtudEntr.objects.all()
 
+class NotifRecView (viewsets.ModelViewSet):
+    serializer_class= NotifRecSerializer
+    queryset = NotifRec.objects.all()
+
+class NotifEtuView (viewsets.ModelViewSet):
+    serializer_class= NotifEtuSerializer
+    queryset = NotifEtu.objects.all()
+
 @csrf_exempt
 def SaveFile(request):
     file=request.FILES['file']
     file_name=default_storage.save(file.name,file)
     return JsonResponse(file_name,safe=False)
+
+
 # @receiver(pre_save, sender=Students) 
 # def User_pre_save(sender, **kwargs): 
 #     email = kwargs['instance'].Email 

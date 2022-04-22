@@ -254,7 +254,10 @@ class UpdateSuj extends React.Component {
                       fullWidth
                       variant="contained"
                       sx={{ mt: 10, mb:2 }}
-                      onClick={this.update}
+                      onClick={()=>{
+                        this.update()
+                        window.location.reload(true)
+                      }}
                       
                     >
                       Confirmer

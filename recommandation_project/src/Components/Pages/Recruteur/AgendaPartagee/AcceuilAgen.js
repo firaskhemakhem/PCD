@@ -4,6 +4,7 @@ import AgendaPartagee from "./AgendaPartagee";
 
 import agenda from  "../../../../assets/images/agendaa.jpg";
 import "../../../../styles/AgendaPartagee/AgendaPartagee.css"
+import HeaderRec from "../HeaderRec";
 
 
 class AcceuilAgen extends React.Component{
@@ -45,6 +46,7 @@ fetchLogin = event => {
   render(){
         return(
             <div>
+              <HeaderRec/>
               <form>
                 <img src={agenda} width='90%' height='380px'   style={{ alignSelf: 'center',
                                                                        paddingLeft :'160px' }}/>

@@ -1,6 +1,7 @@
 import { ContactSupportOutlined } from '@material-ui/icons';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import HeaderRec from '../HeaderRec';
 
 class Sujets extends React.Component {
 
@@ -80,8 +81,9 @@ class Sujets extends React.Component {
         </tr>));
         return (
           
-
+            
                 <div>
+                    <HeaderRec/>
                     {!this.state.isLogin && <div>
                         <h2 style={{
                             color: '#023C59',

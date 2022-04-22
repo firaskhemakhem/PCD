@@ -26,7 +26,9 @@ export default function Navig() {
 const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
  const [state, setState] = React.useState({});
  const Icons =(index) =>{
-   if(index === 0){return <PermIdentityIcon/>;}
+   if(index === 0){return<NavLink to = {'/RecProfile/'+localStorage.getItem('LoginUser')}style={{
+    color:'grey'
+  }}> <PermIdentityIcon/></NavLink>;}
    else if (index=== 1 ){return <NavLink to = {'/Agenda/'+localStorage.getItem('LoginUser')}style={{
     color:'grey'
   }}><DateRangeIcon/></NavLink>;}
@@ -46,8 +48,8 @@ const popup =event=>{
     console.log(isOpenSucceed.isOpenSucceed);
   }
 const Icons2 =(index)=>{
-  if(index === 0){return <NavLink to = "/" style={{color:'grey'}}><HomeIcon /> </NavLink>;}
-  else if (index=== 1 ){return <InfoIcon />;}
+  if(index === 0){return <NavLink to = {"/EspRec/"+localStorage.getItem("LoginUser")} style={{color:'grey'}}><HomeIcon /> </NavLink>;}
+  else if (index=== 1 ){return <NavLink to = "/Detaille" style={{color:'grey'}}><InfoIcon /></NavLink>;}
   else{ return <NavLink to ="/" style={{
     color:'grey'
   }}><InboxIcon /></NavLink> ;}
