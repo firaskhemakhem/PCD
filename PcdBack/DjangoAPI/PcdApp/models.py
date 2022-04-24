@@ -169,3 +169,7 @@ class FeedBackEtudEntr(models.Model):
     FeedBack= models.TextField()
     Rating = models.IntegerField()
 
+class Test(models.Model):
+    student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    rep =models.CharField(max_length=1)
+

@@ -51,8 +51,8 @@ function UpdateInfoPer() {
                 spacing={3}>
                 <Grid item
                     xs={12}>
-                    <TextField required focused id="nom" name="Nom" label="Nom & Prénom" fullWidth variant="standard"
-                        value={
+                    <TextField required focused id="nom" name='Nom' label="Nom & Prénom" fullWidth variant="standard"
+                        defaultValue={
                             updateInfoPer.Nom
                         }
                         onChange={
@@ -64,8 +64,8 @@ function UpdateInfoPer() {
                 </Grid>
             <Grid item
                 xs={12}>
-                <TextField required focused id="email" name="Email" label="Addresse Email" fullWidth variant="standard"
-                    value={
+                <TextField required focused id="email" name='Email' label="Addresse Email" fullWidth variant="standard"
+                    defaultValue={
                         updateInfoPer.Email
                     }
                     onChange={
@@ -78,8 +78,8 @@ function UpdateInfoPer() {
         <Grid item
             xs={12}
             sm={6}>
-            <TextField focused id="tel" name="Tel" label="Numéro de Téléphone" fullWidth variant="standard"
-                value={
+            <TextField focused id="tel" name='Tel' label="Numéro de Téléphone" fullWidth variant="standard"
+                defaultValue={
                     updateInfoPer.Tel
                 }
                 onChange={
@@ -92,8 +92,8 @@ function UpdateInfoPer() {
     <Grid item
         xs={12}
         sm={6}>
-        <TextField required focused id="gouv" name="Gouvernorat" label="Gouvernorat" fullWidth variant="standard"
-            value={
+        <TextField required focused id="gouv" name='Gouvernorat' label="Gouvernorat" fullWidth variant="standard"
+            defaultValue={
                 updateInfoPer.Gouvernorat
             }
             onChange={
@@ -105,8 +105,8 @@ function UpdateInfoPer() {
     </Grid>
 <Grid item
     xs={12}>
-    <TextField required focused id="adresse" name="Adresse" label="Adresse" fullWidth variant="standard"
-        value={
+    <TextField required focused id="adresse" name='Adresse' label="Adresse" fullWidth variant="standard"
+        defaultValue={
             updateInfoPer.Adresse
         }
         onChange={
@@ -118,8 +118,8 @@ function UpdateInfoPer() {
 </Grid><Grid item
     xs={12}
     sm={6}>
-<TextField required focused id="ddn" name="DDN" label="Date de naissance" fullWidth variant="standard"
-    value={
+<TextField required focused id="ddn" name='DDN' label="Date de naissance" fullWidth variant="standard"
+    defaultValue={
         updateInfoPer.DDN
     }
     onChange={
@@ -129,8 +129,8 @@ function UpdateInfoPer() {
         }
     }/></Grid><Grid item
     xs={12}
-    sm={6}><TextField required focused id="Dom" name="Dom" label="Domaine" fullWidth variant="standard"
-    value={
+    sm={6}><TextField required focused id="Dom" name='Dom' label="Domaine" fullWidth variant="standard"
+    defaultValue={
         updateInfoPer.Dom
     }
     onChange={
@@ -148,7 +148,7 @@ function UpdateInfoPer() {
             update();
         }
 }>
-    next
+    Suivant
 </button></Grid></Grid></Grid></React.Fragment>
     );
     // setCurrentStep(2);

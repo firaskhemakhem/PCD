@@ -79,7 +79,7 @@ function InfoAdd() {
                         setCurrentStep(2)
                     }
             }>
-                Back
+                Précédent
             </button>
         </Grid>
         <Grid item
@@ -93,8 +93,10 @@ function InfoAdd() {
                     () => {
                         submitData()
                     }
-            }>
-                Submit
+                }
+                style={{marginLeft:'-30px'}}
+            >
+                Soumettez
             </button>
         </Grid>
     </Grid>

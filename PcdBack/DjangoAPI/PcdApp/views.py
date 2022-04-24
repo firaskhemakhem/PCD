@@ -12,11 +12,11 @@ from django.dispatch import receiver
 from django.forms import ValidationError
 from django.db.models.signals import pre_save
 from PcdApp.models import FeedBackEtudEntr, Students,Recruteurs,UploadImage
-from PcdApp.serializers import FeedBackEtudEntrSerializer, StudentsSerializer ,RecruteursSerializer,NotifRecSerializer, NotifEtuSerializer
+from PcdApp.serializers import FeedBackEtudEntrSerializer, StudentsSerializer ,RecruteursSerializer,NotifRecSerializer, NotifEtuSerializer, TestSerializer
 #from django.core.files.storages import default_storage  #file storage
 
 
-from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile, NotifRec, NotifEtu
+from PcdApp.models import Students,Recruteurs, InfoPer, Competence, InfoAdd, Cv, UploadImage,UploadFile, NotifRec, NotifEtu, Test
 from PcdApp.serializers import StudentsSerializer ,RecruteursSerializer, InfoPerSerializer, CompetenceSerializer,InfoAddSerializer,CvSerializer,ImageSerializer,PDFSerializer
 
 #from django.core.files.storages import default_storage  #file storage
@@ -107,6 +107,10 @@ class NotifRecView (viewsets.ModelViewSet):
 class NotifEtuView (viewsets.ModelViewSet):
     serializer_class= NotifEtuSerializer
     queryset = NotifEtu.objects.all()
+
+class TestView(viewsets.ModelViewSet):
+    serializer_class= TestSerializer
+    queryset = Test.objects.all()
 
 @csrf_exempt
 def SaveFile(request):

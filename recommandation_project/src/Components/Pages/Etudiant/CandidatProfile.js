@@ -150,7 +150,7 @@ class CandProfile extends Component {
                       fullWidth
                       id="nom"
                       label="Nom & Prénom"
-                      name="Nom"
+                      name='Nom'
                       autoComplete="nom"
                       value={this.state.credentials.Nom}
                       onChange={this.inputChanged}
@@ -173,7 +173,7 @@ class CandProfile extends Component {
                     <TextField
                       focused
                       required
-                      name="Login"
+                      name='Login'
                       fullWidth
                       id="login"
                       label="Login"
@@ -190,7 +190,7 @@ class CandProfile extends Component {
                       fullWidth
                       id="Tel"
                       label="Numéro de Teléphone"
-                      name="Tel"
+                      name='Tel'
                       value={this.state.credentials.Tel}
                       onChange={this.inputChanged}
                     />
@@ -200,7 +200,7 @@ class CandProfile extends Component {
                       focused
                       required
                       fullWidth
-                      name="MDP"
+                      name='MDP'
                       label="Mot de Passe"
                       /*type="password"*/
                       id="password"
@@ -214,7 +214,7 @@ class CandProfile extends Component {
                       focused
                       required
                       fullWidth
-                      name="Adresse"
+                      name='Adresse'
                       label="Adresse"
                       value={this.state.credentials.Adresse}
                       onChange={this.inputChanged}
@@ -225,7 +225,7 @@ class CandProfile extends Component {
                       focused
                       required
                       fullWidth
-                      name="DDN"
+                      name='DDN'
                       label="DDN"
                       value={this.state.credentials.DDN}
                       onChange={this.inputChanged}
@@ -242,7 +242,7 @@ class CandProfile extends Component {
                         labelId="demo-simple-select-required-label"
                         id="demo-simple-select-required"
                         label="Civilité"
-                        name="Civ"
+                        name='Civ'
                         value={this.state.credentials.Civ}
                         onChange={this.inputChanged}
                       >
@@ -258,7 +258,7 @@ class CandProfile extends Component {
                         labelId="demo-simple-select-required-label"
                         id="demo-simple-select-required"
                         label="Civilité"
-                        name="Gouvernorat"
+                        name='Gouvernorat'
                         value={this.state.credentials.Gouvernorat}
                         onChange={this.inputChanged}
                       >

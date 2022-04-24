@@ -1,6 +1,6 @@
 import { ContactSupportOutlined } from '@material-ui/icons';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import HeaderRec from '../HeaderRec';
 
 class Sujets extends React.Component {
@@ -11,7 +11,7 @@ class Sujets extends React.Component {
             data: [],
             isLogin: false,
             nb: 0,
-            Att:false
+            Att: false
 
 
         };
@@ -30,7 +30,7 @@ class Sujets extends React.Component {
                         })
                         localStorage.setItem('isLogin', true)
                     }
-                 
+
 
                 }
                 console.log(this.state.data);
@@ -41,93 +41,99 @@ class Sujets extends React.Component {
     componentDidMount() {
         this.fetchData();
     }
-    deleteData(id){
-        fetch('http://127.0.0.1:8000/PcdApp/sujet/'+id,{
-            method:'DELETE',
-            body:JSON.stringify(this.state),
+    deleteData(id) {
+        fetch('http://127.0.0.1:8000/PcdApp/sujet/' + id, {
+            method: 'DELETE',
+            body: JSON.stringify(this.state),
         })
-        .then(response=>response)
-        .then((data)=>{
-            if(data){
-                this.fetchData();
-            }
-        });
-      }
+            .then(response => response)
+            .then((data) => {
+                if (data) {
+                    this.fetchData();
+                }
+            });
+    }
 
     render() {
         const sujetData = this.state.data;
-         console.log(sujetData)
-        
-        const rows = sujetData.map((sujet) =>
-        
+        console.log(sujetData)
 
-        (this.state.isLogin  && !sujet.Att &&<tr key={sujet.Id_sujet}>
+        const rows = sujetData.map((sujet) =>
+
+
+        (this.state.isLogin && !sujet.Att && <tr key={sujet.Id_sujet}>
 
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
-            <td>  <NavLink to={"/UpdateSujet/"+sujet.Id_sujet}>
-                   <button 
-                       type="button" 
-                       class="btn btn-outline-secondary"
-                       fullWidth
-                       variant="contained"
-                       sx={{ mt: 4, mb:2 }}
-                     >
-                      Mettre à jour
-                   </button></NavLink>
-                 </td>
-                 <td><button onClick={()=>this.deleteData(sujet.Id_sujet)} className="btn btn-danger">Supprimer</button></td>
+            <td>  <Link to={"/UpdateSujet/" + sujet.Id_sujet} >
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 4, mb: 2 }}
+                    //onClick={window.location.reload(true)}
+                >
+                    Mettre à jour
+                </button></Link>
+            </td>
+            <td>
+                <button 
+                    onClick={() => { this.deleteData(sujet.Id_sujet); window.location.reload(true) }} className="btn btn-danger">
+                        Supprimer
+                </button>
+            </td>
         </tr>));
         return (
-          
-            
-                <div>
-                    <HeaderRec/>
-                    {!this.state.isLogin && <div>
-                        <h2 style={{
-                            color: '#023C59',
-                            paddingTop:'300px'
 
-                        }}>Vous n'avez aucun sujet déposé</h2>
-                        </div>}
-                    {this.state.isLogin && 
-                      <div style={{
+
+            <div>
+
+                {!this.state.isLogin && <div>
+                    <h2 style={{
+                        color: '#023C59',
+                        paddingTop: '300px'
+
+                    }}>Vous n'avez aucun sujet déposé</h2>
+                </div>}
+                {this.state.isLogin &&
+                    <div style={{
                         border: '1px solid #023C59',
                         borderWidth: '3px',
                         borderRadius: '10px',
-                        marginTop:'15px'
-                       
+                        marginTop: '15px'
+
                     }}>
-                    <div>
-                        <h4 style={{
-                            textAlign: 'center',
-                            color: '#023C59', paddingTop:'8px'
-                        }}>Vos Sujets Déposés</h4>
-                        <table class="table">
-                            <thead>
+                        <div>
+                            <h4 style={{
+                                textAlign: 'center',
+                                color: '#023C59', paddingTop: '8px'
+                            }}>Vos Sujets Déposés</h4>
+                            <table class="table">
+                                <thead>
 
 
-                                <tr>
-                               
-                                <th scope="col">Titre</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Domaine</th>
-                                <th scope="col">Mettre à jour</th>
-                                <th scope="col">Supprimer</th>
-                                </tr>
+                                    <tr>
+
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Domaine</th>
+                                        <th scope="col">Mettre à jour</th>
+                                        <th scope="col">Supprimer</th>
+                                    </tr>
 
 
-                            </thead>
-                            <tbody>
-                                {rows}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {rows}
+                                </tbody>
+                            </table>
 
-                    </div>
+                        </div>
                     </div>}
-                </div>
-          
+            </div>
+
         )
     }
 }

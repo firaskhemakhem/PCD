@@ -7,28 +7,30 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import InfoPer from "./InfoPer";
-import Competence from "./Competence";
-import InfoAdd from "./InfoAdd";
-import Res from './Res';
-import HeaderCan from '../Etudiant/HeaderCan';
-import {multiStepContext} from './StepContext';
+import Partie1 from "./Partie1";
+import Partie2 from "./Partie2";
+import Partie3 from "./Partie3";
+import ResTest from './ResTest';
+import {multiStepContext} from './StepContextTest';
+import Consignes from './Consignes';
 
 
 
 const theme = createTheme();
-const Cv=()=>{
+const Test=()=>{
   const {currentStep}=useContext(multiStepContext);
   function showStep(step) {
     switch (step) {
       case 1:
-        return <InfoPer/>;
+        return <Consignes/>
       case 2:
-        return <Competence/>;
+        return <Partie1/>;
       case 3:
-        return <InfoAdd/>;
+        return <Partie2/>;
       case 4:
-          return <Res/>
+        return <Partie3/>;
+      case 5:
+          return <ResTest/>
       default:
         throw new Error('Unknown step');
     }
@@ -39,7 +41,6 @@ const Cv=()=>{
     <header className='App-header'>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HeaderCan/>
       <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
@@ -48,16 +49,19 @@ const Cv=()=>{
           <div className="center-stepper">
             <Stepper style={{ width: "18%" }} activeStep={currentStep - 1}  orientation="horizontal">
               <Step>
-                <StepLabel>Information Personnel</StepLabel>
+                <StepLabel>Consignes</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Compétences</StepLabel>
+                <StepLabel>Premiere Partie</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Information Additionnelle</StepLabel>
+                <StepLabel>Deuxième Partie</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Résultat Final</StepLabel>
+                <StepLabel>Troisiéme Partie</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Resultat</StepLabel>
               </Step>
             </Stepper>
           </div>
@@ -68,4 +72,4 @@ const Cv=()=>{
     </header>
   )
 }
-export default Cv;
+export default Test;

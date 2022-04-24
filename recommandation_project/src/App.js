@@ -34,6 +34,9 @@ import LettreDeMotiv from './Components/Pages/Etudiant/LettreDeMotiv'
 import UpdateSuj from './Components/Pages/Recruteur/Sujets/UpdateSuj';
 import Listedescand from './Components/Pages/Recruteur/Listedescandidatures/Listedescand';
 
+import Test from './Components/Pages/Etudiant/TestDePer/Test';
+import StepContextTest from './Components/Pages/Etudiant/TestDePer/StepContextTest';
+
 function App() {
   const [token, setToken] = useState('');
 
@@ -70,6 +73,8 @@ function App() {
         <Route exact path = "/ListeCand/:id" element={<Listedescand/>}/>
         <Route exact path = "/UpdateSujet/:id" element={<UpdateSuj/>}/>
         <Route exact path="/LettreDeMotivation/:id" element={<LettreDeMotiv/>} />
+
+        <Route exact path = '/Test/:id' element = {<StepContextTest><Test/></StepContextTest>}/>
       </Routes>
     </BrowserRouter>   
     </div>

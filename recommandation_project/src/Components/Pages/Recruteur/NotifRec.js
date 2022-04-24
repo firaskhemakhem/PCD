@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import TableBody from '@mui/material/TableBody';
+import Divider from '@mui/material/Divider';
 const NotifRec = (props) => {
     const { url } = props;
     //const [data, setData] = useState([]);
@@ -65,30 +66,22 @@ const NotifRec = (props) => {
         }
     }*/
     const Lines = finalData.map((notif,i) => (
+        <TableBody>
         <th key={i}>
-            <tr>
+            
             L'Etudiant(e) {notif.Nom} a postuler dans un sujet proposez par vous {notif.Time}. Consultez votre mail pour plus d'information.
-            </tr>
+            <br/>
+            <br/>
+            <Divider/>
+            <br/>
             </th>
+            </TableBody>
     ));
 
     return (
         <div>
-            <table class="table">
-                <thead>
-                    {/* <tr>
-                        <th >
-                        
-                         <p>   Notifications de l'Entreprise {url}</p>
-                         
-                        </th>
-                    </tr> */}
-                    
-                </thead>
-                <tbody>
+            
                     {Lines}
-                </tbody>
-            </table>
         </div>
     )
 }

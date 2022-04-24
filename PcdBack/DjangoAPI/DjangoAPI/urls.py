@@ -26,6 +26,8 @@ urlpatterns = [
     path('interessant/',obtain_auth_token),
 
     path('notifEtu/',obtain_auth_token),
-    path('notifRec/',obtain_auth_token)
+    path('notifRec/',obtain_auth_token),
+
+    path('test', obtain_auth_token)
         
 ]

@@ -93,15 +93,16 @@ const featuredPosts2 = [
         description: 'Le résultat du test de personnalité est importante pour la recommandation.',
         image: 'http://www.psychomedia.qc.ca/image/2015-12/36543-63194-image',
         imageLabel: 'Déposer',
-        link: <button type="button" class="btn btn-outline-secondary" fullWidth variant="contained"
+        link:<NavLink to={"/Test/"+ localStorage.getItem("LoginUser")} > <button type="button" class="btn btn-outline-secondary" fullWidth variant="contained"
             sx={
                 {
                     mt: 4,
                     mb: 2
                 }
         }>
-            Sélectionner
+            Commencer
         </button>
+        </NavLink>
 
     },
 

@@ -88,7 +88,7 @@ export default function LettreDeMotiv() {
         format="Le "+ jour + "/" + mois + "/" + date.getFullYear() + " à " + tempsH + ":" + tempsM ;
         console.log(data);
         for (let i=0 ; i < data.length ; i++){
-            if (data[i].recruteur==IdRec && data[i].student==IdStu  && data[i].id_sujet==IdSuj){
+            if (data[i].recruteur===IdRec && data[i].student===IdStu  && data[i].id_sujet===IdSuj){
                 setDataFinal({"Recruteur":IdRec,"Student":IdStu, "Sujet":IdSuj, "Nom":nomEtu , "Time": format})
             }
         }
@@ -200,8 +200,8 @@ export default function LettreDeMotiv() {
                                 type="submit"
                                 class="btn btn-outline-secondary"
                                 onClick={(e)=>{
-                                    e.preventDefault()
-                                    addNotif(e)}}
+                                e.preventDefault()
+                                addNotif(e)}}
                             >
                                 Envoyer
                             </button>

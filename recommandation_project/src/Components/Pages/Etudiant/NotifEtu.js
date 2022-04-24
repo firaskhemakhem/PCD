@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import TableBody from '@mui/material/TableBody';
+import Divider from '@mui/material/Divider';
 const NotifEtu = (props) => {
     const { url } = props;
     const [nomSuj, setNomSuj] = useState([]);
@@ -59,14 +60,18 @@ const NotifEtu = (props) => {
                 }
             })
     }, []);
-    const Lines = data.map((notif) => 
-            (
-                <th key={notif.id_sujet}>
-                    <tr>
-                        Votre candidature a été confirmer par l'Entreprise {notif.recruteur}. Consultez votre mail pour plus d'information.
-                    </tr>
-                </th>
-            )
+    const Lines = data.map((notif) =>
+    (<TableBody>
+        <th key={notif.id_sujet}>
+
+            Votre candidature a été confirmer par l'Entreprise {notif.recruteur}. Consultez votre mail pour plus d'information.
+            <br />
+            <br />
+            <Divider />
+            <br />
+        </th>
+    </TableBody>
+    )
     );
     return (
         <div>

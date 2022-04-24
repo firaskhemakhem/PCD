@@ -31,6 +31,8 @@ router.register(r'interessant',InterSujView)
 
 router.register(r'notifEtu', NotifEtuView)
 router.register(r'notifRec', NotifRecView)
+
+router.register(r'test', NotifRecView)
 urlpatterns = [
     path('', include(router.urls) ),
 

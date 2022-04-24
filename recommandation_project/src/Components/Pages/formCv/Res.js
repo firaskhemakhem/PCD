@@ -5,6 +5,7 @@ import {PDFExport} from '@progress/kendo-react-pdf';
 import './Cv.css';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router';
+import PopUpMessage from '../../PopUpMessage/PopUpFile'
 
 function Res() {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ function Res() {
     const [infoadd, setInfoadd] = useState([]);
     const [competence, setCompetence] = useState([]);
     const [cv, setCv] = useState([]);
+    const [openPop, setOpenPop]= React.useState(false);
     const arrangeData = () => {
         setInfoper({
             "LoginStu": localStorage.getItem('LoginUser'),
@@ -90,7 +92,7 @@ function Res() {
             body: JSON.stringify(cv)
         }).then(data => data.json()).catch(error => console.error(error))
     }
-    const ddData = [
+    /*const ddData = [
         {
             text: "A3",
             value: "size-a3"
@@ -101,16 +103,16 @@ function Res() {
             text: "Executive",
             value: "size-executive"
         }
-    ];
+    ];*/
     const pdfExportComponent = useRef(null);
     const [layoutSelection, setLayoutSelection] = useState({text: "A4", value: "size-a4"});
     const handleExportWithComponent = (event) => {
         pdfExportComponent.current.save();
     }
 
-    const updatePageLayout = (event) => {
+    /*const updatePageLayout = (event) => {
         setLayoutSelection(event.target.value);
-    }
+    }*/
     return (
         <div>
             <br/>
@@ -209,6 +211,7 @@ function Res() {
                             registercv();
                             registercompetence();
                             handleExportWithComponent();
+                            setOpenPop(true)
                             //navigate('/EspCand/'+localStorage.getItem('LoginUser'))
                         }
                 }>
@@ -216,6 +219,24 @@ function Res() {
                     Terminer
                 </button>
             </Grid>
+            <div align="center">
+                {openPop && <PopUpMessage dataFromParent ={<>
+                <h3><b>félicitations!</b></h3><br/>
+                <p>Votre CV a été crée! C'est le temps de consultez les sujets</p>
+                    <button class="btn btn-outline-dark" variant="contained" onClick={(e)=>{
+                        e.preventDefault()
+                        registerInfoPer();
+                        registerInfoAdd();
+                        registercv();
+                        registercompetence();
+                        navigate('/EspCand/'+localStorage.getItem('LoginUser'));
+                        }}
+                    >
+                        Ok
+                    </button>
+                </>}
+          />}
+          </div>
         </div>
 
     );
