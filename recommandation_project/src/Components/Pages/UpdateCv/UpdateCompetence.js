@@ -54,7 +54,7 @@ function UpdateCompetence() {
                         placeholder="Expliquer votre parcour educatif en quelques lignes"
                         variant="standard"
                         fullWidth
-                        value={
+                        defaultValue={
                             updateCompétence.Formation
                         }
                         onChange={
@@ -72,7 +72,7 @@ function UpdateCompetence() {
                     variant="standard"
                     fullWidth
                     name="ExpProf"
-                    value={
+                    defaultValue={
                         updateCompétence.ExpProf
                     }
                     onChange={
@@ -90,7 +90,7 @@ function UpdateCompetence() {
                 variant="standard"
                 fullWidth
                 name="Certif"
-                value={
+                defaultValue={
                     updateCompétence.Certif
                 }
                 onChange={
@@ -108,7 +108,7 @@ function UpdateCompetence() {
             variant="standard"
             fullWidth
             name="Lang"
-            value={
+            defaultValue={
                 updateCompétence.Lang
             }
             onChange={
@@ -126,7 +126,7 @@ function UpdateCompetence() {
         variant="standard"
         fullWidth
         name="Liens"
-        value={
+        defaultValue={
             updateCompétence.Liens
         }
         onChange={
@@ -143,7 +143,7 @@ function UpdateCompetence() {
             setCurrentStep(1)
         }
 }>
-    Back
+    Précédent
 </button></Grid><Grid item
     xs={20}
     sm={10}></Grid><Grid item
@@ -157,7 +157,7 @@ function UpdateCompetence() {
             setCurrentStep(3);
         }
 }>
-    Next
+    Suivant
 </button></Grid></Grid></React.Fragment>
     )
 }

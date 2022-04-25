@@ -32,26 +32,26 @@ class VisibleStu extends React.Component {
             isFeed: false,
             feedInput: '',
             ratingInput: -1,
-            open :false
+            open: false
 
 
         };
         this.handleMessageInput = this.handleMessageInput.bind(this);
     }
     handleMessageInput(inputName, content) {
-		if (inputName === 'Rating') {
-			this.setState({ ratingInput: content });
-		} else if (inputName === 'FeedBack') {
-			this.setState({ feedInput: content });
-		}
-	}
+        if (inputName === 'Rating') {
+            this.setState({ ratingInput: content });
+        } else if (inputName === 'FeedBack') {
+            this.setState({ feedInput: content });
+        }
+    }
     handleRatingInput(ratingInput) {
-		this.setState({ ratingInput: ratingInput });
-	}
+        this.setState({ ratingInput: ratingInput });
+    }
     handleFeedInput(feedInput) {
-		this.setState({ feedInput: feedInput });
-		
-	}
+        this.setState({ feedInput: feedInput });
+
+    }
 
     update = event => {
         var id = this.state.data.id;
@@ -136,16 +136,14 @@ class VisibleStu extends React.Component {
             body: JSON.stringify(
                 {
                     "Recruteur": window.location.href.split('/')[4],
-                    "FeedBack":this.state.feedInput,
-                    "Rating":this.state.ratingInput
-
+                    "FeedBack": this.state.feedInput,
+                    "Rating": this.state.ratingInput
                 }
-
             )
         })
             .then(data => data.json())
             .then((result) => {
-                
+
                 console.log(result);
 
             })
@@ -308,18 +306,18 @@ class VisibleStu extends React.Component {
     render() {
         const Transition = React.forwardRef(function Transition(props, ref) {
             return <Slide direction="up" ref={ref} {...props} />;
-          });
-          const handleClickOpen = () => {
-           this.setState({
-               open :true
-           })
-          };
-        
-          const handleClose = () => {
+        });
+        const handleClickOpen = () => {
             this.setState({
-                open : false
+                open: true
             })
-          };
+        };
+
+        const handleClose = () => {
+            this.setState({
+                open: false
+            })
+        };
         const defaultMessageStyles = {
             boxSizing: 'border-box',
             padding: '10px 10px 0 10px',
@@ -330,7 +328,9 @@ class VisibleStu extends React.Component {
 
         const sujetData = this.state.dataSujet;
         const agendaData = this.state.dataAgenda;
-
+        const IdStu = localStorage.getItem("LoginUser");
+        { localStorage.setItem("IdRec", window.location.href.split('/')[4]) }
+        //const IdEntre= window.location.href.split('/')[4];
         const rowsSujet = sujetData.map((sujet) =>
 
         (this.state.isLoginSujet && <tr key={sujet.Id_sujet}>
@@ -338,7 +338,7 @@ class VisibleStu extends React.Component {
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
-            <td><button className="btn btn-outline-secondary" onClick={(e) => this.registerInter(e, sujet.Id_sujet)}>Intéresser</button></td>
+            <td><NavLink to={"/LettreDeMotivation/" + IdStu}><button className="btn btn-outline-secondary" onClick={(e) => { this.registerInter(e, sujet.Id_sujet); localStorage.setItem('IDSujInter', sujet.Id_sujet) }}>Intéresser</button></NavLink></td>
         </tr>));
         const rowsAgenda = agendaData.map((agenda) =>
 
@@ -475,18 +475,18 @@ class VisibleStu extends React.Component {
                             <Textarea placeholder='Entrer votre Avis' name='FeedBack'
                                 width={'350px'}
                                 height={'250px'}
-                                onChange ={e =>this.setState({
-                                    feedInput:e.target.value
+                                onChange={e => this.setState({
+                                    feedInput: e.target.value
                                 })}
-                                 />
-                            <div style={{marginLeft:'50px'}}>
+                            />
+                            <div style={{ marginLeft: '50px' }}>
                                 <StarRatings
                                     rating={this.state.ratingInput}
                                     starRatedColor="#023C59"
-                                   
-                                   changeRating={newRating =>this.setState({
-                                       ratingInput:newRating
-                                   })}
+
+                                    changeRating={newRating => this.setState({
+                                        ratingInput: newRating
+                                    })}
                                     numberOfStars={5}
                                     name='Rating'
                                     starDimension="35px"
@@ -501,29 +501,29 @@ class VisibleStu extends React.Component {
                         <button className="btn btn-outline-secondary" style={{ marginLeft: '640px' }} onClick={this.registerfeed}>Envoyer</button>
                     </div>}
                     <div>
-                    <Button variant="outlined" onClick={handleClickOpen} style={{
-                        marginLeft:'20px'
-                    }}>
-       Consulter les avis
-      </Button>
-      <Dialog
-        open={this.state.open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle>{"Les Avis pour l'entreprise " + `${this.state.url}`}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-          <FeedBackEntrp/>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Fermer</Button>
-          
-        </DialogActions>
-      </Dialog>
+                        <Button variant="outlined" onClick={handleClickOpen} style={{
+                            marginLeft: '20px'
+                        }}>
+                            Consulter les avis
+                        </Button>
+                        <Dialog
+                            open={this.state.open}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            //onClose={handleClose}
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogTitle>{"Les Avis pour l'entreprise " + `${this.state.url}`}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    <FeedBackEntrp />
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => { handleClose(); window.location.reload(true) }}>Fermer</Button>
+
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 </div>
             </div>

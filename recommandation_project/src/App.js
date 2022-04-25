@@ -36,6 +36,9 @@ import Listedescand from './Components/Pages/Recruteur/Listedescandidatures/List
 import Recherche from './Components/Recherche/Recherche';
 
 
+import Test from './Components/Pages/Etudiant/TestDePer/Test';
+import StepContextTest from './Components/Pages/Etudiant/TestDePer/StepContextTest';
+
 function App() {
   const [token, setToken] = useState('');
 
@@ -74,7 +77,7 @@ function App() {
         <Route exact path="/LettreDeMotivation/:id" element={<LettreDeMotiv/>} />
         <Route exact path="/Recherche" element={<Recherche/>}/>
         <Route exact path = "/Recherche/:id" element={<VisibleStu/>}/>
-
+        <Route exact path = '/Test/:id' element = {<StepContextTest><Test/></StepContextTest>}/>
       </Routes>
     </BrowserRouter>   
     </div>

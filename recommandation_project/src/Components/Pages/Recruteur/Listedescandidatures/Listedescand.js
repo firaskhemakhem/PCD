@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import HeaderRec from '../HeaderRec';
 
 class Listedescand extends React.Component {
-
     constructor() {
         super();
         this.state = {
@@ -35,13 +34,11 @@ class Listedescand extends React.Component {
                 student: '',
                 id_sujet: '',
                 Att: true
-            }
-
-
+            },
+            notifData:[]
         };
     }
     fetchDataSujet() {
-
         fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
 
             .then(response => response.json())
@@ -111,7 +108,7 @@ class Listedescand extends React.Component {
                        // .then(console.log(this.state.cred))
                         .catch(error => console.error(error))
 
-                }else {console.log("n'esxista pas")}
+                }else {console.log("n'exista pas")}
             }
         }
         //var id=this.state.credentials.Login;
@@ -133,11 +130,91 @@ class Listedescand extends React.Component {
                     }
 
                 }
-                console.log(this.state.data);
-                console.log(this.state.isLogin);
+                //console.log(this.state.data);
+                //console.log(this.state.isLogin);
             });
     }
-
+    /* oooooooooooooooooooooooooooooooo*/
+    /*date=new Date()
+    let jour;
+    var mois;
+    var tempsM;
+    var tempsH;
+    const fixJour=()=>{
+        
+        if (date.getDate()<10)
+            jour="0"+date.getDate();
+        else 
+            jour= date.getDate();
+    }
+    const fixMois=()=>{
+        
+        if (date.getMonth()<9)
+            mois="0"+date.getMonth();
+        else 
+            mois= date.getMonth();
+    }
+    const fixMinu=()=>{
+        if (date.getMinutes()<10)
+            tempsM="0"+date.getMinutes();
+        else 
+            tempsM= date.getMinutes();
+    }
+    const fixheure=()=>{
+        if (date.getHours()<10)
+            tempsH="0"+date.getHours();
+        else 
+            tempsH= date.getHours();
+    }*/
+    /*addNotif=()=>{
+        console.log("dans addNotif");
+        const date=new Date();
+        let jour;
+        var mois;
+        var tempsM;
+        var tempsH;
+        const fixJour=()=>{
+        
+            if (date.getDate()<10)
+                jour="0"+date.getDate();
+            else 
+                jour= date.getDate();
+            console.log('ya rabi sabrni ')
+        }
+        const fixMois=()=>{
+        
+            if (date.getMonth()<9)
+                mois="0"+date.getMonth();
+            else 
+                mois= date.getMonth();
+        }
+        const fixMinu=()=>{
+            if (date.getMinutes()<10)
+                tempsM="0"+date.getMinutes();
+            else 
+                tempsM= date.getMinutes();
+        }
+        const fixheure=()=>{
+            if (date.getHours()<10)
+                tempsH="0"+date.getHours();
+            else 
+                tempsH= date.getHours();
+        }
+        fixJour();
+        fixMois();
+        fixMinu();
+        fixheure();
+        const format="Le "+ jour + "/" + mois + "/" + date.getFullYear() + " à " + tempsH + ":" + tempsM ;
+        this.setState({notifData: {'Recruteur': this.state.data.recruteur, 'Student':this.state.data.student,'Sujet':this.state.NomSuj, 'Nom':'lala', 'Time':format}})
+        fetch('http://127.0.0.1:8000/PcdApp/notifEtu/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.notifData)
+        }).then(data => data.json()).catch(error => console.error(error))
+    }*/
+    /*ooooooooooooooooooooooooo*/
     componentDidMount() {
         this.fetchData();
         this.fetchDataSujet();
@@ -171,7 +248,7 @@ class Listedescand extends React.Component {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 4, mb: 2 }}
-                    onClick={(e) => { this.update(e, inter.id, inter.student, inter.id_sujet) ; this.updateSuj(e);}}
+                    onClick={(e) => { this.update(e, inter.id, inter.student, inter.id_sujet) ; this.updateSuj(e);this.addNotif()}}
                 >
                     Confirmer
                 </button>

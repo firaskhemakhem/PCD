@@ -61,8 +61,8 @@ function UpdateInfoAdd() {
                         variant="standard"
                         fullWidth
                         focused
-                        name="CentreInt"
-                        value={
+                        name='CentreInt'
+                        defaultValue={
                             updateInfoAdd.CentreInt
                         }
                         onChange={
@@ -84,7 +84,7 @@ function UpdateInfoAdd() {
                     fullWidth
                     focused
                     name="VieAsso"
-                    value={
+                    defaultValue={
                         updateInfoAdd.VieAsso
                     }
                     onChange={
@@ -105,7 +105,7 @@ function UpdateInfoAdd() {
                         setCurrentStep(2)
                     }
             }>
-                Back
+                Précédent
             </button>
         </Grid>
         <Grid item
@@ -119,8 +119,10 @@ function UpdateInfoAdd() {
                     () => {
                         submitData()
                     }
-            }>
-                Submit
+                }
+                style={{marginLeft:'-30px'}}
+            >
+                Soumettez
             </button>
         </Grid>
     </Grid>

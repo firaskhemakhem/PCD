@@ -286,7 +286,6 @@ render(){
             dataFromParent ={<>
               <h3><b>félicitations !</b></h3><br/>
               <p>Maintenant c'est le moment de commancer votre aventure</p>
-              
               <NavLink to ={'/EspCand/'+localStorage.getItem('LoginUser')}> 
               <Button variant="contained" >
                 Ok
