@@ -15,7 +15,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { NavLink } from 'react-router-dom';
-import  Navig  from './Navig';
+import Navig from './Navig';
+import { useState, useEffect } from 'react';
+import "../../../styles/Recherche/Recherche.css"
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,6 +60,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function HeaderCan() {
+  // const [data, setData] = useState([]);
+  // const [searchTeam, setSearchTeam] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
+  //     .then((response) => response.json())
+  //     .then((json) => setData(json))
+  // }, []);
+  // console.log(data)
+  // const handleSearchTeam = (e) => {
+  //   console.log(e.target.value);
+  //   let value = e.target.value;
+  //   value.length > 2 && setSearchTeam(value);
+  // };
+  // console.log(searchTeam)
+  // const [vis,setVis]= useState(false);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -80,7 +99,7 @@ export default function HeaderCan() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
- 
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -98,12 +117,12 @@ export default function HeaderCan() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-    <NavLink to="/Images"><MenuItem onClick={handleMenuClose}>Profile</MenuItem></NavLink>
-    <NavLink to={"/CandProfile/"+localStorage.getItem('LoginUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
+      <NavLink to="/Images"><MenuItem onClick={handleMenuClose}>Profile</MenuItem></NavLink>
+      <NavLink to={"/CandProfile/" + localStorage.getItem('LoginUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
     </Menu>
   );
-//    <NavLink to={"/CandProfile/"+localStorage.getItem('IdUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
-//<MenuItem onClick={handleMenuClose}><a href={"/CandProfile/"+localStorage.getItem('IdUser')}>My account</a></MenuItem>
+  //    <NavLink to={"/CandProfile/"+localStorage.getItem('IdUser')}> <MenuItem onClick={handleMenuClose}>My account</MenuItem></NavLink>
+  //<MenuItem onClick={handleMenuClose}><a href={"/CandProfile/"+localStorage.getItem('IdUser')}>My account</a></MenuItem>
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -151,14 +170,14 @@ export default function HeaderCan() {
         >
           <AccountCircle />
         </IconButton>
-       <p>Profile</p>
+        <p>Profile</p>
       </MenuItem>
     </Menu>
   );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style ={{backgroundColor:'#023C59'}}>
+      <AppBar position="static" style={{ backgroundColor: '#023C59' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -167,7 +186,7 @@ export default function HeaderCan() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <Navig/>
+            <Navig />
             {/* <MenuIcon onClick={<Navig/>}/>  */}
           </IconButton>
           <Typography
@@ -178,15 +197,25 @@ export default function HeaderCan() {
           >
             PIAPE
           </Typography>
+          <NavLink to ="/Recherche">
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
+
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+               // onChange={(event)=>{handleSearchTeam(event);setVis(true)}}
+               // onClick={setVis(true)}
+              />
+           
+
           </Search>
+          </NavLink>
+
+
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">

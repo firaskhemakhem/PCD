@@ -33,6 +33,8 @@ import Favoris from './Components/Pages/Entreprise/Favoris';
 import LettreDeMotiv from './Components/Pages/Etudiant/LettreDeMotiv'
 import UpdateSuj from './Components/Pages/Recruteur/Sujets/UpdateSuj';
 import Listedescand from './Components/Pages/Recruteur/Listedescandidatures/Listedescand';
+import Recherche from './Components/Recherche/Recherche';
+
 
 function App() {
   const [token, setToken] = useState('');
@@ -70,6 +72,9 @@ function App() {
         <Route exact path = "/ListeCand/:id" element={<Listedescand/>}/>
         <Route exact path = "/UpdateSujet/:id" element={<UpdateSuj/>}/>
         <Route exact path="/LettreDeMotivation/:id" element={<LettreDeMotiv/>} />
+        <Route exact path="/Recherche" element={<Recherche/>}/>
+        <Route exact path = "/Recherche/:id" element={<VisibleStu/>}/>
+
       </Routes>
     </BrowserRouter>   
     </div>

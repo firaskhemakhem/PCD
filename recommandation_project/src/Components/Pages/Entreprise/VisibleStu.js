@@ -1,9 +1,7 @@
 import React from 'react';
-import HeaderCan from '../Etudiant/HeaderCan'
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { IconButton } from '@mui/material';
+import HeaderCan from '../Etudiant/HeaderCan';
 import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom';
+
 import { Textarea } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 import FeedBackEntrp from './FeedBackEntrp';
