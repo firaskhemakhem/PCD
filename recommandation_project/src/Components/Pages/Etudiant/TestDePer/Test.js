@@ -14,8 +14,6 @@ import ResTest from './ResTest';
 import {multiStepContext} from './StepContextTest';
 import Consignes from './Consignes';
 
-
-
 const theme = createTheme();
 const Test=()=>{
   const {currentStep}=useContext(multiStepContext);
@@ -44,10 +42,12 @@ const Test=()=>{
       <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Test de Personnalité
+            Test de personnalité
           </Typography>
+          <br/>
+          <div style={{marginLeft: '250px', marginBottom:'25px' }}>
           <div className="center-stepper">
-            <Stepper style={{ width: "18%" }} activeStep={currentStep - 1}  orientation="horizontal">
+            <Stepper style={{ width: "18%"}} activeStep={currentStep - 1}  orientation="horizontal">
               <Step>
                 <StepLabel>Consignes</StepLabel>
               </Step>
@@ -64,6 +64,8 @@ const Test=()=>{
                 <StepLabel>Resultat</StepLabel>
               </Step>
             </Stepper>
+            
+          </div>
           </div>
           {showStep(currentStep)}
         </Paper>
