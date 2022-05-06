@@ -1,7 +1,11 @@
 from rest_framework import routers
 from .views import FeedBackEtudRecView, FeedBackView, InterSujView, StudentsView ,RecruteursView,AgendaView, SuitView,SujetView
 
+<<<<<<< HEAD
 from .views import StudentsView ,RecruteursView, InfoAddView, InfoPerView , CompetenceView, CvView,ImageView,PDFView,ChangePass
+=======
+from .views import  InfoAddView, InfoPerView , CompetenceView, CvView,ImageView,PDFView, NotifRecView, NotifEtuView
+>>>>>>> 79559cbc106126b06281a9330829cf9743189a14
 from .views import InfoAddView, InfoPerView , CompetenceView, CvView,Student_login
 
 from django.urls import path
@@ -30,6 +34,11 @@ router.register(r'agenda',AgendaView)
 router.register(r'suit',SuitView)
 router.register(r'feedbacketurec',FeedBackEtudRecView)
 router.register(r'interessant',InterSujView)
+
+router.register(r'notifEtu', NotifEtuView)
+router.register(r'notifRec', NotifRecView)
+
+router.register(r'test', NotifRecView)
 urlpatterns = [
     path('', include(router.urls) ),
 

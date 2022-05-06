@@ -17,6 +17,13 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { NavLink } from 'react-router-dom';
 import  Navig  from './Navig';
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import NotifRec from './NotifRec';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -63,6 +70,22 @@ export default function HeaderRec() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  /* lalalalalalalalalalala*/
+  const url= window.location.href.split('/')[4];
+  const [open, setOpen]= React.useState(false);
+
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+  const handleClickOpen = () => {
+    setOpen(true);
+   };
+
+   const handleClose = () => {
+    setOpen(false);
+  };
+  /* lalalalalalalalalalala*/
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -134,9 +157,12 @@ export default function HeaderRec() {
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
+          
         >
           <Badge badgeContent={17} color="error">
+
             <NotificationsIcon />
+            
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -148,6 +174,7 @@ export default function HeaderRec() {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          
         >
           <AccountCircle />
         </IconButton>
@@ -191,7 +218,7 @@ export default function HeaderRec() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit" >
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
@@ -200,11 +227,31 @@ export default function HeaderRec() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              onClick={handleClickOpen}
             >
-              <Badge badgeContent={17} color="error">
+              {/* badgeContent={} */}
+              <Badge  color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        //onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Les Notification pour l'entreprise " + `${url}`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+          <NotifRec url ={url}/>
+          </DialogContentText>
+        </DialogContent>
+        {/* window.location.reload(true) */}
+        <DialogActions>
+          <button class="btn btn-outline-dark" onClick={()=>{handleClose();window.location.reload(true)}}>Fermer</button>
+        </DialogActions>
+      </Dialog>
             <IconButton
               size="large"
               edge="end"

@@ -4,10 +4,12 @@ import '../../styles/PopUpMessage/PopUpFile.css'
 class PopUpMessage extends Component {
     render(){
         return(
-            <div className="popup-box">
-                <div className="box" >
+            <div className='popup-box '>
+                 <div className='box'>
+                
                     {this.props.dataFromParent}
-                </div>
+                    </div>
+             
             </div>
         )
     }

@@ -22,7 +22,7 @@ import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 export default function Navig() {
  const [state, setState] = React.useState({});
  const Icons =(index) =>{
-   if(index === 0){return <PermIdentityIcon/>;}
+   if(index === 0){return <NavLink to={"/CandProfile/"+localStorage.getItem('LoginUser')} style={{color:'grey'}}> <PermIdentityIcon /> </NavLink> ;}
    else if (index=== 1 ){return <DateRangeIcon/>;}
    else if (index=== 2 ){return <MailOutlineIcon/>;}
    else if(index === 3) {return <NavLink to = {"/Favoris/"+localStorage.getItem('LoginUser')} style={{
@@ -33,10 +33,10 @@ export default function Navig() {
   }}><DensityMediumIcon/></NavLink>}
  }
 const Icons2 =(index)=>{
-  if(index === 0){return <NavLink to = "/" style={{
+  if(index === 0){return <NavLink to = {"/EspCand/"+ localStorage.getItem('LoginUser')} style={{
     color:'grey'
   }}><HomeIcon /> </NavLink>;}
-  else if (index=== 1 ){return <InfoIcon />;}
+  else if (index=== 1 ){return <NavLink to='/Detaille' style={{color:'grey'}}><InfoIcon /></NavLink>;}
   else {return <NavLink to = "/" style={{
     color:'grey'
   }}><InboxIcon /></NavLink>;}

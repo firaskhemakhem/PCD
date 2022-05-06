@@ -1,0 +1,29 @@
+.search_results{
+    width: 30%;
+    z-index: 2;
+}
+.search_result{
+    border : 1px solid #EEE;
+    margin: 4rem 1rem;
+    padding: 4rem ;
+}
+.suggestions{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border: 1px;
+
+}
+.suggestion{
+    cursor: pointer;
+    width: '450px';
+    margin-left:'20px';
+    
+}
+.suggestion:hover{
+    background-color: #023C59;
+    color: #EEE;
+}
+.jarab{
+    width: '455px';
+
+}

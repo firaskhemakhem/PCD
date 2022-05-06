@@ -35,6 +35,7 @@
     "moment": "^2.29.1",
     "multiple-date-picker": "^2.1.6",
     "react": "^17.0.2",
+    "react-autosuggest": "^10.1.0",
     "react-awesome-calendar": "^1.0.14",
     "react-awesome-modal": "^2.0.5",
     "react-big-calendar": "^0.36.1",

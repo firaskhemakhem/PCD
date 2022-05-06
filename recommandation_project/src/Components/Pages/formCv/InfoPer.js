@@ -116,7 +116,7 @@ function InfoPer() {
                         sm={12}>
                     <Grid container justifyContent="flex-end">
                         <button class="btn btn-light" onClick={()=>{setCurrentStep(2)}}>
-                            next
+                            Suivant
                         </button>
                     </Grid>
                     </Grid>

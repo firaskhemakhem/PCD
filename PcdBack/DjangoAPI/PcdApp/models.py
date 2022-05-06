@@ -144,6 +144,7 @@ class InterSuj(models.Model):
     class Meta:
         unique_together = ('student', 'recruteur','id_sujet')
 
+<<<<<<< HEAD
 class ChangePass(models.Model):
     Id_MDP = models.AutoField(primary_key=True)
     Login = models.CharField(max_length= 30)
@@ -152,6 +153,25 @@ class ChangePass(models.Model):
     
     
 
+=======
+class NotifRec(models.Model):
+    Recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
+    Student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    Sujet = models.ForeignKey(Sujet,on_delete=models.CASCADE)
+    Nom=models.TextField() #nom de l'etudiant 
+    Time= models. TextField()
+    class Meta:
+        unique_together = ('Student', 'Recruteur','Sujet')
+
+class NotifEtu(models.Model):
+    Recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
+    Student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    Sujet = models.ForeignKey(Sujet,on_delete=models.CASCADE)
+    Nom=models.TextField() #nom du sujet
+    Time= models. TextField() 
+    class Meta:
+        unique_together = ('Student', 'Recruteur','Sujet')
+>>>>>>> 79559cbc106126b06281a9330829cf9743189a14
 
 class FeedBackEtudEntr(models.Model):
 #     student = models.ForeignKey(Students,on_delete=models.CASCADE)
@@ -159,4 +179,8 @@ class FeedBackEtudEntr(models.Model):
 #     id_sujet= models.ForeignKey(Sujet,on_delete=models.CASCADE)
     FeedBack= models.TextField()
     Rating = models.IntegerField()
+
+class Test(models.Model):
+    student = models.ForeignKey(Students,on_delete=models.CASCADE)
+    rep =models.CharField(max_length=1)
 

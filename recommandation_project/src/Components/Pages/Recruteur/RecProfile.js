@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import "../../../styles/Pages/CandidatProfile.css";
 import { NavLink } from "react-router-dom";
+import HeaderRec from './HeaderRec';
 
 
 /*var {idStudent}=1;
@@ -84,6 +85,7 @@ class RecProfile extends Component {
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
+          <HeaderRec/>
           <Grid
             item
             xs={false}

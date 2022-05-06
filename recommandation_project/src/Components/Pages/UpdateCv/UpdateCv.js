@@ -11,7 +11,7 @@ import UpdateInfoPer from './UpdateInfoPer';
 import UpdateInfoAdd from './UpdateInfoAdd';
 import UpdateCompetence from './UpdateCompetence'
 import ResUpdate from './ResUpdate';
-import Header from '../../Header/Header';
+import HeaderCan from '../Etudiant/HeaderCan';
 import {multiStepContext} from './StepContextUpdate';
 
 
@@ -39,7 +39,7 @@ const UpdateCv=()=>{
     <header className='App-header'>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header/>
+      <HeaderCan/>
       <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">

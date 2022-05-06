@@ -11,14 +11,14 @@ import InfoPer from "./InfoPer";
 import Competence from "./Competence";
 import InfoAdd from "./InfoAdd";
 import Res from './Res';
-import Header from '../../Header/Header';
+import HeaderCan from '../Etudiant/HeaderCan';
 import {multiStepContext} from './StepContext';
 
 
 
 const theme = createTheme();
 const Cv=()=>{
-  const {currentStep, finalData}=useContext(multiStepContext);
+  const {currentStep}=useContext(multiStepContext);
   function showStep(step) {
     switch (step) {
       case 1:
@@ -39,7 +39,7 @@ const Cv=()=>{
     <header className='App-header'>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header/>
+      <HeaderCan/>
       <Container component="main" maxWidth="lg" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">

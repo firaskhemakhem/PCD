@@ -114,7 +114,11 @@ DATABASES = {
         'NAME': 'pcddb',
         'USER': 'root',
 
+<<<<<<< HEAD
         'PASSWORD' : '',
+=======
+        'PASSWORD' : 'sara',
+>>>>>>> 79559cbc106126b06281a9330829cf9743189a14
 
         'HOST':'127.0.0.1',
         'PORT': '3306',
