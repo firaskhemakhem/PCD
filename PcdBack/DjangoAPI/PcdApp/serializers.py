@@ -1,11 +1,8 @@
 from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-<<<<<<< HEAD
 from PcdApp.models import  FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit,ChangePass
-=======
 from PcdApp.models import  FeedBackEtudEntr, FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit
->>>>>>> 1afe67cb52ba4565ed9c704eaf7ca0a2a9b907ce
 from rest_framework.authtoken.models import Token
 
 
@@ -93,16 +90,13 @@ class FeedBackSerializer (serializers.ModelSerializer):
     class Meta:
         model = FeedBackRec
         fields = ['Login','Email','Message','Rating']
-<<<<<<< HEAD
 
 class ChangePassSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChangePass
         fields = ['Id_MDP','Login','Email','MDP']
     
-=======
 class FeedBackEtudEntrSerializer (serializers.ModelSerializer):
     class Meta :
         model = FeedBackEtudEntr
         fields =['Recruteur','FeedBack','Rating']
->>>>>>> 1afe67cb52ba4565ed9c704eaf7ca0a2a9b907ce

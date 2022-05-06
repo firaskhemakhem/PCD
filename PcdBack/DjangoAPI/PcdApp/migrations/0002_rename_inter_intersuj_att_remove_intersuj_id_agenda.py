@@ -15,8 +15,9 @@ class Migration(migrations.Migration):
             old_name='inter',
             new_name='Att',
         ),
-        migrations.RemoveField(
-            model_name='intersuj',
-            name='id_agenda',
-        ),
+        #migrations.RemoveField(
+         #   model_name='intersuj',
+         #   name='id_agenda',
+        #),
+        
     ]

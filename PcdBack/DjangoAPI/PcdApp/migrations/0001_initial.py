@@ -158,9 +158,7 @@ class Migration(migrations.Migration):
             name='InterSuj',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('inter', models.BooleanField(blank=True, default=False)),
-                ('id_agenda', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PcdApp.agenda')),
-                ('id_sujet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PcdApp.sujet')),
+                ('inter', models.BooleanField(blank=True, default=False)),                ('id_sujet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PcdApp.sujet')),
                 ('recruteur', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PcdApp.recruteurs')),
                 ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PcdApp.students')),
             ],
@@ -169,5 +167,14 @@ class Migration(migrations.Migration):
             model_name='agenda',
             name='LoginRec',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='PcdApp.recruteurs'),
+        ),
+        migrations.CreateModel(
+            name='ChangePass',
+            fields=[
+                ('Id_MDP', models.AutoField(primary_key=True, serialize=False)),
+                ('Login', models.CharField(max_length=30)),
+                ('Email', models.CharField(max_length=30)),
+                ('MDP', models.CharField(max_length=30)),
+            ],
         ),
     ]

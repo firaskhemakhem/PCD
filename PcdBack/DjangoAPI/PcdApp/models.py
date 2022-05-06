@@ -140,18 +140,17 @@ class InterSuj(models.Model):
     #inter = models.BooleanField(default=False,blank=True)
     Att = models.BooleanField(default=False,blank=True)
     id_sujet= models.ForeignKey(Sujet,on_delete=models.CASCADE)
-<<<<<<< HEAD
     id_agenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('student', 'recruteur','id_sujet')
 
 class ChangePass(models.Model):
     Id_MDP = models.AutoField(primary_key=True)
     Login = models.CharField(max_length= 30)
     Email = models.CharField(max_length= 30)
     MDP = models.CharField(max_length= 30)
-=======
-    #id_agenda = models.ForeignKey(Agenda,on_delete=models.CASCADE)
-    class Meta:
-        unique_together = ('student', 'recruteur','id_sujet')
+    
+    
 
 
 class FeedBackEtudEntr(models.Model):
@@ -161,4 +160,3 @@ class FeedBackEtudEntr(models.Model):
     FeedBack= models.TextField()
     Rating = models.IntegerField()
 
->>>>>>> 1afe67cb52ba4565ed9c704eaf7ca0a2a9b907ce
