@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+
 function CardContent(props) {
   return (
     <div className="styleCardContent">
@@ -15,9 +16,11 @@ function CardContent(props) {
       }}>Plus d'information</p>
       <p className="styleDescription"><i className="styleCardTitle">Le durée </i> : {props.duree}</p>
       <p className="styleDescription"><i className="styleCardTitle">Les technologies </i> : {props.Tech}</p>
-      <NavLink to = {props.LoginRec}> <p style={{
+       {/* <button  style={{
+        marginLeft:'240px'}} onClick={(e)=>{localStorage.setItem("Visible","true"); localStorage.setItem("IdRech",props.Id_sujet) }}>voir plus</button>  */}
+       <NavLink to = {props.LoginRec}> <p style={{
           textAlign:'right'
-        }}>voir plus</p></NavLink>
+        }}>Page Entreprise</p></NavLink> 
 
 
     </div>
@@ -42,13 +45,15 @@ export default class Card extends React.Component {
   render() {
 
     return (
+      
       <div style={{
         marginLeft: '20.5%',
         marginTop:'40px'
       }}>
 
-        <div style={{ width: this.props.width + "px" }}>
+        <div style={{ width: this.props.width+ 4 + "px" }}>
 
+          
           <div className="styledCard" Login={this.props.Id_sujet}>
 
 

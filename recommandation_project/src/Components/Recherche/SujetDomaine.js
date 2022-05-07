@@ -27,7 +27,7 @@ class SujetDomaine extends React.Component {
                 })
               
                 for (let i = 0; i<result.length ;i++ ){
-                    if (result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("searchTeamDomaine").toUpperCase())!==-1){
+                    if (result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].Titre.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].duree.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1){
                         console.log(this.state.data[i]);
                          
                         this.setState({
@@ -42,7 +42,7 @@ class SujetDomaine extends React.Component {
            
     }
     fun (){
-        var dom = localStorage.getItem("searchTeamDomaine");
+        var dom = localStorage.getItem("inputValue");
      
         if (dom.length === 0 ) {
          
@@ -51,9 +51,6 @@ class SujetDomaine extends React.Component {
             this.setState({vis:true})
 
         }
-     console.log("nnn")
-
-
     }
 
     componentDidMount() {

@@ -31,6 +31,7 @@
     "eslint-config-react-app": "^6.0.0",
     "font-awesome": "^4.7.0",
     "framer-motion": "^4.1.17",
+    "interface": "^1.2.1",
     "moment": "^2.29.1",
     "multiple-date-picker": "^2.1.6",
     "react": "^17.0.2",
