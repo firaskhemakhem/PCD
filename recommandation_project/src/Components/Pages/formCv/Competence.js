@@ -51,7 +51,7 @@ function Competence() {
                         md={14}>
                         <TextField
                             id="exp"
-                            label="Expérience professionnelle"
+                            label="Compétences"
                             multiline
                             rows={4}
                             placeholder="Expliquer votre expérience professionnelle en quelques lignes"
@@ -99,7 +99,7 @@ function Competence() {
                         md={14}>
                         <TextField
                             id="liens"
-                            label="Liens utils"
+                            label="Liens utiles"
                             multiline
                             rows={4}
                             placeholder="Donnez des liens utiles (e.g: Github, LinkedIn,...)"

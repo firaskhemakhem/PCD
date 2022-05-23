@@ -231,7 +231,7 @@ export default function HeaderCan() {
             </SearchIconWrapper>
             
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="Recherche"
                 inputProps={{ 'aria-label': 'search' }}
                // onChange={(event)=>{handleSearchTeam(event);setVis(true)}}
                // onClick={setVis(true)}
@@ -244,22 +244,23 @@ export default function HeaderCan() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
-            </IconButton>
+  </IconButton>*/}
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
               onClick={handleClickOpen}
-            >
+            > 
+           
               {/* badgeContent={1} */}
-              <Badge  color="error">
+               <Badge  color="error">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> 
             <Dialog
         open={open}
         TransitionComponent={Transition}

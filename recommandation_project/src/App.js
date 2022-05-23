@@ -13,7 +13,8 @@ import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 import AcceuilAgen from './Components/Pages/Recruteur/AgendaPartagee/AcceuilAgen';
 import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
 import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
-import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword'
+import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword';
+import ChangePassword from './Components/Pages/Etudiant/ChangePassword';
 
 import Cv from './Components/Pages/formCv/Cv';
 import StepContext from './Components/Pages/formCv/StepContext';
@@ -38,7 +39,8 @@ import Recherche from './Components/Recherche/Recherche';
 
 import Test from './Components/Pages/Etudiant/TestDePer/Test';
 import StepContextTest from './Components/Pages/Etudiant/TestDePer/StepContextTest';
-import Visible from './Components/Recherche/Visible'
+import Postulation from './Components/Pages/Etudiant/Postulation';
+
 function App() {
   const [token, setToken] = useState('');
 
@@ -55,7 +57,8 @@ function App() {
         <Route exact path ="/InscEtud" element ={<InscEtu/>} userLogin={userLogin}/>
         <Route exact path ="/InscRec" element ={<InscRec/>} userLogin={userLogin} /> 
         <Route exact path ="/footer" element ={<Footer/>}/>
-        <Route exact path ="/password/" element ={<ForgetPassword/>}/>
+        <Route exact path ="/forgetpassword/" element ={<ForgetPassword/>}/>
+        <Route exact path ="/changepassword/" element ={<ChangePassword/>}/>
         <Route exact path ="/Detaille" element={<Detaille/>}/>
         <Route exact path = "/EspCand/:id" element={<EspaceCandidat/>}/>
         <Route exact path = "/EspRec/:id" element={<EspaceRec/>}/>
@@ -78,6 +81,7 @@ function App() {
         <Route exact path="/Recherche" element={<Recherche/>}/>
         <Route exact path = "/Recherche/:id" element={<VisibleStu/>}/> 
         <Route exact path = '/Test/:id' element = {<StepContextTest><Test/></StepContextTest>}/>
+        <Route exact path="/Post" element={<Postulation/>}/>
       </Routes>
     </BrowserRouter>   
     </div>

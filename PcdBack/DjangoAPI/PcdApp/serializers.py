@@ -1,7 +1,7 @@
 from dataclasses import fields
 from rest_framework import serializers
 #from DjangoAPI.PcdApp.models import InfoAddi
-from PcdApp.models import  FeedBackEtudEntr, FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit, Test
+from PcdApp.models import  FeedBackEtudEntr, FeedBackRec, Students ,Recruteurs, InfoPer, InfoAdd, Competence, Cv,Agenda,Sujet,UploadImage,UploadFile,InterSuj,Suit, Test,ChangePass
 from rest_framework.authtoken.models import Token
 
 from PcdApp.models import NotifEtu, NotifRec
@@ -91,6 +91,12 @@ class FeedBackSerializer (serializers.ModelSerializer):
     class Meta:
         model = FeedBackRec
         fields = ['Login','Email','Message','Rating']
+
+class ChangePassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChangePass
+        fields = ['Id_MDP','Login','Email','MDP']
+    
 class FeedBackEtudEntrSerializer (serializers.ModelSerializer):
     class Meta :
         model = FeedBackEtudEntr

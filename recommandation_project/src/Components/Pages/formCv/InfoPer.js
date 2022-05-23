@@ -12,7 +12,7 @@ function InfoPer() {
         return (
             <React.Fragment>
                 <Typography variant="h6" gutterBottom>
-                    Information Personnel
+                    Informations Personnelles
                 </Typography>
                 <Grid container spacing={3} >
                     <Grid item
@@ -35,7 +35,7 @@ function InfoPer() {
                             required 
                             id="email" 
                             name="Email" 
-                            label="Addresse Email" 
+                            label="Adresse Email" 
                             fullWidth  
                             variant="standard"
                             value={userData.Email}

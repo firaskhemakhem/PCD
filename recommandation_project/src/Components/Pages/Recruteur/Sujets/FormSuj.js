@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Sujets from './Sujets';
+import HeaderRec from '../HeaderRec';
 
 
 const theme = createTheme();
@@ -26,7 +27,9 @@ const FormSuj =()=>{
     .catch( error => console.error(error))
 }
   return (
+   
     <ThemeProvider theme={theme}>
+       <HeaderRec/>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -87,7 +90,7 @@ const FormSuj =()=>{
                           name="Domaine"
                           fullWidth
                           id="Domain"
-                          label="Domain"
+                          label="Domaine"
                           autoFocus
                           value={dataSuj.Domaine}
                           onChange={(e)=>{setDataSuj({...dataSuj,"Domaine":e.target.value})}}
@@ -109,16 +112,16 @@ const FormSuj =()=>{
                       <TextField
                           fullWidth
                           id="Tech"
-                          label="Technologies necessaire pour le sujet"
+                          label="Technologies nécessaire pour le sujet"
                           name="Tech"
                           value={dataSuj.Tech}
                           onChange={(e)=>{setDataSuj({...dataSuj,"Tech":e.target.value})}}
                         />
                       </Grid>
                       
-                      <Grid item xs={12} sm={4} >
+                      <Grid item xs={12} sm={6} >
                         
-                        <FormControl required sx={{sm: 4, minWidth: 170 }}>
+                        <FormControl required sx={{sm: 5, minWidth: 275 }}>
                           <InputLabel id="demo-simple-select-required-label">Payée?</InputLabel>
                           <Select
                             labelId="demo-simple-select-required-label"
@@ -133,8 +136,8 @@ const FormSuj =()=>{
                           </Select>
                         </FormControl>
                       </Grid>
-                      <Grid item xs={12} sm={5} >
-                        <FormControl required sx={{sm:4, minWidth: 348 }}>
+                      <Grid item xs={12} sm={6} >
+                        <FormControl required sx={{sm:8, minWidth: 275 }}>
                           <InputLabel id="demo-simple-select-required-label">Par binome?</InputLabel>
                           <Select
                             labelId="demo-simple-select-required-label"

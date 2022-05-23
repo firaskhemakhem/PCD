@@ -130,11 +130,15 @@ function Res() {
                                         {
                                         userData.Nom
                                     } </span>
-                                    <span className="invoice-number">
+                                    <span className="invoice-number" style={{
+                                        paddingTop:'2%'
+                                    }}>
                                         {
                                         userData.Email
                                     }</span><br/>
-                                    <span className="invoice-number">
+                                    <span className="invoice-number" style={{
+                                        paddingTop:'0%'
+                                    }}>
                                         {
                                         userData.Tel
                                     }</span>
@@ -150,20 +154,30 @@ function Res() {
                                 </div>
                                 <div className="addresses">
                                     <p className="signature">
-                                        <h4>Compétences:</h4>
-                                        <h6>Parcour Educatif</h6>
+                                        <h4 style={{
+                                              color: "#023C59 "
+                                        }}>Compétences:</h4>
+                                        <h6 style={{
+                                            color :'#023C59'
+                                        }}>Parcours Éducatif</h6>
                                         <div>{
                                             userData.Formation
                                         }</div>
-                                        <h6>Expérience Professionnelle</h6>
+                                        <h6 style={{
+                                            color :'#023C59'
+                                        }}>Compétences</h6>
                                         <div>{
                                             userData.ExpProf
                                         }</div>
-                                        <h6>Certificats</h6>
+                                        <h6 style={{
+                                            color :'#023C59'
+                                        }}>Certificats</h6>
                                         <div>{
                                             userData.Certif
                                         }</div>
-                                        <h6>Langues</h6>
+                                        <h6 style={{
+                                            color :'#023C59'
+                                        }}>Langues</h6>
                                         <div>{
                                             userData.Lang
                                         }</div>
@@ -184,12 +198,19 @@ function Res() {
 
                                 <div className="addresses">
                                     <p className="signature">
-                                        <h4>Infomation Additionnelles</h4>
-                                        <h6>Centre d'Interet</h6>
+                                        <h4 style={{
+                                            color :'#023C59'
+
+                                        }}>Infomations Additionnelles</h4>
+                                        <h6 style={{
+                                            color :'#023C59'
+                                        }}>Centres d'Intérêt</h6>
                                         <div>{
                                             userData.CentreInt
                                         }</div>
-                                        <h6>vie associative</h6>
+                                        <h6 style={{
+                                            color :'#023C59'
+                                        }}>Vie associative</h6>
                                         <div>{
                                             userData.VieAsso
                                         }</div>

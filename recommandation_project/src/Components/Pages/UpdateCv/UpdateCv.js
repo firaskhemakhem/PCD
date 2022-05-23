@@ -48,13 +48,13 @@ const UpdateCv=()=>{
           <div className="center-stepper">
             <Stepper style={{ width: "18%" }} activeStep={currentStep - 1}  orientation="horizontal">
               <Step>
-                <StepLabel>Information Personnel</StepLabel>
+                <StepLabel>Informations Personnelles</StepLabel>
               </Step>
               <Step>
                 <StepLabel>Compétences</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Information Additionnelle</StepLabel>
+                <StepLabel>Informations Additionnelles</StepLabel>
               </Step>
               <Step>
                 <StepLabel>Résultat Final</StepLabel>

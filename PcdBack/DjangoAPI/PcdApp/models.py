@@ -144,6 +144,14 @@ class InterSuj(models.Model):
     class Meta:
         unique_together = ('student', 'recruteur','id_sujet')
 
+class ChangePass(models.Model):
+    Id_MDP = models.AutoField(primary_key=True)
+    Login = models.CharField(max_length= 30)
+    Email = models.CharField(max_length= 30)
+    MDP = models.CharField(max_length= 30)
+    
+    
+
 class NotifRec(models.Model):
     Recruteur = models.ForeignKey(Recruteurs,on_delete=models.CASCADE)
     Student = models.ForeignKey(Students,on_delete=models.CASCADE)

@@ -45,8 +45,9 @@ class Entreprise extends React.Component {
                 <div className="App">
                     <h1 style={{
                         paddingTop :'10px',
-                        textAlign:'center',
-                        color : '#023C59'
+                        
+                        color : '#023C59',
+                        paddingLeft:'37%'
 
                     }}>Liste des entreprises</h1>
                     <EventsList data={eventsData} />

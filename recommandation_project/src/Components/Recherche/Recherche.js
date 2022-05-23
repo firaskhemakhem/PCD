@@ -12,6 +12,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import V from './V';
+import ResRech from './ResRech';
 
 function Recherche() {
     const [value, setValue] = React.useState('');
@@ -20,10 +21,12 @@ function Recherche() {
     const theme = createTheme();
     const [visible, setVisible] = React.useState(false);
     const [vis, setVis] = useState(false);
+    const [dataRech, setDataRech] = useState([]);
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
             .then((response) => response.json())
-            .then((result) => { setData(result) })
+            .then((result) => { setData(result) ; setDataRech({...dataRech,"Tech":result.Tech,
+        ...dataRech,"Dom":result.Domaine,"Dur":result.duree})})
      
         
           
@@ -97,11 +100,13 @@ function Recherche() {
                                 freeSolo
                                 id="free-solo-2-demo"
                                 disableClearable
-                                options={data.map((option) => option.Domaine || option.Titre ||option.duree)}
+                                options={data.map((option) =>  option.Tech || option.Domaine || option.duree 
+
+                                )}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
-                                        label="Recherche selon Domaine,Titre,ou Duree "
+                                        label="Recherche selon Technologies,Domaine,ou Duree "
                                         InputProps={{
                                             ...params.InputProps,
                                             type: 'search',
@@ -136,6 +141,14 @@ function Recherche() {
                       
                     </Grid>
                 </Grid>
+                {data.map((option) => {
+                                    return (
+                                        <ResRech Tech={option.Tech} Domaine={option.Domaine} duree= {option.duree } />
+                                      );}
+                               // {option.Tech }
+                               // {option.Domaine }
+                              //  {option.duree }
+                                )}
             </ThemeProvider>
 
         </div>

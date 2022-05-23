@@ -44,7 +44,7 @@ const featuredPosts = [
         variant="contained"
         sx={{ mt: 4, mb:2 }}
       >
-        Rechecher
+        Rechercher
       </button>
   },
   {
@@ -52,18 +52,17 @@ const featuredPosts = [
         color:'black',
         width:'100%',
        fontSize:'20px'
-    }} >CREER VOS OFFRES
+    }} >CRÉER VOS OFFRES
 </Button>,
     description:
-     <ul style={{fontSize:'15px'}}>
-         <li>Télècharger vos offres</li>
-         <li>Remplir un formulaire pour déposer vos offres</li>
-     </ul>,
+   
+         'Créez vos offres afin de remplir un formulaire via notre application.'
+     ,
     image: 'https://www.cidj.com/sites/default/files/styles/og_image/public/2018-09/deposer-gratuitement-offre-stage.jpg?itok=J1g5Fz3S',
     imageLabel: 'Déposer',
     link :<NavLink to="/Creation">
       <Button variant="contained" component="span" class="btn btn-outline-secondary">
-                  Creer
+                  Créer
           </Button></NavLink>
   },
  
@@ -75,9 +74,9 @@ const featuredPosts2 = [
         description:
         <ul>
           <li>
-              Diffuser une offres
+              Diffuser une offre
           </li>
-          <li>Rechercher des profil</li>
+          <li>Rechercher des profils</li>
         </ul>,
         image: 'https://img-19.ccm2.net/4RuHKYETyACo36CrgoDkyndtfgo=/63cf698199ed479f8957c72daf8d1537/ccm-faq/recrutement-sur-internet-fotolia-s-.png',
         imageLabel: 'Déposer',
@@ -124,7 +123,7 @@ class EspaceRec extends Component {
   }
   componentDidMount(){
     var id=localStorage.getItem('LoginUser');
-    fetch(`http://127.0.0.1:8000/PcdApp/student/${id}/`,{
+    fetch(`http://127.0.0.1:8000/PcdApp/recruteur/${id}/`,{
    
         method: 'GET',
         headers: {'Content-Type': 'application/json'}

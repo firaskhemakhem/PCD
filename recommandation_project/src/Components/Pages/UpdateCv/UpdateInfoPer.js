@@ -45,7 +45,7 @@ function UpdateInfoPer() {
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
-                Information Personnel
+                Informations Personnelles
             </Typography>
             <Grid container
                 spacing={3}>

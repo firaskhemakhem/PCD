@@ -19,6 +19,7 @@ urlpatterns = [
     path('competence/',obtain_auth_token),
     path('infoadd/',obtain_auth_token),
     path('cv/',obtain_auth_token),
+    path('changepass/',obtain_auth_token),
 
     path('sujet/',obtain_auth_token),
     path('suit/',obtain_auth_token),

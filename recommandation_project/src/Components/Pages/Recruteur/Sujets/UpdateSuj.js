@@ -126,6 +126,7 @@ class UpdateSuj extends React.Component {
               sm={4}
               md={7}
               sx={{
+                backgroundImage: 'url(https://referencement-pme.ca/wp-content/uploads/2017/07/mise-a-jour.jpg)',
                 backgroundRepeat: 'no-repeat',
                 backgroundColor: (t) =>
                   t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -133,7 +134,7 @@ class UpdateSuj extends React.Component {
                 backgroundPosition: 'center',
               }}
             >
-              <Sujets />
+          
             </Grid>
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
               <Box
@@ -181,7 +182,7 @@ class UpdateSuj extends React.Component {
                         name="Domaine"
                         fullWidth
                         id="Domain"
-                        label="Domain"
+                        label="Domaine"
                         autoFocus
                         value={this.state.credentials.Domaine}
                         onChange={this.inputChanged}
@@ -212,9 +213,9 @@ class UpdateSuj extends React.Component {
                       />
                     </Grid>
 
-                    <Grid item xs={12} sm={4} >
+                    <Grid item xs={12} sm={6} >
 
-                      <FormControl required sx={{ sm: 4, minWidth: 150 }}>
+                      <FormControl required sx={{ sm: 4, minWidth: 270 }}>
                         <InputLabel id="demo-simple-select-required-label">Payée?</InputLabel>
                         <Select
                           focused
@@ -231,8 +232,8 @@ class UpdateSuj extends React.Component {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} sm={5} >
-                      <FormControl required sx={{ sm: 4, minWidth: 300 }}>
+                    <Grid item xs={12} sm={6} >
+                      <FormControl required sx={{ sm: 4, minWidth: 270 }}>
                         <InputLabel id="demo-simple-select-required-label">Par binome?</InputLabel>
                         <Select
                           focused
@@ -259,7 +260,7 @@ class UpdateSuj extends React.Component {
                           fullWidth
                           variant="contained"
                           sx={{ mt: 10, mb: 2 }}
-                          style={{marginRight: '280px'}}
+                          style={{marginRight: '380px'}}
                         >
                           Annuler
                         </button>

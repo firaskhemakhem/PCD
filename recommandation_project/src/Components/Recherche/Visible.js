@@ -43,7 +43,7 @@ const [expanded, setExpanded] = React.useState(false);
          .then((response) => response.json())
          .then((result) =>{
          for (let i = 0; i<result.length ;i++ ){
-             if (result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].Titre.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].duree.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1){
+             if (result[i].Tech.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].duree.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1){
                  setData(result[i])
              }}
              localStorage.setItem("LoginRec",`${data.LoginRec}`)})
@@ -87,12 +87,12 @@ const [expanded, setExpanded] = React.useState(false);
         title={data.LoginRec}
         subheader={state.curDT}
       />
-      <CardMedia
+      {/* <CardMedia
         component="img"
         height="194"
         image="/static/images/cards/paella.jpg"
         alt="Paella dish"
-      />
+      /> */}
       <CardContent>
         <Typography variant="body2" color="text.secondary">
        {data.Titre}

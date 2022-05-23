@@ -94,7 +94,7 @@ function ResUpdate() {
                                 <div className="addresses">
                                     <p className="signature">
                                         <h4>Compétences:</h4>
-                                        <h6>Parcour Educatif</h6>
+                                        <h6>Parcours Éducatif</h6>
                                         <div>{
                                             updateCompétence.Formation
                                         }</div>
@@ -127,12 +127,12 @@ function ResUpdate() {
 
                                 <div className="addresses">
                                     <p className="signature">
-                                        <h4>Infomation Additionnelles</h4>
-                                        <h6>Centre d'Interet</h6>
+                                        <h4>Informations Additionnelles</h4>
+                                        <h6>Centre d'Intérêt</h6>
                                         <div>{
                                             updateInfoAdd.CentreInt
                                         }</div>
-                                        <h6>vie associative</h6>
+                                        <h6>Vie associative</h6>
                                         <div>{
                                             updateInfoAdd.VieAsso
                                         }</div>

@@ -7,8 +7,9 @@ function CardContent(props) {
 
       <p className="styleDescription"><i className="styleCardTitle">Titre de sujet</i> : {props.Titre}</p>
       <p className="styleDescription"><i className="styleCardTitle">Domaine de sujet</i>: {props.Domaine}</p>
-      <p className="styleDescription"><i className="styleCardTitle">Description de sujet</i>: {props.Description}</p><br />
+      {/* <p className="styleDescription"><i className="styleCardTitle">Description de sujet</i>: {props.Description}</p><br /> */}
       <p style={{
+        paddingTop:'5%',
         color: '#023C59',
         textAlign: 'center',
         textDecorationLine: 'underline'

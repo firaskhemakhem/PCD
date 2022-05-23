@@ -16,6 +16,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import {NavLink} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
+import  OfflinePinIcon from '@mui/icons-material/OfflinePin';
 import InfoIcon from '@mui/icons-material/Info';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
@@ -23,23 +24,28 @@ export default function Navig() {
  const [state, setState] = React.useState({});
  const Icons =(index) =>{
    if(index === 0){return <NavLink to={"/CandProfile/"+localStorage.getItem('LoginUser')} style={{color:'grey'}}> <PermIdentityIcon /> </NavLink> ;}
-   else if (index=== 1 ){return <DateRangeIcon/>;}
-   else if (index=== 2 ){return <MailOutlineIcon/>;}
+   else if (index=== 1 ){return <NavLink to = {"/EspCand/"+ localStorage.getItem('LoginUser')} style={{
+    color:'grey'
+  }}><HomeIcon /> </NavLink>;}
+   else if (index=== 2 ){return <NavLink to='/Detaille' style={{color:'grey'}}><InfoIcon /></NavLink>;}
    else if(index === 3) {return <NavLink to = {"/Favoris/"+localStorage.getItem('LoginUser')} style={{
      color:'grey'
    }}><FavoriteIcon /></NavLink>;}
+   else if(index === 4) {return <NavLink to = {"/RecomSubjects/"+localStorage.getItem('LoginUser')} style={{
+    color:'grey'
+  }}><OfflinePinIcon /></NavLink>;}
    else {return <NavLink to = "/entreprise" style={{
     color:'grey'
   }}><DensityMediumIcon/></NavLink>}
  }
 const Icons2 =(index)=>{
-  if(index === 0){return <NavLink to = {"/EspCand/"+ localStorage.getItem('LoginUser')} style={{
-    color:'grey'
-  }}><HomeIcon /> </NavLink>;}
-  else if (index=== 1 ){return <NavLink to='/Detaille' style={{color:'grey'}}><InfoIcon /></NavLink>;}
-  else {return <NavLink to = "/" style={{
+  if(index === 0){return <NavLink to = "/" style={{
     color:'grey'
   }}><InboxIcon /></NavLink>;}
+  // else if (index=== 1 ){return <NavLink to='/Detaille' style={{color:'grey'}}><InfoIcon /></NavLink>;}
+  // else {return <NavLink to = "/" style={{
+  //   color:'grey'
+  // }}><InboxIcon /></NavLink>;}
 }
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -61,7 +67,7 @@ const Icons2 =(index)=>{
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Profile', 'Agenda', 'Email', 'Liste des Favoris','Liste des entreprises'].map((text, index) => (
+        {['Profile', 'Acceuil', 'A Propos', 'Liste des Favoris','Recommandation','Liste des entreprises'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
      
@@ -74,7 +80,7 @@ const Icons2 =(index)=>{
       </List>
       <Divider />
       <List>
-        {['Acceuil', 'A Propos', 'Déconnexion'].map((text, index) => (
+        {['Déconnexion'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {Icons2(index)}
