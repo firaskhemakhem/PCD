@@ -69,6 +69,7 @@ class PDFView(viewsets.ModelViewSet):
     queryset = UploadFile.objects.all()
 
     def post(self, request, *args, **kwargs):
+        Id_Image = request.data['Id_Image']
         Id_PDF = request.data['Id_PDF']
         Login = request.data['Login']
         PDF = request.data['PDF']

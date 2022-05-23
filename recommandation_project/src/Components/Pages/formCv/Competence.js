@@ -11,7 +11,7 @@ const Lang = [
     { title: 'Chinois',value:'Chinois'},
     { title: 'Espagnol',value:'Espagnol'},
     { title: 'Français',value:'Français'},
-    { title: "Russe",value:'Russe'},
+    { title: 'Russe',value:'Russe'},
     { title: 'Allemand',value:'Allemand'},
     { title: 'Italien',value:'Italien'},
     { title: 'Japonais',value:'Japonais'},
@@ -36,7 +36,7 @@ function Competence() {
                         <TextField
                             id="formation"
                             label="Formation"
-                            name='Formation'
+                            name="Formation"
                             multiline
                             rows={4}
                             placeholder="Expliquer votre parcour educatif en quelques lignes"
