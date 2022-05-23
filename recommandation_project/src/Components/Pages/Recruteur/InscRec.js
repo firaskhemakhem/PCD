@@ -452,7 +452,7 @@ function InscRec() {
                                         console.log(state)
                                     }
                             }>
-                                Sign Up
+                                s'inscrire
                             </button>
 
                             <Grid container justifyContent="flex-end">

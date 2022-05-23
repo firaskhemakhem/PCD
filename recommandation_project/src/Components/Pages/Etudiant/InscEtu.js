@@ -266,7 +266,7 @@ render(){
                       sx={{ mt: 10, mb:2 }}
                       onClick= {this.register}
                     >
-                      Sign Up
+                      s'inscrire
                     </button>
      
                     <Grid container justifyContent="flex-end">

@@ -13,7 +13,7 @@ import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 import AcceuilAgen from './Components/Pages/Recruteur/AgendaPartagee/AcceuilAgen';
 import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
 import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
-import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword';
+import ForgetPassword from './Components/Pages/Etudiant/forgetPassword';
 import ChangePassword from './Components/Pages/Etudiant/ChangePassword';
 
 import Cv from './Components/Pages/formCv/Cv';
@@ -41,6 +41,7 @@ import Test from './Components/Pages/Etudiant/TestDePer/Test';
 import StepContextTest from './Components/Pages/Etudiant/TestDePer/StepContextTest';
 import Postulation from './Components/Pages/Etudiant/Postulation';
 
+import RecommandationCVs from './Components/Pages/Recruteur/RecommandationCVs'
 function App() {
   const [token, setToken] = useState('');
 
@@ -82,6 +83,7 @@ function App() {
         <Route exact path = "/Recherche/:id" element={<VisibleStu/>}/> 
         <Route exact path = '/Test/:id' element = {<StepContextTest><Test/></StepContextTest>}/>
         <Route exact path="/Post" element={<Postulation/>}/>
+        <Route exact path = "/RecommandationCVs/:id" element={<RecommandationCVs/>}/>
       </Routes>
     </BrowserRouter>   
     </div>

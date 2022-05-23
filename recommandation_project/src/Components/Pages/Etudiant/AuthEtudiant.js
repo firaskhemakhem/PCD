@@ -136,7 +136,7 @@ class AuthEtudiant extends Component  {
               }}
             >
               <br/><br/>
-              <h1 classname='Titre'>Sign In</h1>
+              <h1 classname='Titre'>S'identifier</h1>
               <Box component="form" noValidate onSubmit={this.VerifUser} sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
@@ -162,10 +162,6 @@ class AuthEtudiant extends Component  {
                   value = {this.state.credentials.MDP}
                   onChange ={this.inputChanged}
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <br/><br/>
                 <NavLink to ='#'>
                   <button
@@ -176,20 +172,20 @@ class AuthEtudiant extends Component  {
                     sx={{ mt: 3, mb: 2 }}
                     onClick={this.handleSubmit}
                   >
-                    Sign In
+                 s'identifier
                   </button>
                   </NavLink>
                 <br/><br/>
                   
                 <Grid container>
                   <Grid item xs>
-                    <Link href="/forgetpassword/" variant="body2">
-                      Forgot password?
+                    <Link href="#" variant="body2">
+                      Mot de pass oublié?
                     </Link>
                   </Grid>
                   <Grid item>
                     <Link href="/" variant="body2">
-                      {"Don't have an account? Sign Up"}
+                      {"Vous n'avez pas de compte ? Inscrivez-vous"}
                     </Link>
                   </Grid>
                 </Grid>
