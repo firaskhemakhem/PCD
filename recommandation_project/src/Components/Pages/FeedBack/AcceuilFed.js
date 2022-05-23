@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HeaderCan from '../Etudiant/HeaderCan';
+import HeaderRec from '../Recruteur/HeaderRec';
 import Feedback from './Feedback';
 
 
@@ -8,7 +8,7 @@ class AcceuilFed extends Component{
 render(){
     return(
       <div >
-   <HeaderCan/>
+   <HeaderRec/>
   <div style={{backgroundColor:'#D3DEE5' , height:'590px'}}>
   <h2 style ={{
     color:'#023C59',

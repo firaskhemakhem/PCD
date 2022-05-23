@@ -116,7 +116,7 @@ const togglePopupFailed =event=> {
               }}
             >
               <br/><br/>
-              <h1 classname='Titre'>Sign In</h1>
+              <h1 classname='Titre'>S'identifier</h1>
               <Box component="form" noValidate onSubmit={VerifUser} sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
@@ -142,10 +142,6 @@ const togglePopupFailed =event=> {
                   value = {state.credentials.MDP}
                   onChange ={inputChanged}
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <br/><br/>
                 <NavLink to ='#'>
                   <button
@@ -156,7 +152,7 @@ const togglePopupFailed =event=> {
                     sx={{ mt: 3, mb: 2 }}
                     onClick={handleSubmit}
                   >
-                    Sign In
+                    s'identifier
                   </button>
                   </NavLink>
                 <br/><br/>
@@ -164,12 +160,12 @@ const togglePopupFailed =event=> {
                 <Grid container>
                   <Grid item xs>
                     <Link href="#" variant="body2">
-                      Forgot password?
+                    Mot de pass oublié?
                     </Link>
                   </Grid>
                   <Grid item>
                     <Link href="/" variant="body2">
-                      {"Don't have an account? Sign Up"}
+                      {"Vous n'avez pas de compte ? Inscrivez-vous"}
                     </Link>
                   </Grid>
                 </Grid>

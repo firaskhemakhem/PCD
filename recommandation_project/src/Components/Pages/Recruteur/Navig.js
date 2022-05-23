@@ -22,6 +22,7 @@ import Feedback from '../FeedBack/Feedback';
 import { IconButton } from '@mui/material';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import OfflinePinIcon from '@mui/icons-material/OfflinePin';
 export default function Navig() {
 const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
  const [state, setState] = React.useState({});
@@ -39,6 +40,9 @@ const [isOpenSucceed,setisOpenSucceed]= React.useState({isOpenSucceed :false});
    else if (index === 4){return <NavLink to ={'/Sujet/'+localStorage.getItem('LoginUser')}style={{
     color:'grey'
   }}><AppRegistrationIcon/></NavLink>;}
+  else if (index === 5){return <NavLink to ={'/RecommandationCVs/'+localStorage.getItem('LoginUser')}style={{
+    color:'grey'
+  }}><OfflinePinIcon/></NavLink>;}
   else {return <NavLink to={"/ListeCand/"+localStorage.getItem("LoginUser")} style={{
     color:'grey'
   }}><DensityMediumIcon/></NavLink>};}
@@ -74,8 +78,11 @@ const Icons2 =(index)=>{
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+
       <List>
-        {['Profile', 'Agenda', 'Email', 'Votre Avis','Vos Sujets','Liste des canditatures'].map((text, index) => (
+
+        {['Profile', 'Agenda', 'Email', 'Votre Avis','Vos Sujets','Recommandations'
+,'Liste des canditatures'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
      
