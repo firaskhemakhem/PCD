@@ -83,9 +83,9 @@ class RecProfile extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
+        <HeaderRec/>
         <Grid container component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
-          <HeaderRec/>
           <Grid
             item
             xs={false}
@@ -263,6 +263,7 @@ class RecProfile extends Component {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 10, mb: 2 }}
+                    style={{ marginTop: '-65px', marginLeft: '380px' }}
                   >
                     Annuler
                   </button>

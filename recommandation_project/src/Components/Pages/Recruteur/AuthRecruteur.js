@@ -142,10 +142,6 @@ const togglePopupFailed =event=> {
                   value = {state.credentials.MDP}
                   onChange ={inputChanged}
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <br/><br/>
                 <NavLink to ='#'>
                   <button

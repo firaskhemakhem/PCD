@@ -100,6 +100,7 @@ class CandProfile extends Component {
     render() {
       return (
         <ThemeProvider theme={theme}>
+          <HeaderCan/>
           <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
             <Grid
