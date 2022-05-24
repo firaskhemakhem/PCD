@@ -13,7 +13,7 @@ import EspaceRec from './Components/Pages/Recruteur/EspaceRec';
 import AcceuilAgen from './Components/Pages/Recruteur/AgendaPartagee/AcceuilAgen';
 import CandProfile from './Components/Pages/Etudiant/CandidatProfile';
 import AcceuilFed from './Components/Pages/FeedBack/AcceuilFed';
-import ForgetPassword from './Components/Pages/Etudiant/ForgetPassword';
+import ForgetPassword from './Components/Pages/Etudiant/forgetPassword';
 import ChangePassword from './Components/Pages/Etudiant/ChangePassword';
 
 import Cv from './Components/Pages/formCv/Cv';

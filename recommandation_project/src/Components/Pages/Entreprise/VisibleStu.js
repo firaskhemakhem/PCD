@@ -34,7 +34,8 @@ class VisibleStu extends React.Component {
             isFeed: false,
             feedInput: '',
             ratingInput: -1,
-            open: false
+            open: false,
+            emailRec:'',
 
 
         };
@@ -295,9 +296,26 @@ class VisibleStu extends React.Component {
             });
     }
 
+    fetchRecData(){
+        fetch(`http://127.0.0.1:8000/PcdApp/recruteur/${window.location.href.split('/')[4]}/`,{
+        method: 'Get',
+        headers: { 'Content-Type': 'application/json' },
+    })
+        .then(data => data.json())
+        .then((result) => {
+            console.log(result);
+            this.setState({
+            emailRec: result.Email
+            })
+            console.log(this.state.emailRec);
+        })
+        .catch(error => console.error(error));
+        
+    }
+
     componentDidMount() {
         this.fetchDataSujet();
-      
+        this.fetchRecData();
         this.fetchDataFollow();
         this.fetchDataFeed();
 
@@ -324,6 +342,7 @@ class VisibleStu extends React.Component {
         const IdStu = localStorage.getItem("LoginUser");
         { localStorage.setItem("IdRec", window.location.href.split('/')[4]) }
         //const IdEntre= window.location.href.split('/')[4];
+        { localStorage.setItem("EmailRec", this.state.emailRec) }
         const rowsSujet = sujetData.map((sujet) =>
 
         (this.state.isLoginSujet && <tr key={sujet.Id_sujet}>
