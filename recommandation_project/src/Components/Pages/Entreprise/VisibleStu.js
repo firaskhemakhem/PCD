@@ -12,7 +12,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+
 class VisibleStu extends React.Component {
 
 
@@ -150,14 +151,13 @@ class VisibleStu extends React.Component {
             .catch(error => console.error(error));
 
     }
-    fetchDataFollow = event => {
+    fetchDataFollow = (event) => {
         fetch(`http://127.0.0.1:8000/PcdApp/suit/`)
-
             .then(response => response.json())
             .then((result) => {
                 console.log(result);
                 console.log(window.location.href.split('/')[4]);
-
+                console.log(localStorage.getItem("LoginUser"));
                 this.setState({
                     url: window.location.href.split('/')[4]
                 })
