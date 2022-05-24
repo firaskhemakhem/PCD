@@ -39,13 +39,14 @@ const [expanded, setExpanded] = React.useState(false);
     setExpanded(!expanded);
   };
   React.useEffect(() => {
+   // var id = localStorage.getItem("iddsujj");
      fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
          .then((response) => response.json())
          .then((result) =>{
-         for (let i = 0; i<result.length ;i++ ){
-             if (result[i].Tech.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].duree.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1){
-                 setData(result[i])
-             }}
+          for (let i = 0; i<result.length ;i++ ){
+              if (result[i].Tech.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].duree.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1){
+                  setData(result[i])
+              }}
              localStorage.setItem("LoginRec",`${data.LoginRec}`)})
     // fetch(`http://127.0.0.1:8000/PcdApp/sujet/${(localStorage.getItem("IdRech"))}/`)
     // .then ((response) => response.json())
@@ -70,7 +71,14 @@ const [expanded, setExpanded] = React.useState(false);
  return (
   
     
- <Card sx={{ maxWidth: 545 }}>
+ <Card sx={{ maxWidth: 545  }}>
+   <div style={{
+          marginTop:'20px',
+          paddingTop:'50px',
+          paddingLeft:'100px',
+        //  marginRight:'100px',
+  
+      }}>
       
       <CardHeader
         avatar={
@@ -142,7 +150,9 @@ const [expanded, setExpanded] = React.useState(false);
         </CardContent>
 
       </Collapse>
+      </div>
     </Card>
+  
   );
 } 
 

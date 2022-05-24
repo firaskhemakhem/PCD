@@ -56,7 +56,7 @@ class VisibleStu extends React.Component {
 
     update = event => {
         var id = this.state.data.id;
-        console.log(id)
+        console.log(id);
         fetch(`http://127.0.0.1:8000/PcdApp/suit/${id}/`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },

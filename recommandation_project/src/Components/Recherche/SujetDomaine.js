@@ -29,7 +29,6 @@ class SujetDomaine extends React.Component {
                 for (let i = 0; i<result.length ;i++ ){
                     if (result[i].Tech.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].Domaine.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1 || result[i].duree.toUpperCase().indexOf(localStorage.getItem("inputValue").toUpperCase())!==-1){
                         console.log(this.state.data[i]);
-                         
                         this.setState({
                             exist:true
                         })
@@ -37,8 +36,9 @@ class SujetDomaine extends React.Component {
                             dataa:[...this.state.dataa, this.state.data[i]]
                         })}}
                        
-               
+                        
             });
+            
            
     }
     fun (){
@@ -63,6 +63,7 @@ class SujetDomaine extends React.Component {
         return (
           
             <div>
+               
              {this.state.vis && this.state.exist && <EventsList data={this.state.dataa} />}
                
             </div>

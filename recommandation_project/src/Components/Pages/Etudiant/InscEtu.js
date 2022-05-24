@@ -764,18 +764,7 @@ function InscEtu() {
               </Grid>
 
             </form>
-                      {/* s'inscrire
-                    </button>
-     
-                    <Grid container justifyContent="flex-end">
-                      <Grid item>
-                        <Link href="/Auth" variant="body2">
-                          Vous avez déjà un compte ? Se connecter
-                        </Link>
-                      </Grid>
-                    </Grid>
-                  </Box>
-              </Grid>*/}
+                     
               </Box>
         </Grid> 
       </Grid>

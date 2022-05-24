@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 function CardContent(props) {
   return (
     <div className="styleCardContent">
-
+      
       <p className="styleDescription"><i className="styleCardTitle">Titre de sujet</i> : {props.Titre}</p>
       <p className="styleDescription"><i className="styleCardTitle">Domaine de sujet</i>: {props.Domaine}</p>
       {/* <p className="styleDescription"><i className="styleCardTitle">Description de sujet</i>: {props.Description}</p><br /> */}
@@ -57,9 +57,10 @@ export default class Card extends React.Component {
           
           <div className="styledCard" Login={this.props.Id_sujet}>
 
-
+          
 
             <CardContent
+            
               Id_sujet={this.props.Id_sujet}
               Titre={this.props.Titre}
               Description={this.props.Description}

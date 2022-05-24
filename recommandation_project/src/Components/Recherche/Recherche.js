@@ -10,41 +10,45 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import V from './V';
-import ResRech from './ResRech';
+import Visible from './Visible';
 
 function Recherche() {
     const [value, setValue] = React.useState('');
     const [inputValue, setInputValue] = React.useState('');
-    const [data, setData] = useState([]);
     const theme = createTheme();
     const [visible, setVisible] = React.useState(false);
     const [vis, setVis] = useState(false);
-    const [dataRech, setDataRech] = useState([]);
-    useEffect(() => {
-        fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
-            .then((response) => response.json())
-            .then((result) => { setData(result) ; setDataRech({...dataRech,"Tech":result.Tech,
-        ...dataRech,"Dom":result.Domaine,"Dur":result.duree})})
-     
+    const [myOptions, setMyOptions] = useState([]);
+    const [myOptionsClean, setMyOptionsClean] = useState([])
+    const isEqual= (str1, str2) =>{
+        return str1.toUpperCase() === str2.toUpperCase()
+      }
+
+    const getDataFromAPI = () => {
+        console.log("Options Fetched from API")
+      
+        fetch(`http://127.0.0.1:8000/PcdApp/sujet/`).then((response) => {
+          return response.json()
+        }).then((res) => {
+          console.log(res)
+          for (var i = 0; i < res.length; i++) {
+            myOptions.push(res[i].Tech);
+            myOptions.push(res[i].Domaine);
+            myOptions.push(res[i].duree)
+          }
+          setMyOptions(myOptions)
+        })
         
-          
-
-    }, []);
-    // useEffect(()=>{
-    //     fun()
-    // })
-    
-    const fun =()=>{
-        if (localStorage.getItem("Visible")=== "true"){
-            setVisible(true)
-            alert("ok")
+        for (var j=0 ; j<myOptions.length ; j++){
+            if (! (myOptionsClean.includes(myOptions[j]))){
+             myOptionsClean.push(myOptions[j])
+                 
+            }
+           
         }
-        else{setVisible(false)
-        alert("not ok")}
+        setMyOptionsClean(myOptionsClean)
 
-    }
+      }
   
     return (
         <div>
@@ -100,12 +104,11 @@ function Recherche() {
                                 freeSolo
                                 id="free-solo-2-demo"
                                 disableClearable
-                                options={data.map((option) =>  option.Tech || option.Domaine || option.duree 
-
-                                )}
+                               options={myOptionsClean}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
+                                        onChange={getDataFromAPI}
                                         label="Recherche selon Technologies,Domaine,ou Duree "
                                         InputProps={{
                                             ...params.InputProps,
@@ -116,39 +119,28 @@ function Recherche() {
                                             paddingLeft: '5px',
                                             width: '500px'
                                         }}
+
                                     />
                                 )}
                             />
                             <button class="btn btn-outline-secondary" variant="contained" onClick={() => { setVis(true) ;if(localStorage.getItem("contenu")!=localStorage.getItem("inputValue")){
                                 setVis(false)
-                            };  localStorage.setItem("contenu",`${inputValue}`);setVisible(true) }}
+                            };  localStorage.setItem("contenu",`${inputValue}`);setVisible(true)}}
 
                                 style={{
                                     marginLeft: '525px',
                                     marginTop: '-90px'
                                 }} >Recherche</button>
                         </div>
-                      
                          {vis && <div className="App">
-                             
-            
                             <SujetDomaine />
                         </div>}
                     </Grid>
                     <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6} square>
-
-                       { visible && <V/>}
-                      
+                         { visible && <Visible/>}
                     </Grid>
                 </Grid>
-                {data.map((option) => {
-                                    return (
-                                        <ResRech Tech={option.Tech} Domaine={option.Domaine} duree= {option.duree } />
-                                      );}
-                               // {option.Tech }
-                               // {option.Domaine }
-                              //  {option.duree }
-                                )}
+           
             </ThemeProvider>
 
         </div>
