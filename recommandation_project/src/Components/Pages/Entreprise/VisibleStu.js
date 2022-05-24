@@ -53,7 +53,6 @@ class VisibleStu extends React.Component {
         this.setState({ feedInput: feedInput });
 
     }
-
     update = event => {
         var id = this.state.data.id;
         console.log(id);

@@ -78,7 +78,7 @@ function App() {
         <Route exact path = "/Sujet" element={<FormSuj/>}/>
         <Route exact path = "/ListeCand/:id" element={<Listedescand/>}/>
         <Route exact path = "/UpdateSujet/:id" element={<UpdateSuj/>}/>
-        <Route exact path="/LettreDeMotivation/:id" element={<LettreDeMotiv/>} />
+        <Route exact path="/ChoisirTemps/:id" element={<LettreDeMotiv/>} />
         <Route exact path="/Recherche" element={<Recherche/>}/>
         <Route exact path = "/Recherche/:id" element={<VisibleStu/>}/> 
         <Route exact path = '/Test/:id' element = {<StepContextTest><Test/></StepContextTest>}/>
