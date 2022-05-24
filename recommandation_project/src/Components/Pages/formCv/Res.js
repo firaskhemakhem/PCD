@@ -15,6 +15,7 @@ function Res() {
     const [competence, setCompetence] = useState([]);
     const [cv, setCv] = useState([]);
     const [openPop, setOpenPop]= React.useState(false);
+
     const arrangeData = () => {
         setInfoper({
             "LoginStu": localStorage.getItem('LoginUser'),
@@ -28,7 +29,7 @@ function Res() {
             
         });
         setCompetence({
-            "LoginStu": localStorage.getItem('LoginUser'),
+            "LoginStu": "ff",//localStorage.getItem('LoginUser'),
             "Formation": userData.Formation,
             "ExpProf": userData.ExpProf,
             "Certif": userData.Certif,

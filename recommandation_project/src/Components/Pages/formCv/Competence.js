@@ -39,7 +39,7 @@ function Competence() {
                             name='Formation'
                             multiline
                             rows={4}
-                            placeholder="Expliquer votre parcour educatif en quelques lignes"
+                            placeholder="Expliquer votre parcours éducatifs en quelques lignes"
                             variant="standard"
                             fullWidth
                             value={userData.Formation}
