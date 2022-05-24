@@ -8,9 +8,19 @@ import emailjs from '@emailjs/browser';
 
 function Postulation() {
 
+    /*function formSubmit(event) {
+        event.preventDefault();
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this);
+    }
+    <form enctype="multipart/form-data" method="post" onsubmit="formSubmit()">
+        <label>Attach file:</label>
+        <input type="file" name="my_file"> 
+        <input type="submit" value="Submit">
+    </form>*/
+
     const formSubmit = (event) => {
         event.preventDefault();
-        emailjs.sendForm('service_xkv5vt9', 'template_ee3g12r', '#Login','#Email','#File','rKn8bitffG4ybeVng')
+        emailjs.sendForm('service_xkv5vt9', 'template_ee3g12r', this)
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
          }, function(error) {

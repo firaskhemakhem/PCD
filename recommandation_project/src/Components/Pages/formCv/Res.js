@@ -73,7 +73,7 @@ function Res() {
             body: JSON.stringify(infoadd)
         }).then(data => data.json()).catch(error => console.error(error))
     }
-    const registercompetence = event => {
+    const registerCompetence = event => {
         arrangeData();
         fetch('http://127.0.0.1:8000/PcdApp/competence/', {
             method: 'POST',
@@ -231,7 +231,7 @@ function Res() {
                             registerInfoPer();
                             registerInfoAdd();
                             registercv();
-                            registercompetence();
+                            registerCompetence();
                             handleExportWithComponent();
                             setOpenPop(true)
                             //navigate('/EspCand/'+localStorage.getItem('LoginUser'))
@@ -250,7 +250,7 @@ function Res() {
                         registerInfoPer();
                         registerInfoAdd();
                         registercv();
-                        registercompetence();
+                        registerCompetence();
                         navigate('/EspCand/'+localStorage.getItem('LoginUser'));
                         }}
                     >
