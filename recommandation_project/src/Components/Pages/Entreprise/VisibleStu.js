@@ -297,7 +297,7 @@ class VisibleStu extends React.Component {
 
     componentDidMount() {
         this.fetchDataSujet();
-        this.fetchDataAgenda();
+      
         this.fetchDataFollow();
         this.fetchDataFeed();
 
@@ -318,16 +318,9 @@ class VisibleStu extends React.Component {
                 open: false
             })
         };
-        const defaultMessageStyles = {
-            boxSizing: 'border-box',
-            padding: '10px 10px 0 10px',
-            overflow: 'hidden',
-            width: '370px',
-            fontFamily: 'arial'
-        }
+    
 
         const sujetData = this.state.dataSujet;
-        const agendaData = this.state.dataAgenda;
         const IdStu = localStorage.getItem("LoginUser");
         { localStorage.setItem("IdRec", window.location.href.split('/')[4]) }
         //const IdEntre= window.location.href.split('/')[4];
@@ -338,18 +331,9 @@ class VisibleStu extends React.Component {
             <td>{sujet.Titre}</td>
             <td>{sujet.Description}</td>
             <td>{sujet.Domaine}</td>
-            <td><NavLink to={"/LettreDeMotivation/" + IdStu}><button className="btn btn-outline-secondary" onClick={(e) => { this.registerInter(e, sujet.Id_sujet); localStorage.setItem('IDSujInter', sujet.Id_sujet) }}>Intéresser</button></NavLink></td>
+            <td><NavLink to={"/ChoisirTemps/" + IdStu}><button className="btn btn-outline-secondary" onClick={(e) => { this.registerInter(e, sujet.Id_sujet); localStorage.setItem('IDSujInter', sujet.Id_sujet) }}>Intéresser</button></NavLink></td>
         </tr>));
-        const rowsAgenda = agendaData.map((agenda) =>
-
-        (this.state.isLoginAgenda && <tr key={agenda.Id_Calend}>
-            {localStorage.setItem("Id_ag", agenda.Id_Calend)}
-            <td>{agenda.Date}</td>
-            <td>{agenda.StartTime}</td>
-            <td>{agenda.EndTime}</td>
-            <td><button className="btn btn-outline-secondary">Confirmer</button></td>
-
-        </tr>));
+     
 
         return (
 
@@ -407,55 +391,7 @@ class VisibleStu extends React.Component {
                             </div>
                         </div>}
                 </div>
-                {/* <div>
-                    {this.state.isLoginAgenda &&
-                        <div>
-                            <div style={{
-                                textAlign: 'center',
-                                fontSize: '18px'
-                            }}>
-                                <p>Si vous etes intéressé par au moins un sujet </p>
-                                <p>Confirmer une date d'entretien selon la compatibilité de votre disponibilté et la disponibilté de recruteur de cette entreprise</p>
-                                <p>N'hésiter pas de cliquer sur le button "Confirmer"</p>
-                            </div>
-
-
-
-
-                            <h4 style={{
-                                textAlign: 'center',
-                                color: '#023C59'
-                            }} >La disponibilité de {this.state.url} pour les entretiens</h4>
-                            <div style={{
-                                border: '4px solid #023C59',
-                                borderRadius: '8px',
-                                paddingTop: '15px',
-                                marginRight: '50px',
-                                marginLeft: '50px'
-
-                            }}>
-                                <table class="table">
-                                    <thead>
-
-
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Temps Début</th>
-                                            <th scope="col">Temps fin</th>
-                                            <th scope="col">Votre disponilité</th>
-
-                                        </tr>
-
-
-                                    </thead>
-                                    <tbody>
-                                        {rowsAgenda}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>}
-                </div> */}
+               
                 <div>
                     {this.state.isFeed && <div>
                         <div style={{

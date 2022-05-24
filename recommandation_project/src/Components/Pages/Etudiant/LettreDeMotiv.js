@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import HeaderCan from './HeaderCan';
@@ -18,21 +15,21 @@ export default function LettreDeMotiv() {
     const [nomEtu, setNomEtu] = React.useState('');
     const [openPop, setOpenPop] = React.useState(false);
     const [state, setState] = React.useState({
-        'dataSujet': [],
-        'isLoginSujet': false,
-        'dataAgenda': [],
-        'isLoginAgenda': false,
-        'url': '',
-        'credentials': {},
-        'isFavorite': false,
-        'color': 'success',
-        'content': 'Suivre',
-        'data': {},
-        'id': '',
-        'isFeed': false,
-        'feedInput': '',
-        'ratingInput': -1,
-        'open': false
+        dataSujet: [],
+        isLoginSujet: false,
+        dataAgenda: [],
+        isLoginAgenda: false,
+        url: '',
+        credentials: {},
+        isFavorite: false,
+        color: 'success',
+        content: 'Suivre',
+        data: {},
+        id: '',
+        isFeed: false,
+        feedInput: '',
+        ratingInput: -1,
+        open: false
     })
     const navigate = useNavigate();
 
@@ -40,6 +37,7 @@ export default function LettreDeMotiv() {
     const IdRec = localStorage.getItem("IdRec");
     const IdSuj = localStorage.getItem('IDSujInter');
     const agendaData = state.dataAgenda;
+
     const rowsAgenda = agendaData.map((agenda) =>
 
     (state.isLoginAgenda && <tr key={agenda.Id_Calend}>
@@ -92,27 +90,35 @@ export default function LettreDeMotiv() {
         //fetchDataAgenda();
         //fetchDataFollow();
         //fetchDataFeed();
-        fetch(`http://127.0.0.1:8000/PcdApp/agenda/`)
+        console.log(state)
+        fetch(`http://127.0.0.1:8000/PcdApp/agenda/`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        
 
             .then(response => response.json())
             .then((result) => {
                 console.log(result);
-                console.log(localStorage.getItem("Login"))
-                setState({...state,
-                    "url": window.location.href.split('/')[4]
-                })
+               // console.log(localStorage.getItem("Login"))
+                // setState({...state,
+                //     "url": window.location.href.split('/')[4]
+                // })
                 for (let i = 0; i < result.length; i++) {
-                    if (result[i].LoginRec == state.url) {
-                        setState({...state, "dataAgenda": [...state.dataAgenda, result[i]] })
+                    if (result[i].LoginRec == IdRec) {
+                        console.log(result[i])
                         setState({...state,
+                            "dataAgenda": [...state.dataAgenda, result[i]],
+                        ...state,
                             "isLoginAgenda": true
                         })
                         localStorage.setItem('isLoginAgenda', true)
                     }
 
                 }
-                console.log(state.dataAgenda);
                 console.log(state.isLoginAgenda);
+                console.log(state.dataAgenda);
+               
             });
         fetch(`http://127.0.0.1:8000/PcdApp/interessant/`, {
             method: 'GET',
@@ -169,30 +175,7 @@ export default function LettreDeMotiv() {
         window.open("mailto:pcdensi911@gmail.com?subject=SendMail&body=Description");
     };
 
-    const fetchDataAgenda = () => {
-        fetch(`http://127.0.0.1:8000/PcdApp/agenda/`)
-
-            .then(response => response.json())
-            .then((result) => {
-                console.log(result);
-                console.log(localStorage.getItem("Login"))
-                setState({
-                    url: window.location.href.split('/')[4]
-                })
-                for (let i = 0; i < result.length; i++) {
-                    if (result[i].LoginRec == state.url) {
-                        setState({...state, "dataAgenda": [...state.dataAgenda, result[i]] })
-                        setState({...state,
-                            "isLoginAgenda": true
-                        })
-                        localStorage.setItem('isLoginAgenda', true)
-                    }
-
-                }
-                console.log(state.dataAgenda);
-                console.log(state.isLoginAgenda);
-            });
-    }
+    
     return (
 
         <ThemeProvider theme={theme}>
