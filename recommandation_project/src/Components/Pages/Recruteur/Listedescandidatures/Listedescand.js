@@ -1,3 +1,4 @@
+import { ContactSupportOutlined } from '@material-ui/icons';
 import { id } from 'date-fns/locale';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -12,6 +13,7 @@ class Listedescand extends React.Component {
             NomSuj: [],
             nom: '',
             id: [],
+            idSupp: [],
             isSujet: '',
             dataSuj: [],
             credentials: {
@@ -38,6 +40,10 @@ class Listedescand extends React.Component {
             notifData:[]
         };
     }
+  
+
+
+
     fetchDataSujet() {
         fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
 
@@ -57,14 +63,42 @@ class Listedescand extends React.Component {
                         })
                         localStorage.setItem('isSujet', true)
                     }
+                   
 
                 }
+                
+          //      for (let i = 0; i < result.length; i++) {
+                // if(result[i].Att === true ){
+                //     this.setState ({
+                //         idSupp :[...this.state.idSupp , result[i].Id_sujet]
+                //     })
+                // }}
+               
                 console.log(this.state.dataSuj);
                 console.log(this.state.id);
                 console.log(this.state.NomSuj);
                 console.log(this.state.isSujet);
             });
     }
+    deleteDataSujet(){
+      
+        fetch(`http://127.0.0.1:8000/PcdApp/sujet/`)
+        .then(response => response.json())
+        .then((result) => {
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].Att == true){
+                    this.setState({
+                     idSupp: [...this.state.idSupp , result[i].Id_sujet]
+                    })
+                }
+
+            }
+            console.log(this.state.idSupp)
+        })
+    
+        
+}
+
     update = (event, id, idstu, ids) => {
         //var id=this.state.credentials.Login;
         fetch(`http://127.0.0.1:8000/PcdApp/interessant/${id}/`, {
@@ -82,6 +116,15 @@ class Listedescand extends React.Component {
             .then(console.log(this.state.cred))
             .catch(error => console.error(error))
     }
+ delSuj = (id) =>{
+    // console.log(this.state.idSupp)
+     //for (let i= 0; this.state.idSupp.length ;i++){
+        fetch(`http://127.0.0.1:8000/PcdApp/sujet/${id}/`, {
+            method: 'Delete',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify()})
+    // }
+ }
     updateSuj = (event) => {
         for (let i = 0; this.state.dataSuj.length; i++) {
             for (let j = 0; this.state.data.length; j++) {
@@ -108,7 +151,7 @@ class Listedescand extends React.Component {
                        // .then(console.log(this.state.cred))
                         .catch(error => console.error(error))
 
-                }else {console.log("n'exista pas")}
+                }else {console.log("n'existe pas")}
             }
         }
         //var id=this.state.credentials.Login;
@@ -133,6 +176,14 @@ class Listedescand extends React.Component {
                 //console.log(this.state.data);
                 //console.log(this.state.isLogin);
             });
+    }
+    deleteData= (id)  => {
+        fetch(`http://127.0.0.1:8000/PcdApp/interessant/${id}/`, {
+                        method: 'Delete',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify()}
+        )
+
     }
     /* oooooooooooooooooooooooooooooooo*/
     /*date=new Date()
@@ -215,10 +266,12 @@ class Listedescand extends React.Component {
         }).then(data => data.json()).catch(error => console.error(error))
     }*/
     /*ooooooooooooooooooooooooo*/
+    
     componentDidMount() {
         this.fetchData();
         this.fetchDataSujet();
-
+        this.deleteDataSujet();
+        //this.delSuj()
     }
 
     IsSujett(idd) {
@@ -248,16 +301,17 @@ class Listedescand extends React.Component {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 4, mb: 2 }}
-                    onClick={(e) => { this.update(e, inter.id, inter.student, inter.id_sujet) ; this.updateSuj(e);this.addNotif()}}
+                    onClick={(e) => { this.update(e, inter.id, inter.student, inter.id_sujet) ; this.updateSuj(e);this.addNotif(); this.delSuj(inter.id_sujet)   
+                        }}
                 >
                     Confirmer
                 </button>
             </td>
-            <td><button onClick={() => this.deleteData(inter.id)} className="btn btn-danger">Refuser</button></td>
+            <td><button onClick={() => {this.deleteData(inter.id); window.location.reload(true)}} className="btn btn-danger">Refuser</button></td>
         </tr>));
         return (
             <div>
-                <HeaderRec />
+                <HeaderRec/>
                 {!this.state.isLogin && <div>
                     Aucun candidat n'est postulé à vos sujet
 
